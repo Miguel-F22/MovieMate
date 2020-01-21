@@ -1,5 +1,5 @@
 //
-//  CastCharacter.swift
+//  Event.swift
 //  GroupProjectApp
 //
 //  Created by Miguel Figueroa on 1/21/20.
@@ -8,19 +8,11 @@
 
 import Foundation
 
-struct Cast: Codable {
-    var cast: [Character]
-}
-
-struct Character: Codable {
+struct Event {
     var name: String
     var origin: Movie?
     var notes: String?
     var relatedObjects: [Object]?
     var relatedCharacters: [Character]?
-    var relateEvents: [Event]?
-    
-    enum CodingKeys: String, CodingKey {
-        case name = "character"
-    }
+    var relatedEvents: [Event]?
 }
