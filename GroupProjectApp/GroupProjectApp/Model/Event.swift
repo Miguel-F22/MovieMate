@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Event {
+struct Event: Codable {
     var name: String
     var origin: Movie?
     var notes: String?

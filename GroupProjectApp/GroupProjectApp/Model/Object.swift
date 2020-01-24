@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Object {
+struct Object: Codable {
     var name: String
     var origin: Movie?
     var notes: String?
