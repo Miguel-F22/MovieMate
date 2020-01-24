@@ -16,7 +16,7 @@ class MovieListTableViewController: UITableViewController {
             
         let searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
-        
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     override func viewDidLoad() {
