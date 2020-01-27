@@ -26,6 +26,8 @@ struct Movie: Codable {
     var voteAverage: Double
     var releaseDate: String
 
+//    When I uncommneted these, it kinda broke that initializer, so I had to make some changes to the initializer. We'll just need to make sure that the new changes don't break anything as we move forward.
+    
     var relatedCharacters: [Character]?
     var relatedObjects: [Object]?
     var relatedEvents: [Event]?
