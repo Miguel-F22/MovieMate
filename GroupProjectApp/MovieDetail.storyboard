@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0gn-g8-wm2">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -25,52 +25,39 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="204"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pgq-2G-UKO">
-                                                    <rect key="frame" x="20" y="3" width="146" height="195"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pgq-2G-UKO">
+                                                    <rect key="frame" x="20" y="3" width="141" height="182"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Movie Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KK3-zk-B59">
-                                                    <rect key="frame" x="183" y="20" width="202" height="34"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Movie Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KK3-zk-B59">
+                                                    <rect key="frame" x="174" y="11" width="220" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Director" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6bO-Z4-BH3">
-                                                    <rect key="frame" x="183" y="62" width="97" height="34"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="97" id="pRC-eh-BJt"/>
-                                                    </constraints>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Year" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T93-YI-vkg">
+                                                    <rect key="frame" x="174" y="53" width="97" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Year" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T93-YI-vkg">
-                                                    <rect key="frame" x="183" y="104" width="97" height="34"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rating" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dc6-Ts-wyx">
+                                                    <rect key="frame" x="296" y="109" width="98" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCw-g2-7m9">
-                                                    <rect key="frame" x="304" y="133" width="98" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="98" id="Vkk-Sw-W3Q"/>
-                                                    </constraints>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCy-fD-cfu">
+                                                    <rect key="frame" x="170" y="118" width="86" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="+ My Library"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lg1-Wm-Bko">
+                                                    <rect key="frame" x="188" y="150" width="47" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Similar"/>
                                                 </button>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="KK3-zk-B59" firstAttribute="leading" secondItem="pgq-2G-UKO" secondAttribute="trailing" constant="17" id="9Nr-CG-l1Z"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="WCw-g2-7m9" secondAttribute="bottom" constant="16" id="Abm-t7-vRd"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="T93-YI-vkg" secondAttribute="bottom" constant="55" id="LyB-9e-eFf"/>
-                                                <constraint firstItem="pgq-2G-UKO" firstAttribute="leading" secondItem="gej-ov-Nvi" secondAttribute="leadingMargin" id="WEX-nX-hNx"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="pgq-2G-UKO" secondAttribute="bottom" constant="-5" id="Wxa-Wb-cEk"/>
-                                                <constraint firstItem="WCw-g2-7m9" firstAttribute="leading" secondItem="T93-YI-vkg" secondAttribute="trailing" constant="24" id="ZHs-n2-1sc"/>
-                                                <constraint firstItem="T93-YI-vkg" firstAttribute="top" secondItem="6bO-Z4-BH3" secondAttribute="bottom" constant="8" id="a3f-CF-BzS"/>
-                                                <constraint firstItem="6bO-Z4-BH3" firstAttribute="leading" secondItem="T93-YI-vkg" secondAttribute="leading" id="csw-0w-tdm"/>
-                                                <constraint firstItem="KK3-zk-B59" firstAttribute="leading" secondItem="6bO-Z4-BH3" secondAttribute="leading" id="gdp-fZ-UGj"/>
-                                                <constraint firstItem="6bO-Z4-BH3" firstAttribute="trailing" secondItem="T93-YI-vkg" secondAttribute="trailing" id="mCg-Ly-NxO"/>
-                                                <constraint firstItem="WCw-g2-7m9" firstAttribute="top" secondItem="KK3-zk-B59" secondAttribute="bottom" constant="79" id="oNw-bc-vRz"/>
-                                                <constraint firstItem="pgq-2G-UKO" firstAttribute="top" secondItem="gej-ov-Nvi" secondAttribute="topMargin" constant="-8" id="vEw-am-GkS"/>
-                                                <constraint firstItem="6bO-Z4-BH3" firstAttribute="top" secondItem="KK3-zk-B59" secondAttribute="bottom" constant="8" id="vr2-gD-XU8"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="KK3-zk-B59" secondAttribute="trailing" constant="9" id="x9h-UJ-ACe"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="WCw-g2-7m9" secondAttribute="trailing" constant="-8" id="yrz-Qu-6Pk"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -229,10 +216,47 @@
                             <outlet property="delegate" destination="EtL-Lq-DKh" id="SuR-9B-Mgs"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="SYz-AA-kDe"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jL1-Bl-om7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="3494.202898550725" y="181.47321428571428"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="aKc-or-7WW">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="0gn-g8-wm2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Efd-zZ-Lgb">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="zcA-O1-dHy" kind="relationship" relationship="viewControllers" id="DR8-4A-q8r"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jws-nQ-c5z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="1673.913043478261" y="181.47321428571428"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="P7T-oZ-EBN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zcA-O1-dHy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="0hM-aR-kvW"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SKG-u9-iPe">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EtL-Lq-DKh" kind="relationship" relationship="rootViewController" id="j1G-Ud-v8V"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F6C-jx-zRT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2584.057971014493" y="181.47321428571428"/>
         </scene>
     </scenes>
 </document>
