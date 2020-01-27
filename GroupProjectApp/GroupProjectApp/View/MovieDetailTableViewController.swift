@@ -9,6 +9,17 @@
 import UIKit
 
 class MovieDetailTableViewController: UITableViewController {
+    
+//    MARK: Outlets and dependencies
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var releaseDate: UILabel!
+    @IBOutlet weak var summary: UILabel!
+    
+    var relatedCharacters: [Character]?
+    var relatedObjects: [Object]?
+    var relatedEvents: [Event]?
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,6 +9,16 @@
 import UIKit
 
 class OCEDetailTableViewController: UITableViewController {
+    
+//    MARK: Outlets and Dependencies
+    @IBOutlet weak var originText: UITextView!
+    @IBOutlet weak var notesText: UITextView!
+    var relatedEvents: [Event]?
+    var relatedCharacters: [Character]?
+    var relatedObjects: [Object]?
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

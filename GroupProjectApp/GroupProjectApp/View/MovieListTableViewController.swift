@@ -10,6 +10,9 @@ import UIKit
 
 class MovieListTableViewController: UITableViewController {
     
+//    MARK: Dependencies
+    
+    
 
     //        adds searchbar item to Navigation bar
     func setupNavBar() {
@@ -23,6 +26,7 @@ class MovieListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
