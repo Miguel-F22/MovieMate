@@ -11,6 +11,8 @@ import UIKit
 class OCEDetailTableViewController: UITableViewController {
     
 //    MARK: Outlets and Dependencies
+    var movieID: Int?
+    var collection: Collection?
     @IBOutlet weak var originText: UITextView!
     @IBOutlet weak var notesText: UITextView!
     var relatedEvents: [Event]?

@@ -11,6 +11,8 @@ import UIKit
 class MovieDetailTableViewController: UITableViewController {
     
 //    MARK: Outlets and dependencies
+    var movieID: Int?
+    var collection: Collection?
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var summary: UILabel!
@@ -88,14 +90,20 @@ class MovieDetailTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as? OCEDetailTableViewController
+        let id = movieID
+        let collectionName = collection
+        destination?.movieID = id
+        destination?.collection = collectionName
+        
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

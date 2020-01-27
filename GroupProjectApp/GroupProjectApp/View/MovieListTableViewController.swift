@@ -11,7 +11,9 @@ import UIKit
 class MovieListTableViewController: UITableViewController {
     
 //    MARK: Dependencies
-    
+    var movieID: Int?
+    var collection: Collection?
+    var movieInfoItems: [Movie] = []
     
 
     //        adds searchbar item to Navigation bar
@@ -92,14 +94,19 @@ class MovieListTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let selectedRow = tableView.indexPathForSelectedRow, let destination = segue.destination as? MovieDetailTableViewController {
+            let id = movieInfoItems[selectedRow.row].movieID
+            let collectionName = movieInfoItems[selectedRow.row].collection
+            destination.movieID = id
+            destination.collection = collectionName
+        }
+        
     }
-    */
+    
 
 }
