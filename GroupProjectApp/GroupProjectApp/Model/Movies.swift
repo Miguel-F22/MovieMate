@@ -25,6 +25,12 @@ struct Movie: Codable {
     var collection: Collection
     var voteAverage: Double
     var releaseDate: String
+
+//    When I uncommneted these, it kinda broke that initializer, so I had to make some changes to the initializer. We'll just need to make sure that the new changes don't break anything as we move forward.
+    
+    var relatedCharacters: [Character]?
+    var relatedObjects: [Object]?
+    var relatedEvents: [Event]?
     
     enum CodingKeys: String, CodingKey {
         case title = "original_title"
@@ -36,7 +42,7 @@ struct Movie: Codable {
         case releaseDate = "release_date"
     }
     
-    init(from decoder: Decoder) throws {
+    init(from decoder: Decoder, relatedCharacters: [Character]?, relatedObjects: [Object]?, relatedEvents: [Event]?) throws {
         do {
             let values = try decoder.container(keyedBy: CodingKeys.self)
             title = try values.decode(String.self, forKey: CodingKeys.title)
@@ -46,16 +52,13 @@ struct Movie: Codable {
             collection = try values.decode(Collection.self, forKey: CodingKeys.collection)
             voteAverage = try values.decode(Double.self, forKey: CodingKeys.voteAverage)
             releaseDate = try values.decode(String.self, forKey: CodingKeys.releaseDate)
-            
-            
         }
+        self.relatedCharacters = relatedCharacters
+        self.relatedObjects = relatedObjects
+        self.relatedEvents = relatedEvents
     }
     
-//    I just commented these out because seeing errors in the compiler drives me nuts, once I get the other models built these next three lines can be uncommented
     
-//    var relatedPeople: [Person]
-//    var relatedObjects: [Object]
-//    var relatedEvents: [Event]
 }
 
 struct Collection: Codable {
