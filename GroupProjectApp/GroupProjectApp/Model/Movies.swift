@@ -25,9 +25,9 @@ struct Movie: Codable {
     var collection: Collection
     var voteAverage: Double
     var releaseDate: String
-
-//    When I uncommneted these, it kinda broke that initializer, so I had to make some changes to the initializer. We'll just need to make sure that the new changes don't break anything as we move forward.
-    
+//
+////    When I uncommneted these, it kinda broke that initializer, so I had to make some changes to the initializer. We'll just need to make sure that the new changes don't break anything as we move forward.
+//
     var relatedCharacters: [Character]?
     var relatedObjects: [Object]?
     var relatedEvents: [Event]?
@@ -37,7 +37,7 @@ struct Movie: Codable {
         case movieID = "id"
         case overview
         case posterPath = "poster_path"
-        case collection = "name"
+        case collection = "belongs_to_collection"
         case voteAverage = "vote_average"
         case releaseDate = "release_date"
     }

@@ -21,13 +21,11 @@ class MovieListNetworkController: MovieListItemController {
             "api_key": api_key,
             "query": name
         ]
-        print(baseURL)
         guard let url = baseURL.withQueries(query) else {
             //completion()
             print("Unable to build URL with supplied queries.")
             return
         }
-        print(url)
         let request = URLRequest(url: url)
         
         let task = session.dataTask(with: request) { (data, response, error) in
