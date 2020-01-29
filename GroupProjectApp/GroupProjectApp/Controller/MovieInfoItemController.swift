@@ -13,5 +13,5 @@ enum MovieInfoItemError: Error {
 }
 
 protocol MovieInfoItemController {
-    func getMovieInfoItem(movie_ID: String, completion: @escaping (Result<Movie, MovieInfoItemError>) -> Void)
+    func getMovieInfoItem(movie_ID: Int, completion: @escaping (Result<Movie, MovieInfoItemError>) -> Void)
 }

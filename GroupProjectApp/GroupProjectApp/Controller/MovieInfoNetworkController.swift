@@ -14,7 +14,7 @@ import Foundation
      
      
      
-     func getMovieInfoItem(movie_ID: String, completion: @escaping (Result<Movie, MovieInfoItemError>) -> Void) {
+     func getMovieInfoItem(movie_ID: Int, completion: @escaping (Result<Movie, MovieInfoItemError>) -> Void) {
          let baseURL = URL(string: "https://api.themoviedb.org/3/movie/\(movie_ID)")!
 
         let query: [String: String] = [
