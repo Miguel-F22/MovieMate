@@ -9,9 +9,19 @@
 import UIKit
 
 class OCEDetailTableViewController: UITableViewController {
-    @IBOutlet weak var OCECollectionView: UICollectionView!
+    
+//    MARK: Outlets and Dependencies
+    var movieID: Int?
+    var collection: Collection?
+    @IBOutlet weak var originText: UITextView!
+    @IBOutlet weak var notesText: UITextView!
+    var relatedEvents: [Event]?
+    var relatedCharacters: [Character]?
+    var relatedObjects: [Object]?
     
     
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,14 +32,6 @@ class OCEDetailTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    
-    func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
-        OCECollectionView.delegate = dataSourceDelegate
-        OCECollectionView.dataSource = dataSourceDelegate
-        OCECollectionView.tag = row
-        OCECollectionView.reloadData()
-    }
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

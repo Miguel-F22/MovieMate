@@ -9,9 +9,36 @@
 import UIKit
 
 class MovieDetailTableViewController: UITableViewController {
+    
+    let movieInfoNetworkController: MovieInfoNetworkController = MovieInfoNetworkController()
+    
+//    MARK: Outlets and dependencies
+    var movieID: Int?
+    var collection: Collection?
+    var releaseDate: String?
+    var overview: String?
+    
+    
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var summary: UITextView!
+    
+    var relatedCharacters: [Character]?
+    var relatedObjects: [Object]?
+    var relatedEvents: [Event]?
+    
+    func updateView() {
+        movieTitleLabel.text = title
+        releaseDateLabel.text = releaseDate
+        summary.text = overview
+        
+    }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateView()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -19,6 +46,8 @@ class MovieDetailTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+   
 
     // MARK: - Table view data source
 
@@ -77,14 +106,21 @@ class MovieDetailTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as? OCEDetailTableViewController
+        let id: Int? = movieID
+        let collectionName = collection
+        destination?.movieID = id
+        destination?.collection = collectionName
+        
+        
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
