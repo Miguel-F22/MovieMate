@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailTableViewController: UITableViewController {
+class MovieDetailTableViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     let movieInfoNetworkController: MovieInfoNetworkController = MovieInfoNetworkController()
     
@@ -19,16 +19,18 @@ class MovieDetailTableViewController: UITableViewController {
     var overview: String?
     
     
-    @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var summary: UITextView!
     
     var relatedCharacters: [Character]?
     var relatedObjects: [Object]?
-    var relatedEvents: [Event]?
+    var relatedEvents: [Event] = [
+        Event(name: "Death of a patriot", notes: "It was an epic plot twist"),
+        Event(name: "Something big", notes: "Cray cray"),
+        Event(name: "Hand Chopped off", notes: "clean cut", relatedEvents: [Event(name: "Death of a patriot", notes: "It was an epic plot twist")])
+    ]
     
     func updateView() {
-        movieTitleLabel.text = title
         releaseDateLabel.text = releaseDate
         summary.text = overview
         
@@ -37,8 +39,8 @@ class MovieDetailTableViewController: UITableViewController {
     
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         updateView()
+        super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -47,65 +49,30 @@ class MovieDetailTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+//   MARK: Collection stuff
+    
+    let reuseIdentifier = "eventCell"
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.relatedEvents.count
+    }
    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-    // MARK: - Table view data source
+           // get a reference to our storyboard cell
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! EventsCollectionViewCell
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+           // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        cell.nameLabel.text = self.relatedEvents[indexPath.item].name
+           cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+           return cell
+       }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+           // handle tap events
+           print("You selected cell #\(indexPath.item)!")
+       }
     
     // MARK: - Navigation
 
