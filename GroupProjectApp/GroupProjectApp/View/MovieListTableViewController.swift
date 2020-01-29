@@ -45,7 +45,6 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                                          DispatchQueue.main.async {
                                              switch response {
                                                  case .success(let movieInfoItem):
-                                                    print("WORKED")
                                                     
                                                     //print(self.movieInfoItems)
                                                      DispatchQueue.main.async {

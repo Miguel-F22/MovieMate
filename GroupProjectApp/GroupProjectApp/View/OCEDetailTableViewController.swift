@@ -9,7 +9,9 @@
 import UIKit
 
 class OCEDetailTableViewController: UITableViewController {
-
+    @IBOutlet weak var OCECollectionView: UICollectionView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,14 @@ class OCEDetailTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    
+    func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
+        OCECollectionView.delegate = dataSourceDelegate
+        OCECollectionView.dataSource = dataSourceDelegate
+        OCECollectionView.tag = row
+        OCECollectionView.reloadData()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
