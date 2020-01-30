@@ -8,7 +8,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
 
 class EventsCollectionViewController: UICollectionViewController {
 
@@ -36,24 +35,29 @@ class EventsCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+      let reuseIdentifier = "eventCell"
 
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+         return MovieDetailTableViewController.relatedEvents.count
+     }
     
-        // Configure the cell
-    
-        return cell
-    }
+     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+            // get a reference to our storyboard cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! EventsCollectionViewCell
+
+            // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        cell.nameLabel.text = MovieDetailTableViewController.relatedEvents[indexPath.item].name
+            cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
+
+            return cell
+        }
+     
+     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            // handle tap events
+            print("You selected cell #\(indexPath.item)!")
+         performSegue(withIdentifier: "toOCE", sender: nil)
+        }
 
     // MARK: UICollectionViewDelegate
 

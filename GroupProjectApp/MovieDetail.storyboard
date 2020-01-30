@@ -123,7 +123,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Y5j-Vx-kpZ" customClass="CharactersCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chracterCell" id="Y5j-Vx-kpZ" customClass="CharactersCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.5" width="125" height="130"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qj3-sf-MCa">
@@ -145,7 +145,7 @@
                                                             <size key="customSize" width="125" height="130"/>
                                                             <connections>
                                                                 <outlet property="nameLabel" destination="GsY-CD-0wx" id="Hgy-cJ-zO5"/>
-                                                                <segue destination="QC8-WP-lxl" kind="show" id="NOC-PV-pV5"/>
+                                                                <segue destination="QC8-WP-lxl" kind="show" identifier="toOCE" id="NOC-PV-pV5"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -174,19 +174,20 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="129"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eCo-3H-v9h">
-                                                        <size key="itemSize" width="50" height="50"/>
+                                                        <size key="itemSize" width="139" height="139"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="lf7-NE-ATB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="objectCell" id="lf7-NE-ATB">
+                                                            <rect key="frame" x="0.0" y="0.0" width="139" height="139"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NEL-yh-M57">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="139" height="139"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </collectionViewCellContentView>
+                                                            <size key="customSize" width="139" height="139"/>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -214,8 +215,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3nX-u4-gBZ">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="3" minimumInteritemSpacing="3" id="3nX-u4-gBZ">
                                                         <size key="itemSize" width="135" height="140"/>
+                                                        <size key="estimatedItemSize" width="135" height="140"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -228,16 +230,21 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="135" height="140"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boh-Mq-YVM">
-                                                                        <rect key="frame" x="46.5" y="59.5" width="42" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boh-Mq-YVM">
+                                                                        <rect key="frame" x="8" y="42" width="119" height="56"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="119" id="Ev2-E0-KWB"/>
+                                                                            <constraint firstAttribute="height" constant="56" id="qxU-p0-XrD"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="boh-Mq-YVM" firstAttribute="centerY" secondItem="DQR-vS-JKw" secondAttribute="centerY" id="qzP-Sb-vM5"/>
-                                                                    <constraint firstItem="boh-Mq-YVM" firstAttribute="centerX" secondItem="DQR-vS-JKw" secondAttribute="centerX" id="xrl-fw-Twp"/>
+                                                                    <constraint firstItem="boh-Mq-YVM" firstAttribute="centerY" secondItem="DQR-vS-JKw" secondAttribute="centerY" id="M50-y9-lDf"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="boh-Mq-YVM" secondAttribute="trailing" constant="8" id="oYl-aD-V5h"/>
+                                                                    <constraint firstItem="boh-Mq-YVM" firstAttribute="leading" secondItem="DQR-vS-JKw" secondAttribute="leading" constant="8" id="xqw-A1-4dL"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="135" height="140"/>
@@ -247,7 +254,6 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                     <connections>
-                                                        <outlet property="dataSource" destination="EtL-Lq-DKh" id="cnB-5g-5qh"/>
                                                         <outlet property="delegate" destination="EtL-Lq-DKh" id="goc-iu-5iM"/>
                                                     </connections>
                                                 </collectionView>
@@ -263,6 +269,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="eventCollectionView" destination="EcF-Fl-E7l" id="fBv-45-mae"/>
                         <outlet property="releaseDateLabel" destination="Fcl-D0-mRZ" id="hP9-N3-zbU"/>
                         <outlet property="summary" destination="WHA-Y2-Gf3" id="CcI-MD-5gb"/>
                     </connections>
@@ -271,10 +278,10 @@
             </objects>
             <point key="canvasLocation" x="1673.913043478261" y="181.47321428571428"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--OCEDetail-->
         <scene sceneID="7AF-UY-rbm">
             <objects>
-                <viewControllerPlaceholder id="QC8-WP-lxl" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="OCEDetail" id="QC8-WP-lxl" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="RBV-i9-wcI"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Dg-NU-bT6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

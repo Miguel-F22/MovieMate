@@ -8,9 +8,11 @@
 
 import UIKit
 
-class MovieDetailTableViewController: UITableViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MovieDetailTableViewController: UITableViewController {
     
     let movieInfoNetworkController: MovieInfoNetworkController = MovieInfoNetworkController()
+    let eventController: EventsCollectionViewController = EventsCollectionViewController()
+    
     
 //    MARK: Outlets and dependencies
     var movieID: Int?
@@ -21,13 +23,15 @@ class MovieDetailTableViewController: UITableViewController, UICollectionViewDat
     
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var summary: UITextView!
+    @IBOutlet weak var eventCollectionView: UICollectionView!
     
-    var relatedCharacters: [Character]?
-    var relatedObjects: [Object]?
-    var relatedEvents: [Event] = [
+    static var relatedCharacters: [Character]?
+    static var relatedObjects: [Object]?
+    static var relatedEvents: [Event] = [
         Event(name: "Death of a patriot", notes: "It was an epic plot twist"),
         Event(name: "Something big", notes: "Cray cray"),
-        Event(name: "Hand Chopped off", notes: "clean cut", relatedEvents: [Event(name: "Death of a patriot", notes: "It was an epic plot twist")])
+        Event(name: "Hand Chopped off", notes: "clean cut", relatedEvents: [Event(name: "Death of a patriot", notes: "It was an epic plot twist")]),
+        Event(name: "Something big", notes: "Cray cray")
     ]
     
     func updateView() {
@@ -41,6 +45,7 @@ class MovieDetailTableViewController: UITableViewController, UICollectionViewDat
     override func viewDidLoad() {
         updateView()
         super.viewDidLoad()
+        eventCollectionView.dataSource = eventController
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -51,28 +56,7 @@ class MovieDetailTableViewController: UITableViewController, UICollectionViewDat
     
 //   MARK: Collection stuff
     
-    let reuseIdentifier = "eventCell"
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.relatedEvents.count
-    }
-   
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-           // get a reference to our storyboard cell
-           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! EventsCollectionViewCell
-
-           // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.nameLabel.text = self.relatedEvents[indexPath.item].name
-           cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
-
-           return cell
-       }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-           // handle tap events
-           print("You selected cell #\(indexPath.item)!")
-       }
+ 
     
     // MARK: - Navigation
 
