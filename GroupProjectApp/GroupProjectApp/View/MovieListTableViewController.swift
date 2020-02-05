@@ -17,6 +17,8 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     let movieListController: MovieListItemController = MovieListNetworkController()
     var movieListItem: Movies?
     
+    let movieListImageController = MovieListImageNetworkController()
+    
     let movieInfoController: MovieInfoItemController = MovieInfoNetworkController()
     var movieInfoItems: [Movie] = []
     
@@ -36,49 +38,55 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        print("❣️\(text)")
-        self.movieInfoItems = []
-        self.tableView.reloadData()
-        movieListController.getMovieListItem(name: text.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)) { response in
-             DispatchQueue.main.async {
-                 switch response {
-                     case .success(let movieListItem):
-                         self.movieListItem = movieListItem
-                         print(movieListItem.results.first)
-                         DispatchQueue.main.async {
+        if text.count > 2 {
+            
         
-                            for i in movieListItem.results {
-                                self.movieInfoController.getMovieInfoItem(movie_ID: Int(i.id)) { response in
-                                         DispatchQueue.main.async {
-                                             switch response {
-                                                 case .success(let movieInfoItem):
-                                                    
-                                                    //print(self.movieInfoItems)
-                                                     DispatchQueue.main.async {
-                                                        self.movieInfoItems.append(movieInfoItem)
-                                                        self.tableView.reloadData()
-                                                        print(self.movieInfoItems.count)
-                                                     }
-                                                 case .failure:
-                                                    print("Could not find any information from: " + text)
-                            //                         let alert = UIAlertController(title: "Error", message: "Failed to load data", preferredStyle: .alert)
-                            //                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            //                         self.present(alert, animated: true, completion: nil)
+            self.movieInfoItems = []
+            self.tableView.reloadData()
+            movieListController.getMovieListItem(name: text.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)) { response in
+                 DispatchQueue.main.async {
+                     switch response {
+                         case .success(let movieListItem):
+                             self.movieListItem = movieListItem
+                             print(movieListItem.results.first)
+                             DispatchQueue.main.async {
+            
+                                for i in movieListItem.results {
+                                    self.movieInfoController.getMovieInfoItem(movie_ID: Int(i.id)) { response in
+                                             DispatchQueue.main.async {
+                                                 switch response {
+                                                     case .success(let movieInfoItem):
+                                                        
+                                                        //print(self.movieInfoItems)
+                                                         DispatchQueue.main.async {
+                                                            self.movieInfoItems.append(movieInfoItem)
+                                                            self.tableView.reloadData()
+                                                            print(self.movieInfoItems.count)
+                                                         }
+                                                     case .failure:
+                                                        print("Could not find any information from: " + text)
+                                //                         let alert = UIAlertController(title: "Error", message: "Failed to load data", preferredStyle: .alert)
+                                //                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                //                         self.present(alert, animated: true, completion: nil)
+                                                 }
                                              }
-                                         }
-                                    }
-                            }
-                            
-                            
-                            
-                         }
-                     case .failure:
-                        print("Could not find any information from: " + text)
-//                         let alert = UIAlertController(title: "Error", message: "Failed to load data", preferredStyle: .alert)
-//                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//                         self.present(alert, animated: true, completion: nil)
+                                        }
+                                }
+                                
+                                
+                                
+                             }
+                         case .failure:
+                            print("Could not find any information from: " + text)
+    //                         let alert = UIAlertController(title: "Error", message: "Failed to load data", preferredStyle: .alert)
+    //                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    //                         self.present(alert, animated: true, completion: nil)
+                     }
                  }
-             }
+            }
+        } else {
+            self.movieInfoItems = []
+            self.tableView.reloadData()
         }
     }
 
@@ -116,6 +124,11 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         cell.movieTitle.text = movieInfoItems[indexPath.row].title
         cell.movieDate.text = movieInfoItems[indexPath.row].releaseDate
         cell.movieRating.text = String(movieInfoItems[indexPath.row].voteAverage)
+        movieListImageController.fetchImage(path: movieInfoItems[indexPath.row].posterPath) { image in
+            DispatchQueue.main.async {
+                cell.movieImage.image = image
+            }
+        }
 
 
         return cell
