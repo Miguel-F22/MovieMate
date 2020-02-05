@@ -270,6 +270,7 @@
                     </tableView>
                     <connections>
                         <outlet property="eventCollectionView" destination="EcF-Fl-E7l" id="fBv-45-mae"/>
+                        <outlet property="movieImage" destination="pgq-2G-UKO" id="ipt-S8-YvY"/>
                         <outlet property="releaseDateLabel" destination="Fcl-D0-mRZ" id="hP9-N3-zbU"/>
                         <outlet property="summary" destination="WHA-Y2-Gf3" id="CcI-MD-5gb"/>
                     </connections>

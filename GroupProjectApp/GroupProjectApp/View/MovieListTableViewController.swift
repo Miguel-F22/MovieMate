@@ -12,7 +12,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     
     var movieID: Int?
     var collection: Collection?
-    
+//    var path: IndexPath?
 
     let movieListController: MovieListItemController = MovieListNetworkController()
     var movieListItem: Movies?
@@ -140,6 +140,8 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        path = indexPath
+        
         performSegue(withIdentifier: "toMovieDetail", sender: nil)
     }
 
@@ -183,17 +185,20 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let selectedRow = tableView.indexPathForSelectedRow?.row, let destination = segue.destination as? MovieDetailTableViewController {
             let id = movieInfoItems[selectedRow].movieID
             let movieTitle = movieInfoItems[selectedRow].title
             let releaseDate = movieInfoItems[selectedRow].releaseDate
             let collectionName = movieInfoItems[selectedRow].collection
             let overview = movieInfoItems[selectedRow].overview
+            let imagePath = movieInfoItems[selectedRow].posterPath
             destination.movieID = id
             destination.collection = collectionName
             destination.title = movieTitle
             destination.releaseDate = releaseDate
             destination.overview = overview
+            destination.imagePath = imagePath
         }
         
     }

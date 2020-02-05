@@ -29,6 +29,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="104" height="154"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="vMB-Rd-0sk" secondAttribute="height" multiplier="67.5:100" id="5Fe-Ga-fxx"/>
+                                                        <constraint firstAttribute="height" constant="154" id="glV-5l-y3t"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="FJU-wa-khP">
