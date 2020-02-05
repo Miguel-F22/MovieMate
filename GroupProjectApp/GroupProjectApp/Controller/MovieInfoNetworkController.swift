@@ -19,6 +19,7 @@ import Foundation
 
         let query: [String: String] = [
              "api_key": api_key2,
+             "language": "en-US"
          ]
          guard let url = baseURL.withQueries(query) else {
              //completion()
