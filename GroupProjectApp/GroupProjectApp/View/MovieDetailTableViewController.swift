@@ -10,8 +10,10 @@ import UIKit
 
 class MovieDetailTableViewController: UITableViewController {
     
+    static var shared = MovieDetailTableViewController()
     let movieInfoNetworkController: MovieInfoNetworkController = MovieInfoNetworkController()
-    let eventController: EventsCollectionViewController = EventsCollectionViewController()
+    let eventController = EventsCollectionViewController.shared
+    let movieListImageController: MovieListImageNetworkController = MovieListImageNetworkController()
     
     
 //    MARK: Outlets and dependencies
@@ -19,12 +21,15 @@ class MovieDetailTableViewController: UITableViewController {
     var collection: Collection?
     var releaseDate: String?
     var overview: String?
+    var imagePath: String?
     
     
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var summary: UITextView!
     @IBOutlet weak var eventCollectionView: UICollectionView!
+    @IBOutlet weak var movieImage: UIImageView!
     
+
     static var relatedCharacters: [MovieCharacter]?
     static var relatedObjects: [MovieObject]?
     static var relatedEvents: [MovieEvent] = [
@@ -43,9 +48,16 @@ class MovieDetailTableViewController: UITableViewController {
     
 
     override func viewDidLoad() {
+        guard let imagePath = imagePath else { return }
+        movieListImageController.fetchImage(path: imagePath) { image in
+            DispatchQueue.main.async {
+                self.movieImage.image = image
+            }
+        }
         updateView()
         super.viewDidLoad()
         eventCollectionView.dataSource = eventController
+        eventCollectionView.delegate = eventController
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
