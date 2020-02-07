@@ -9,16 +9,16 @@
 import Foundation
 
 struct Cast: Codable {
-    var cast: [Character]
+    var cast: [MovieCharacter]
 }
 
-struct Character: Codable {
+struct MovieCharacter: Codable {
     var name: String
     var origin: Movie?
     var notes: String?
-    var relatedObjects: [Object]?
-    var relatedCharacters: [Character]?
-    var relateEvents: [Event]?
+    var relatedObjects: [MovieObject]?
+    var relatedCharacters: [MovieCharacter]?
+    var relateEvents: [MovieEvent]?
     
     enum CodingKeys: String, CodingKey {
         case name = "character"

@@ -21,7 +21,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     let movieListImageController = MovieListImageNetworkController()
     
     let movieInfoController: MovieInfoItemController = MovieInfoNetworkController()
-    var movieInfoItems: [Movie] = []
+    var movieInfoItems: [AMovie] = []
     
     
     var searchController: UISearchController?
@@ -144,6 +144,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
 //        path = indexPath
         
         performSegue(withIdentifier: "toMovieDetail", sender: nil)
+        
     }
 
     /*

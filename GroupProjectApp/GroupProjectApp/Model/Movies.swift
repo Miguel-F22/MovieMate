@@ -17,7 +17,7 @@ struct MovieData: Codable {
     
 }
 
-struct Movie: Codable {
+struct AMovie: Codable {
     var title: String
     var movieID: Int
     var overview: String
@@ -26,9 +26,9 @@ struct Movie: Codable {
     var voteAverage: Double
     var releaseDate: String
     
-    var relatedCharacters: [Character]?
-    var relatedObjects: [Object]?
-    var relatedEvents: [Event]?
+    var relatedCharacters: [MovieCharacter]?
+    var relatedObjects: [MovieObject]?
+    var relatedEvents: [MovieEvent]?
     
     enum CodingKeys: String, CodingKey {
         case title = "original_title"
@@ -40,7 +40,7 @@ struct Movie: Codable {
         case releaseDate = "release_date"
     }
     
-    init(from decoder: Decoder, relatedCharacters: [Character]?, relatedObjects: [Object]?, relatedEvents: [Event]?) throws {
+    init(from decoder: Decoder, relatedCharacters: [MovieCharacter]?, relatedObjects: [MovieObject]?, relatedEvents: [MovieEvent]?) throws {
         do {
             let values = try decoder.container(keyedBy: CodingKeys.self)
             title = try values.decode(String.self, forKey: CodingKeys.title)

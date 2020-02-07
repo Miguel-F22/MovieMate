@@ -29,13 +29,14 @@ class MovieDetailTableViewController: UITableViewController {
     @IBOutlet weak var eventCollectionView: UICollectionView!
     @IBOutlet weak var movieImage: UIImageView!
     
-    static var relatedCharacters: [Character]?
-    static var relatedObjects: [Object]?
-    static var relatedEvents: [Event]? = [
-        Event(name: "Death of a patriot", notes: "It was an epic plot twist"),
-        Event(name: "Something big", notes: "Cray cray"),
-        Event(name: "Hand Chopped off", notes: "clean cut", relatedEvents: [Event(name: "Death of a patriot", notes: "It was an epic plot twist")]),
-        Event(name: "Something big", notes: "Cray cray")
+
+    static var relatedCharacters: [MovieCharacter]?
+    static var relatedObjects: [MovieObject]?
+    static var relatedEvents: [MovieEvent] = [
+        MovieEvent(name: "Death of a patriot", notes: "It was an epic plot twist"),
+        MovieEvent(name: "Something big", notes: "Cray cray"),
+        MovieEvent(name: "Hand Chopped off", notes: "clean cut", relatedEvents: [MovieEvent(name: "Death of a patriot", notes: "It was an epic plot twist")]),
+        MovieEvent(name: "Something big", notes: "Cray cray")
     ]
     
     func updateView() {
