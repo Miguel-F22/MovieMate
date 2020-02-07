@@ -37,7 +37,6 @@ class MovieListNetworkController: MovieListItemController {
                 
                 do {
                     let movieList = try decoder.decode(Movies.self, from: data)
-                    print(movieList)
                     completion(.success(movieList))
                 } catch {
                     print(error)

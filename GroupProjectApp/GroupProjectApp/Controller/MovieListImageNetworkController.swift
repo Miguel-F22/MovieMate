@@ -16,8 +16,6 @@ class MovieListImageNetworkController {
     func fetchImage(path: String, completion:
         @escaping (UIImage?) -> Void) {
         let url = baseURL.appendingPathComponent(path)
-        print("TEST12")
-        print(url)
         
         let imageTask = URLSession.shared.dataTask(with: url) { (data,
             response, error) in
