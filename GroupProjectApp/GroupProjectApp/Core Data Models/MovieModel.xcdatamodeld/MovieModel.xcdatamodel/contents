@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18G2022" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Character" representedClassName="Character" parentEntity="Movie" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <relationship name="characterRelatedCharacters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="characterRelatedCharacters" inverseEntity="Character"/>
+        <relationship name="characterRelatedEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="eventRelatedCharacters" inverseEntity="Event"/>
+        <relationship name="characterRelatedObjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Object" inverseName="objectRelatedCharacters" inverseEntity="Object"/>
+        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="movieRelatedCharacters" inverseEntity="Movie"/>
+    </entity>
+    <entity name="Event" representedClassName="Event" parentEntity="Movie" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <relationship name="eventRelatedCharacters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="characterRelatedEvents" inverseEntity="Character"/>
+        <relationship name="eventRelatedEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="eventRelatedEvents" inverseEntity="Event"/>
+        <relationship name="eventRelatedObjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Object" inverseName="objectRelatedEvents" inverseEntity="Object"/>
+        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="movieRelatedEvents" inverseEntity="Movie"/>
+    </entity>
+    <entity name="Movie" representedClassName="Movie" syncable="YES" codeGenerationType="class">
+        <attribute name="movieID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="posterPath" optional="YES" attributeType="String"/>
+        <attribute name="releaseDate" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="voteAverage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="movieRelatedCharacters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="origin" inverseEntity="Character"/>
+        <relationship name="movieRelatedEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="origin" inverseEntity="Event"/>
+        <relationship name="movieRelatedObjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Object" inverseName="origin" inverseEntity="Object"/>
+    </entity>
+    <entity name="Object" representedClassName="Object" parentEntity="Movie" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <relationship name="objectRelatedCharacters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="characterRelatedObjects" inverseEntity="Character"/>
+        <relationship name="objectRelatedEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="eventRelatedObjects" inverseEntity="Event"/>
+        <relationship name="objectRelatedObjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Object" inverseName="objectRelatedObjects" inverseEntity="Object"/>
+        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="movieRelatedObjects" inverseEntity="Movie"/>
+    </entity>
+    <elements>
+        <element name="Character" positionX="-7.96484375" positionY="94.828125" width="128" height="133"/>
+        <element name="Event" positionX="-201.73046875" positionY="-136.17578125" width="128" height="133"/>
+        <element name="Movie" positionX="37.609375" positionY="-252.609375" width="128" height="178"/>
+        <element name="Object" positionX="225.64453125" positionY="-32.7734375" width="128" height="133"/>
+    </elements>
+</model>

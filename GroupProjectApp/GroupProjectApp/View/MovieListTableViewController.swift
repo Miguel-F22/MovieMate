@@ -20,7 +20,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     let movieListImageController = MovieListImageNetworkController()
     
     let movieInfoController: MovieInfoItemController = MovieInfoNetworkController()
-    var movieInfoItems: [Movie] = []
+    var movieInfoItems: [AMovie] = []
     
     
     var searchController: UISearchController?
@@ -141,6 +141,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "toMovieDetail", sender: nil)
+        
     }
 
     /*
