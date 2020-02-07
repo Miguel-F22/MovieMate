@@ -10,6 +10,7 @@ import UIKit
 
 class MovieListTableViewController: UITableViewController, UISearchResultsUpdating {
     
+    static var shared = MovieListTableViewController()
     var movieID: Int?
     var collection: Collection?
 //    var path: IndexPath?

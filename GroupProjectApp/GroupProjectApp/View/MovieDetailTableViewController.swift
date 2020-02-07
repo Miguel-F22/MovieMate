@@ -10,8 +10,9 @@ import UIKit
 
 class MovieDetailTableViewController: UITableViewController {
     
+    static var shared = MovieDetailTableViewController()
     let movieInfoNetworkController: MovieInfoNetworkController = MovieInfoNetworkController()
-    let eventController: EventsCollectionViewController = EventsCollectionViewController()
+    let eventController = EventsCollectionViewController.shared
     let movieListImageController: MovieListImageNetworkController = MovieListImageNetworkController()
     
     
@@ -30,7 +31,7 @@ class MovieDetailTableViewController: UITableViewController {
     
     static var relatedCharacters: [Character]?
     static var relatedObjects: [Object]?
-    static var relatedEvents: [Event] = [
+    static var relatedEvents: [Event]? = [
         Event(name: "Death of a patriot", notes: "It was an epic plot twist"),
         Event(name: "Something big", notes: "Cray cray"),
         Event(name: "Hand Chopped off", notes: "clean cut", relatedEvents: [Event(name: "Death of a patriot", notes: "It was an epic plot twist")]),
@@ -55,6 +56,7 @@ class MovieDetailTableViewController: UITableViewController {
         updateView()
         super.viewDidLoad()
         eventCollectionView.dataSource = eventController
+        eventCollectionView.delegate = eventController
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

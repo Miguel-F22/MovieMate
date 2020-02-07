@@ -10,6 +10,10 @@ import UIKit
 
 
 class EventsCollectionViewController: UICollectionViewController {
+    
+    static var shared = EventsCollectionViewController()
+//    let movieDetailTableController = MovieDetailTableViewController.shared
+    var currentEvent: Event?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,44 +27,58 @@ class EventsCollectionViewController: UICollectionViewController {
         // Do any additional setup after loading the view.
     }
 
-    /*
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as? OCEDetailTableViewController
+//        let id: Int? = movieDetailTableController.movieID
+//        let collectionName = movieDetailTableController.collection
+//        destination?.movieID = id
+//        destination?.collection = collectionName
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-      let reuseIdentifier = "eventCell"
-
-     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return MovieDetailTableViewController.relatedEvents.count
-     }
+     
     
-     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-            // get a reference to our storyboard cell
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! EventsCollectionViewCell
-
-            // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.nameLabel.text = MovieDetailTableViewController.relatedEvents[indexPath.item].name
-            cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
-
+    // MARK: UICollectionViewDataSource
+    
+    let reuseIdentifier = "eventCell"
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let events = MovieDetailTableViewController.relatedEvents else {
+            print("no related events")
+            return 0
+        }
+        return events.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        // get a reference to our storyboard cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! EventsCollectionViewCell
+        
+        // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        guard let events = MovieDetailTableViewController.relatedEvents else {
+            print("no related events")
             return cell
         }
-     
-     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            // handle tap events
-            print("You selected cell #\(indexPath.item)!")
-         performSegue(withIdentifier: "toOCE", sender: nil)
-        }
-
+        cell.nameLabel.text = events[indexPath.item].name
+        cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
+        
+        return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // handle tap events
+        print("You selected cell #\(indexPath.item)!")
+//        currentEvent = events[
+//        performSegue(withIdentifier: "toOCEDetail", sender: nil)
+    }
+    
     // MARK: UICollectionViewDelegate
-
+    
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
@@ -89,5 +107,5 @@ class EventsCollectionViewController: UICollectionViewController {
     
     }
     */
-
+    
 }

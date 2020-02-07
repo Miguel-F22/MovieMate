@@ -31,8 +31,8 @@
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pgq-2G-UKO">
                                                             <rect key="frame" x="0.0" y="0.0" width="110.5" height="164"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="height" constant="164" id="2uU-cg-BCg"/>
                                                                 <constraint firstAttribute="width" secondItem="pgq-2G-UKO" secondAttribute="height" multiplier="67.5:100" id="ec2-GQ-lYo"/>
-                                                                <constraint firstAttribute="height" constant="164" id="nzZ-hh-S75"/>
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="5kS-Y7-8cI">
@@ -145,7 +145,7 @@
                                                             <size key="customSize" width="125" height="130"/>
                                                             <connections>
                                                                 <outlet property="nameLabel" destination="GsY-CD-0wx" id="Hgy-cJ-zO5"/>
-                                                                <segue destination="QC8-WP-lxl" kind="show" identifier="toOCE" id="NOC-PV-pV5"/>
+                                                                <segue destination="QC8-WP-lxl" kind="show" identifier="toOCEDetail" id="NOC-PV-pV5"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -161,7 +161,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="OBJECTS" id="OYY-yp-vHq">
+                            <tableViewSection headerTitle="OBJECTS" footerTitle="" id="OYY-yp-vHq">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="140" id="gBc-wN-umx">
                                         <rect key="frame" x="0.0" y="695" width="414" height="140"/>
@@ -173,7 +173,7 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u0s-kD-iiA">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="129"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eCo-3H-v9h">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eCo-3H-v9h">
                                                         <size key="itemSize" width="139" height="139"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -181,11 +181,23 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="objectCell" id="lf7-NE-ATB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="139" height="139"/>
+                                                            <rect key="frame" x="0.0" y="-5" width="139" height="139"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NEL-yh-M57">
                                                                 <rect key="frame" x="0.0" y="0.0" width="139" height="139"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBb-oJ-Ceb">
+                                                                        <rect key="frame" x="48.5" y="59" width="42" height="21"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="RBb-oJ-Ceb" firstAttribute="centerY" secondItem="NEL-yh-M57" secondAttribute="centerY" id="7UZ-kI-IFf"/>
+                                                                    <constraint firstItem="RBb-oJ-Ceb" firstAttribute="centerX" secondItem="NEL-yh-M57" secondAttribute="centerX" id="Njr-h4-eCu"/>
+                                                                </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="139" height="139"/>
                                                         </collectionViewCell>
