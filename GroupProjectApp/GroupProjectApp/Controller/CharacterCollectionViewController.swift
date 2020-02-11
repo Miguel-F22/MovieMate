@@ -11,6 +11,8 @@ import UIKit
 private let reuseIdentifier = "chracterCell"
 
 class CharacterCollectionViewController: UICollectionViewController {
+    static var shared = CharacterCollectionViewController()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,20 +40,33 @@ class CharacterCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        guard let characters = MovieDetailTableViewController.relatedCharacters else {
+            print("no related events")
+            return 0
+        }
+        return characters.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        
     
-        // Configure the cell
-    
+        // get a reference to our storyboard cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CharactersCollectionViewCell
+        
+        // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        guard let characters = MovieDetailTableViewController.relatedCharacters else {
+            print("no related events")
+            return cell
+        }
+        cell.nameLabel.text = characters[indexPath.item].name
+        cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
+        
         return cell
     }
 

@@ -9,12 +9,12 @@
 import Foundation
 
 struct Cast: Codable {
-    var cast: [MovieCharacter]
+    var cast: Array<MovieCharacter>
 }
 
 struct MovieCharacter: Codable {
     var name: String
-    var origin: Movie?
+    var origin: AMovie?
     var notes: String?
     var relatedObjects: [MovieObject]?
     var relatedCharacters: [MovieCharacter]?

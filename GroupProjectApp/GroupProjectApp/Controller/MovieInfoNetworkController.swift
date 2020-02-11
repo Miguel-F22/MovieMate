@@ -8,7 +8,6 @@
 
 import Foundation
 
- let api_key2 = "d73981d448f96d767979d8c919ff9338"
  class MovieInfoNetworkController: MovieInfoItemController {
      let session =  URLSession.shared
      
@@ -18,7 +17,7 @@ import Foundation
          let baseURL = URL(string: "https://api.themoviedb.org/3/movie/\(movie_ID)")!
 
         let query: [String: String] = [
-             "api_key": api_key2,
+             "api_key": api_key,
              "language": "en-US"
          ]
          guard let url = baseURL.withQueries(query) else {
@@ -37,7 +36,6 @@ import Foundation
                  
                  do {
                      let movieList = try decoder.decode(AMovie.self, from: data)
-                     print(movieList)
                      completion(.success(movieList))
                  } catch {
                      print(error)

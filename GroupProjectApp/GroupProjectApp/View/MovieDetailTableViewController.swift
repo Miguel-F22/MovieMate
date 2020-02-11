@@ -13,7 +13,11 @@ class MovieDetailTableViewController: UITableViewController {
     static var shared = MovieDetailTableViewController()
     let movieInfoNetworkController: MovieInfoNetworkController = MovieInfoNetworkController()
     let eventController = EventsCollectionViewController.shared
+    let characterController = CharacterCollectionViewController.shared
+
     let movieListImageController: MovieListImageNetworkController = MovieListImageNetworkController()
+    let castCharacterNetworkController: CastCharacterNetworkController = CastCharacterNetworkController()
+    var castCharacterList: [MovieCharacter]? = nil
     
     
 //    MARK: Outlets and dependencies
@@ -27,6 +31,7 @@ class MovieDetailTableViewController: UITableViewController {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var summary: UITextView!
     @IBOutlet weak var eventCollectionView: UICollectionView!
+    @IBOutlet weak var characterCollectionView: UICollectionView!
     @IBOutlet weak var movieImage: UIImageView!
     
 
@@ -57,6 +62,8 @@ class MovieDetailTableViewController: UITableViewController {
         updateView()
         super.viewDidLoad()
         eventCollectionView.dataSource = eventController
+        characterCollectionView.dataSource = characterController
+        characterCollectionView.delegate = characterController
         eventCollectionView.delegate = eventController
 
         // Uncomment the following line to preserve selection between presentations
@@ -64,11 +71,42 @@ class MovieDetailTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
+        
+        
+        
+        castCharacterNetworkController.getCastCharacterItem(movieID: String(movieID!)) { response in
+                     DispatchQueue.main.async {
+                         switch response {
+                             case .success(let castCharacterListItem):
+                                 self.castCharacterList = castCharacterListItem
+                                 MovieDetailTableViewController.relatedCharacters = castCharacterListItem
+                                 print(castCharacterListItem)
+                                 DispatchQueue.main.async {
+                                
+                                    
+                                 }
+                             case .failure:
+                                print("Could not find any information from: " + String(self.movieID!))
+        //                         let alert = UIAlertController(title: "Error", message: "Failed to load data", preferredStyle: .alert)
+        //                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        //                         self.present(alert, animated: true, completion: nil)
+                         }
+                     }
+                }
+        
+        
+        
+        
+        
     }
     
 //   MARK: Collection stuff
     
  
+    
+    
     
     // MARK: - Navigation
 
