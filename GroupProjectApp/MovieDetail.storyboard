@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EtL-Lq-DKh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EtL-Lq-DKh">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -172,7 +172,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="objectCell" id="lf7-NE-ATB">
-                                                            <rect key="frame" x="0.0" y="-5" width="139" height="139"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="139" height="139"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NEL-yh-M57">
                                                                 <rect key="frame" x="0.0" y="0.0" width="139" height="139"/>
@@ -264,6 +264,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="characterCollectionView" destination="evK-Za-ZuX" id="fEv-Fb-59m"/>
                         <outlet property="eventCollectionView" destination="EcF-Fl-E7l" id="fBv-45-mae"/>
                         <outlet property="movieImage" destination="pgq-2G-UKO" id="ipt-S8-YvY"/>
                         <outlet property="releaseDateLabel" destination="Fcl-D0-mRZ" id="hP9-N3-zbU"/>

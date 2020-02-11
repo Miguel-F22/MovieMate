@@ -22,7 +22,7 @@ struct AMovie: Codable {
     var movieID: Int
     var overview: String
     var posterPath: String
-    var collection: Collection
+    var collection: Collection?
     var voteAverage: Double
     var releaseDate: String
     
@@ -47,7 +47,7 @@ struct AMovie: Codable {
             movieID = try values.decode(Int.self, forKey: CodingKeys.movieID)
             overview = try values.decode(String.self, forKey: CodingKeys.overview)
             posterPath = try values.decode(String.self, forKey: CodingKeys.posterPath)
-            collection = try values.decode(Collection.self, forKey: CodingKeys.collection)
+            collection = try? values.decode(Collection.self, forKey: CodingKeys.collection)
             voteAverage = try values.decode(Double.self, forKey: CodingKeys.voteAverage)
             releaseDate = try values.decode(String.self, forKey: CodingKeys.releaseDate)
         }
