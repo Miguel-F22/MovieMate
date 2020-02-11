@@ -17,6 +17,8 @@
 		0865963E23DB52A200B4C09A /* MovieDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865963A23DB52A100B4C09A /* MovieDetailTableViewController.swift */; };
 		0865963F23DB52A200B4C09A /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865963B23DB52A100B4C09A /* MovieTableViewCell.swift */; };
 		0865964023DB52A200B4C09A /* OCEDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865963C23DB52A200B4C09A /* OCEDetailTableViewController.swift */; };
+		0873599923F2FC0C00AB78F4 /* CastCharacterItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0873599823F2FC0C00AB78F4 /* CastCharacterItemController.swift */; };
+		0873599B23F2FC1400AB78F4 /* CastCharacterNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0873599A23F2FC1400AB78F4 /* CastCharacterNetworkController.swift */; };
 		08A165B123CE15C30056B4AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A165B023CE15C30056B4AC /* AppDelegate.swift */; };
 		08A165B323CE15C30056B4AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A165B223CE15C30056B4AC /* SceneDelegate.swift */; };
 		08A165B523CE15C30056B4AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A165B423CE15C30056B4AC /* ViewController.swift */; };
@@ -50,6 +52,8 @@
 		0865963A23DB52A100B4C09A /* MovieDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailTableViewController.swift; sourceTree = "<group>"; };
 		0865963B23DB52A100B4C09A /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		0865963C23DB52A200B4C09A /* OCEDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCEDetailTableViewController.swift; sourceTree = "<group>"; };
+		0873599823F2FC0C00AB78F4 /* CastCharacterItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CastCharacterItemController.swift; sourceTree = "<group>"; };
+		0873599A23F2FC1400AB78F4 /* CastCharacterNetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CastCharacterNetworkController.swift; sourceTree = "<group>"; };
 		08A165AD23CE15C30056B4AC /* GroupProjectApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupProjectApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A165B023CE15C30056B4AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08A165B223CE15C30056B4AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 				08BA6DFC23E1F53700B64C95 /* EventsCollectionViewController.swift */,
 				08BA6DFE23E1F84D00B64C95 /* ObjectCollectionViewController.swift */,
 				08BA6E0023E1F85800B64C95 /* CharacterCollectionViewController.swift */,
+				0873599823F2FC0C00AB78F4 /* CastCharacterItemController.swift */,
+				0873599A23F2FC1400AB78F4 /* CastCharacterNetworkController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 				953E074123EB222D0069EC2E /* RelationViewTableViewController.swift in Sources */,
 				9556447823D26D14008450B2 /* URL+Helper.swift in Sources */,
 				08525CC323D2197000817A7C /* Movies.swift in Sources */,
+				0873599B23F2FC1400AB78F4 /* CastCharacterNetworkController.swift in Sources */,
 				9527B72A23DF3FF900977E5D /* MovieInfoItemController.swift in Sources */,
 				08A165B323CE15C30056B4AC /* SceneDelegate.swift in Sources */,
 				0865964023DB52A200B4C09A /* OCEDetailTableViewController.swift in Sources */,
@@ -265,6 +272,7 @@
 				08BA6DFF23E1F84D00B64C95 /* ObjectCollectionViewController.swift in Sources */,
 				0865963E23DB52A200B4C09A /* MovieDetailTableViewController.swift in Sources */,
 				9527B72823DF3FD300977E5D /* MovieInfoNetworkController.swift in Sources */,
+				0873599923F2FC0C00AB78F4 /* CastCharacterItemController.swift in Sources */,
 				08BA6DFD23E1F53700B64C95 /* EventsCollectionViewController.swift in Sources */,
 				0865962723D74BA300B4C09A /* CastCharacter.swift in Sources */,
 				0865963D23DB52A200B4C09A /* MovieListTableViewController.swift in Sources */,
