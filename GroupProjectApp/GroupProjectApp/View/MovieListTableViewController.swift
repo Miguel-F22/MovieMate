@@ -121,6 +121,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         cell.movieTitle.text = movieInfoItems[indexPath.row].title
         cell.movieDate.text = movieInfoItems[indexPath.row].releaseDate
         cell.movieRating.text = String(movieInfoItems[indexPath.row].voteAverage)
+//        guard let posterPath = movieInfoItems[indexPath.row].posterPath else { return cell }
         movieListImageController.fetchImage(path: movieInfoItems[indexPath.row].posterPath) { image in
             DispatchQueue.main.async {
                 cell.movieImage.image = image
