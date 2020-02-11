@@ -49,7 +49,6 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                      switch response {
                          case .success(let movieListItem):
                              self.movieListItem = movieListItem
-                             print(movieListItem.results.first)
                              DispatchQueue.main.async {
             
                                 for i in movieListItem.results {
@@ -58,11 +57,9 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                                                  switch response {
                                                      case .success(let movieInfoItem):
                                                         
-                                                        //print(self.movieInfoItems)
                                                          DispatchQueue.main.async {
                                                             self.movieInfoItems.append(movieInfoItem)
                                                             self.tableView.reloadData()
-                                                            print(self.movieInfoItems.count)
                                                          }
                                                      case .failure:
                                                         print("Could not find any information from: " + text)
@@ -120,7 +117,6 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieInfoIdentifier", for: indexPath) as? MovieTableViewCell else {
             fatalError("No cell with id: movieInfoIdentifier that is a MovieTableViewCell 🤯")
         }
-        print(movieInfoItems)
         
         cell.movieTitle.text = movieInfoItems[indexPath.row].title
         cell.movieDate.text = movieInfoItems[indexPath.row].releaseDate
