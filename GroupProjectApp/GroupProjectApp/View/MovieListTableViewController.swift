@@ -63,10 +63,10 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                                 DispatchQueue.main.async {
                                     let stringSet = CharacterSet.init(charactersIn: movieInfoItem.title.lowercased())
                                     
-                                    if (movieInfoItem.language == "en") {
-                                        if(stringSet.isSubset(of: self.characterSet)) {
+                                    if movieInfoItem.language == "en" && stringSet.isSubset(of: self.characterSet) {
+                                        
                                             self.movieInfoItems.append(movieInfoItem)
-                                            self.tableView.insertRows(at: [IndexPath(row: self.movieInfoItems.count - 1, section: 0)], with: .automatic)}
+                                            self.tableView.insertRows(at: [IndexPath(row: self.movieInfoItems.count - 1, section: 0)], with: .automatic)
                                     }
                                     
                                 }
