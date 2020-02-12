@@ -36,7 +36,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
 //        navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
     }
-    
+    var characterSet = CharacterSet.init(charactersIn: "qwertyiuioplkjhgfdsazxcvbnm1234567890&!@#$%^*()[].,;/:\'\"\\=-+_ ")
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         if text.count > 2 {
@@ -57,10 +57,16 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                                                  switch response {
                                                      case .success(let movieInfoItem):
                                                         
-                                                         DispatchQueue.main.async {
-                                                            self.movieInfoItems.append(movieInfoItem)
-                                                            self.tableView.reloadData()
-                                                         }
+                                                        let stringSet = CharacterSet.init(charactersIn: movieInfoItem.title.lowercased())
+                                                        
+                                                        if (movieInfoItem.language == "en") {
+                                                            if(stringSet.isSubset(of: self.characterSet)) {
+                                                                 DispatchQueue.main.async {
+                                                                    self.movieInfoItems.append(movieInfoItem)
+                                                                    self.tableView.reloadData()
+                                                                 }
+                                                            }
+                                                        }
                                                      case .failure:
                                                         print("Could not find any information from: " + text)
                                 //                         let alert = UIAlertController(title: "Error", message: "Failed to load data", preferredStyle: .alert)

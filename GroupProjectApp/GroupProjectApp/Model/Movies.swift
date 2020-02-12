@@ -25,6 +25,7 @@ struct AMovie: Codable {
     var collection: Collection?
     var voteAverage: Double
     var releaseDate: String
+    var language: String
     
     var relatedCharacters: [MovieCharacter]?
     var relatedObjects: [MovieObject]?
@@ -38,6 +39,7 @@ struct AMovie: Codable {
         case collection = "belongs_to_collection"
         case voteAverage = "vote_average"
         case releaseDate = "release_date"
+        case language = "original_language"
     }
     
     init(from decoder: Decoder, relatedCharacters: [MovieCharacter]?, relatedObjects: [MovieObject]?, relatedEvents: [MovieEvent]?) throws {
@@ -50,6 +52,7 @@ struct AMovie: Codable {
             collection = try? values.decode(Collection.self, forKey: CodingKeys.collection)
             voteAverage = try values.decode(Double.self, forKey: CodingKeys.voteAverage)
             releaseDate = try values.decode(String.self, forKey: CodingKeys.releaseDate)
+            language = try values.decode(String.self, forKey: CodingKeys.language)
         }
         self.relatedCharacters = relatedCharacters
         self.relatedObjects = relatedObjects
