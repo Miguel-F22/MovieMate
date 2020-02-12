@@ -17,7 +17,11 @@ struct MovieData: Codable {
     
 }
 
-struct AMovie: Codable {
+struct AMovie: Codable, Equatable {
+    static func == (lhs: AMovie, rhs: AMovie) -> Bool {
+        return lhs.movieID == rhs.movieID
+            }
+    
     var title: String
     var movieID: Int
     var overview: String
@@ -26,6 +30,7 @@ struct AMovie: Codable {
     var voteAverage: Double
     var releaseDate: String
     var language: String
+    var popularity: Double
     
     var relatedCharacters: [MovieCharacter]?
     var relatedObjects: [MovieObject]?
@@ -40,6 +45,7 @@ struct AMovie: Codable {
         case voteAverage = "vote_average"
         case releaseDate = "release_date"
         case language = "original_language"
+        case popularity
     }
     
     init(from decoder: Decoder, relatedCharacters: [MovieCharacter]?, relatedObjects: [MovieObject]?, relatedEvents: [MovieEvent]?) throws {
@@ -53,6 +59,7 @@ struct AMovie: Codable {
             voteAverage = try values.decode(Double.self, forKey: CodingKeys.voteAverage)
             releaseDate = try values.decode(String.self, forKey: CodingKeys.releaseDate)
             language = try values.decode(String.self, forKey: CodingKeys.language)
+            popularity = try values.decode(Double.self, forKey: CodingKeys.popularity)
         }
         self.relatedCharacters = relatedCharacters
         self.relatedObjects = relatedObjects

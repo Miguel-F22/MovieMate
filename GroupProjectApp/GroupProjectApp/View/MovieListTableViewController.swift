@@ -25,8 +25,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     let movieListImageController = MovieListImageNetworkController()
     
     let movieInfoController: MovieInfoItemController = MovieInfoNetworkController()
-    
-    
+
     
     var searchController: UISearchController?
     
@@ -46,6 +45,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         lastSearchText = text
         if text.count > 2 {
             
+
             movieInfoItems = []
             self.tableView.reloadData()
             let movieListGroup = DispatchGroup()
@@ -63,9 +63,11 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                                 DispatchQueue.main.async {
                                     let stringSet = CharacterSet.init(charactersIn: movieInfoItem.title.lowercased())
                                     
-                                    if movieInfoItem.language == "en" && stringSet.isSubset(of: self.characterSet) {
-                                        movieInfoItems.append(movieInfoItem)
-                                        self.tableView.insertRows(at: [IndexPath(row: movieInfoItems.count - 1, section: 0)], with: .automatic)
+                                    if movieInfoItem.language == "en" && stringSet.isSubset(of: self.characterSet) && movieInfoItems.contains(movieInfoItem) == false {
+                                        
+                                            movieInfoItems.append(movieInfoItem)
+                                            self.tableView.insertRows(at: [IndexPath(row: movieInfoItems.count - 1, section: 0)], with: .automatic)
+
                                     }
                                     
                                 }
@@ -76,6 +78,8 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                         }
                     }
                     DispatchQueue.main.async {
+                        movieInfoItems = movieInfoItems.sorted(by: {$0.popularity > $1.popularity})
+                        
                         self.tableView.reloadData()
                     }
                 case .failure:
