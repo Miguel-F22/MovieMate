@@ -38,7 +38,10 @@ class CastCharacterNetworkController: CastCharacterItemController {
                 
                 do {
                     let castItem = try decoder.decode(Cast.self, from: data)
-                    let subscriptedCastSlice = castItem.cast[0 ..< 5]
+                    var subscriptedCastSlice = ArraySlice(castItem.cast)
+                    if castItem.cast.count > 10 {
+                        subscriptedCastSlice = castItem.cast[0 ..< 10]
+                    }
                     let subscriptedCast = Array(subscriptedCastSlice)
                     completion(.success(subscriptedCast))
                     
