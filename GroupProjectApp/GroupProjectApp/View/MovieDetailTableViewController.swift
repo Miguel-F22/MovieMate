@@ -26,6 +26,7 @@ class MovieDetailTableViewController: UITableViewController {
     var releaseDate: String?
     var overview: String?
     var imagePath: String?
+    var rating: Double?
     
     
     @IBOutlet weak var releaseDateLabel: UILabel!
@@ -33,6 +34,7 @@ class MovieDetailTableViewController: UITableViewController {
     @IBOutlet weak var eventCollectionView: UICollectionView!
     @IBOutlet weak var characterCollectionView: UICollectionView!
     @IBOutlet weak var movieImage: UIImageView!
+    @IBOutlet weak var ratingLabel: UILabel!
     
 
     static var relatedCharacters: [MovieCharacter]?
@@ -47,6 +49,7 @@ class MovieDetailTableViewController: UITableViewController {
     func updateView() {
         releaseDateLabel.text = releaseDate
         summary.text = overview
+        ratingLabel.text = String(rating!)
         
     }
     
