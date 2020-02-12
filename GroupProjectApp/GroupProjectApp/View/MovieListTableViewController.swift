@@ -8,7 +8,9 @@
 
 import UIKit
 
+
 var movieInfoItems: [AMovie] = []
+
 class MovieListTableViewController: UITableViewController, UISearchResultsUpdating {
     
     static var shared = MovieListTableViewController()
@@ -23,7 +25,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     let movieListImageController = MovieListImageNetworkController()
     
     let movieInfoController: MovieInfoItemController = MovieInfoNetworkController()
-    
+
     
     var searchController: UISearchController?
     
@@ -42,15 +44,13 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         guard let text = searchController.searchBar.text, text != lastSearchText else { return }
         lastSearchText = text
         if text.count > 2 {
-            print("❣️ update search results")
             
-            
+
             movieInfoItems = []
             self.tableView.reloadData()
             let movieListGroup = DispatchGroup()
             movieListGroup.enter()
             movieListController.getMovieListItem(name: text.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)) { response in
-                print("❣️ search results returned")
                 switch response {
                 case .success(let movieListItem):
                     self.movieListItem = movieListItem
@@ -67,14 +67,12 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                                         
                                             movieInfoItems.append(movieInfoItem)
                                             self.tableView.insertRows(at: [IndexPath(row: movieInfoItems.count - 1, section: 0)], with: .automatic)
+
                                     }
                                     
                                 }
                             case .failure:
-                                print("Could not find any information from: " + text)
-                                //                         let alert = UIAlertController(title: "Error", message: "Failed to load data", preferredStyle: .alert)
-                                //                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                                //                         self.present(alert, animated: true, completion: nil)
+                                print("Could not find movie from movieID of: " + text)
                             }
                             movieListGroup.leave()
                         }
@@ -85,10 +83,8 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                         self.tableView.reloadData()
                     }
                 case .failure:
-                    print("Could not find any information from: " + text)
-                    //                         let alert = UIAlertController(title: "Error", message: "Failed to load data", preferredStyle: .alert)
-                    //                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    //                           self.present(alert, animated: true, completion: nil)
+                    print("Could not find movies from: " + text)
+                    
                 }
                 movieListGroup.leave()
             }
@@ -106,10 +102,6 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         setupNavBar()
         
         self.tableView.dataSource = self
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
     }
@@ -117,7 +109,6 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
@@ -125,7 +116,6 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         return movieInfoItems.count
     }
     
-    var count: Int = 0
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieInfoIdentifier", for: indexPath) as? MovieTableViewCell else {
@@ -134,20 +124,12 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         cell.movieTitle.text = movieInfoItems[indexPath.row].title
         cell.movieDate.text = movieInfoItems[indexPath.row].releaseDate
         cell.movieRating.text = String(movieInfoItems[indexPath.row].voteAverage)
-        //        guard let posterPath = movieInfoItems[indexPath.row].posterPath else { return cell }
         movieListImageController.fetchImage(path: movieInfoItems[indexPath.row].posterPath) { image in
             DispatchQueue.main.async {
                 cell.movieImage.image = image
-                self.count += 1
                 
             }
         }
-        print(count)
-        print("movies \(movieInfoItems.count)")
-        print("❣️ indexPath: \(indexPath.row)")
-        
-        
-        
         return cell
     }
     
