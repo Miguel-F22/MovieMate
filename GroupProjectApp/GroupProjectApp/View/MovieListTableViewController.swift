@@ -8,6 +8,7 @@
 
 import UIKit
 
+var movieInfoItems: [AMovie] = []
 class MovieListTableViewController: UITableViewController, UISearchResultsUpdating {
     
     static var shared = MovieListTableViewController()
@@ -22,7 +23,6 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     let movieListImageController = MovieListImageNetworkController()
     
     let movieInfoController: MovieInfoItemController = MovieInfoNetworkController()
-    var movieInfoItems: [AMovie] = []
     
     
     var searchController: UISearchController?
@@ -45,7 +45,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
             print("❣️ update search results")
             
             
-            self.movieInfoItems = []
+            movieInfoItems = []
             self.tableView.reloadData()
             let movieListGroup = DispatchGroup()
             movieListGroup.enter()
@@ -63,10 +63,10 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                                 DispatchQueue.main.async {
                                     let stringSet = CharacterSet.init(charactersIn: movieInfoItem.title.lowercased())
                                     
-                                    if movieInfoItem.language == "en" && stringSet.isSubset(of: self.characterSet) {
+                                    if movieInfoItem.language == "en" && stringSet.isSubset(of: self.characterSet) && movieInfoItems.contains(movieInfoItem) == false {
                                         
-                                            self.movieInfoItems.append(movieInfoItem)
-                                            self.tableView.insertRows(at: [IndexPath(row: self.movieInfoItems.count - 1, section: 0)], with: .automatic)
+                                            movieInfoItems.append(movieInfoItem)
+                                            self.tableView.insertRows(at: [IndexPath(row: movieInfoItems.count - 1, section: 0)], with: .automatic)
                                     }
                                     
                                 }
@@ -80,6 +80,8 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                         }
                     }
                     DispatchQueue.main.async {
+                        movieInfoItems = movieInfoItems.sorted(by: {$0.popularity > $1.popularity})
+                        
                         self.tableView.reloadData()
                     }
                 case .failure:
@@ -94,7 +96,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                 
             }
         } else {
-            self.movieInfoItems = []
+            movieInfoItems = []
             self.tableView.reloadData()
         }
     }
