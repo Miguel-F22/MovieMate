@@ -13,7 +13,8 @@ import SwiftUI
 extension Movie {
     
     static func createMovieWithoutRelations(movieToCreate: AMovie, with context: NSManagedObjectContext) -> Movie? {
-        guard let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else { return nil }
+        let context = PersistenceService.context
+
         guard let movie = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: context) as? Movie else { fatalError("Movie entity should exist!")}
         movie.movieID = Int32(movieToCreate.movieID)
         movie.overview = movieToCreate.overview
@@ -32,7 +33,7 @@ extension Movie {
     
     
     static func createMovieRelations(movieToCreate: AMovie, notes: String, with context: NSManagedObjectContext) -> Movie? {
-            guard let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else { return nil }
+            let context = PersistenceService.context
             guard let movie = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: context) as? Movie else { fatalError("Movie entity should exist!")}
             
             

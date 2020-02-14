@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		08108A5623D76D9100F7FF8A /* MovieDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08108A5523D76D9100F7FF8A /* MovieDetail.storyboard */; };
 		0822BE9023EB1A19004ED1D2 /* MovieListImageNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0822BE8F23EB1A19004ED1D2 /* MovieListImageNetworkController.swift */; };
+		082531D323F6EA9B008559B3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082531D223F6EA9B008559B3 /* CoreDataStack.swift */; };
 		08525CC323D2197000817A7C /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08525CC223D2197000817A7C /* Movies.swift */; };
 		0865962723D74BA300B4C09A /* CastCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865962623D74BA300B4C09A /* CastCharacter.swift */; };
 		0865962923D75F6000B4C09A /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865962823D75F6000B4C09A /* Object.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		08108A5523D76D9100F7FF8A /* MovieDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MovieDetail.storyboard; sourceTree = "<group>"; };
 		0822BE8F23EB1A19004ED1D2 /* MovieListImageNetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListImageNetworkController.swift; sourceTree = "<group>"; };
+		082531D223F6EA9B008559B3 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		08525CC223D2197000817A7C /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		0865962623D74BA300B4C09A /* CastCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCharacter.swift; sourceTree = "<group>"; };
 		0865962823D75F6000B4C09A /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			children = (
 				953E074323EB2F4B0069EC2E /* MovieModel.xcdatamodeld */,
 				9526431523F5981D008789CA /* CoreDataFunctions.swift */,
+				082531D223F6EA9B008559B3 /* CoreDataStack.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				0865962723D74BA300B4C09A /* CastCharacter.swift in Sources */,
 				0865963D23DB52A200B4C09A /* MovieListTableViewController.swift in Sources */,
 				0865963F23DB52A200B4C09A /* MovieTableViewCell.swift in Sources */,
+				082531D323F6EA9B008559B3 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

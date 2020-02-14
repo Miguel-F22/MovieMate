@@ -99,8 +99,9 @@ class MovieDetailTableViewController: UITableViewController {
     
     @IBAction func addToLibaryAction(_ sender: Any) {
         if let selectedRow = indexPathForMovie {
-            guard let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else { return }
+            let context = PersistenceService.context
             _ = Movie.createMovieWithoutRelations(movieToCreate: movieInfoItems[selectedRow], with: context)
+            PersistenceService.saveContext()
 
         }
     }
