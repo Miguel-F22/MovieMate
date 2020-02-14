@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MovieDetailTableViewController: UITableViewController {
     
@@ -96,6 +97,13 @@ class MovieDetailTableViewController: UITableViewController {
     
  
     
+    @IBAction func addToLibaryAction(_ sender: Any) {
+        if let selectedRow = indexPathForMovie {
+            guard let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else { return }
+            _ = Movie.createMovieWithoutRelations(movieToCreate: movieInfoItems[selectedRow], with: context)
+
+        }
+    }
     
     
     // MARK: - Navigation

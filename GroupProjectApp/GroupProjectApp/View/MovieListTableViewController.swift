@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+var indexPathForMovie: Int? = nil
 var movieInfoItems: [AMovie] = []
 
 class MovieListTableViewController: UITableViewController, UISearchResultsUpdating {
@@ -187,6 +187,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let selectedRow = tableView.indexPathForSelectedRow?.row, let destination = segue.destination as? MovieDetailTableViewController {
+            indexPathForMovie = selectedRow
             let id = movieInfoItems[selectedRow].movieID
             let movieTitle = movieInfoItems[selectedRow].title
             let releaseDate = movieInfoItems[selectedRow].releaseDate
