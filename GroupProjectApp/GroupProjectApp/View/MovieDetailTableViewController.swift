@@ -75,6 +75,7 @@ class MovieDetailTableViewController: UITableViewController {
              }
              
         }
+        tableView.reloadData()
     }
     
 
