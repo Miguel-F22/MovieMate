@@ -55,7 +55,11 @@ class MovieDetailTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        //super.viewWillAppear(true)
+        
+        
+        
+        
         eventCollectionView.dataSource = eventController
         characterCollectionView.dataSource = characterController
         characterCollectionView.delegate = characterController
@@ -83,6 +87,8 @@ class MovieDetailTableViewController: UITableViewController {
             }
         }
         updateView()
+        tableView.reloadData()
+        
         super.viewDidLoad()
         
 
