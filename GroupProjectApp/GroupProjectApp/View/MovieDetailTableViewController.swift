@@ -77,7 +77,6 @@ class MovieDetailTableViewController: UITableViewController {
         }
     }
     
-    
 
     override func viewDidLoad() {
         guard let imagePath = imagePath else { return }
