@@ -40,9 +40,9 @@ func deleteCoreData() {
     }
 }
 
-func createCoreDataWithoutRelations(movieToCreate: AMovie) {
+func createCoreDataWithoutRelations(movieToCreate: Movie) {
     let context = PersistenceService.context
-    _ = Movie.createMovieWithoutRelations(movieToCreate: movieToCreate, with: context)
+    _ = Movie.createMovieWithoutRelations(movieToCreate: movieToCreate, relatedCharacters: [], with: context)
     PersistenceService.saveContext()
     
 }
@@ -53,7 +53,7 @@ func createCoreDataWithRelations() {
 
 
 // Finds movie by the id in core data. If it does not exist it returns nil. If it does, returns the core data Movie object.
-func checkCoreDataForMovie(movieToCheckForID: Int) -> Movie? {
+func checkCoreDataForMovie(movieToCheckForID: Int32) -> Movie? {
     let context = PersistenceService.context
 
     let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")

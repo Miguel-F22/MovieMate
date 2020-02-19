@@ -9,7 +9,7 @@
 import UIKit
 
 var indexPathForMovie: Int? = nil
-var movieInfoItems: [AMovie] = []
+var movieInfoItems: [Movie] = []
 
 class MovieListTableViewController: UITableViewController, UISearchResultsUpdating {
     
@@ -61,7 +61,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                             switch response {
                             case .success(let movieInfoItem):
                                 DispatchQueue.main.async {
-                                    let stringSet = CharacterSet.init(charactersIn: movieInfoItem.title.lowercased())
+                                    let stringSet = CharacterSet.init(charactersIn: (movieInfoItem.title.lowercased()))
                                     
                                     if movieInfoItem.language == "en" && stringSet.isSubset(of: self.characterSet) && movieInfoItems.contains(movieInfoItem) == false {
                                         
@@ -78,7 +78,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
                         }
                     }
                     DispatchQueue.main.async {
-                        movieInfoItems = movieInfoItems.sorted(by: {$0.popularity > $1.popularity})
+                        movieInfoItems = movieInfoItems.sorted(by: {$0.popularity.doubleValue > $1.popularity.doubleValue})
                         
                         self.tableView.reloadData()
                     }
@@ -191,12 +191,12 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
             let id = movieInfoItems[selectedRow].movieID
             let movieTitle = movieInfoItems[selectedRow].title
             let releaseDate = movieInfoItems[selectedRow].releaseDate
-            let collectionName = movieInfoItems[selectedRow].collection
+            //let collectionName = movieInfoItems[selectedRow].collection
             let overview = movieInfoItems[selectedRow].overview
             let imagePath = movieInfoItems[selectedRow].posterPath
             let rating = movieInfoItems[selectedRow].voteAverage
             destination.movieID = id
-            destination.collection = collectionName
+            //destination.collection = collectionName
             destination.title = movieTitle
             destination.releaseDate = releaseDate
             destination.overview = overview

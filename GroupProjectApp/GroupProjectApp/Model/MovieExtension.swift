@@ -12,7 +12,7 @@ import SwiftUI
 
 extension Movie {
     
-    static func createMovieWithoutRelations(movieToCreate: AMovie, with context: NSManagedObjectContext) -> Movie? {
+    static func createMovieWithoutRelations(movieToCreate: Movie, relatedCharacters: [MovieCharacter], with context: NSManagedObjectContext) -> Movie? {
         let context = PersistenceService.context
 
         guard let movie = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: context) as? Movie else { fatalError("Movie entity should exist!")}
@@ -22,33 +22,41 @@ extension Movie {
         movie.releaseDate = movieToCreate.releaseDate
         movie.title = movieToCreate.title
         movie.voteAverage = movieToCreate.voteAverage
-        movie.movieRelatedCharacters = []
+        // maybe save context here?
+        for character in relatedCharacters {
+            // crate Character entity
+            // set the .originMovie to be `movie`
+        }
+        // save context
+        
+//        movie.addToMovieRelatedCharacters(NSSet(object: relatedCharacters))
+////        movie.movieRelatedCharacters = NSSet(object: relatedCharacters)
 //        movie.movieRelatedObjects = []
         movie.movieRelatedEvents = []
-        print("🧷")
+        //print("🧷")
         return movie
     }
     
     
     
     
-    static func createMovieRelations(movieToCreate: AMovie, notes: String, with context: NSManagedObjectContext) -> Movie? {
+    static func createMovieRelations(movieToCreate: Movie, notes: String, with context: NSManagedObjectContext) -> Movie? {
             let context = PersistenceService.context
             guard let movie = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: context) as? Movie else { fatalError("Movie entity should exist!")}
             
             
             
             
-            if let movieRelatedChars = movieToCreate.relatedCharacters {
-                for i in movieRelatedChars {
-                    let character = Character()
-                    character.name = i.name
-                    movie.addToMovieRelatedCharacters(character)
-    
-    
-    
-                }
-            }
+//            if let movieRelatedChars = movieToCreate.movieRelatedCharacters {
+//                for i in movieRelatedChars {
+//                    let character = Character()
+//                    character.name = i.name
+//                    movie.addToMovieRelatedCharacters(character)
+//
+//
+//
+//                }
+//            }
             return movie
         }
     

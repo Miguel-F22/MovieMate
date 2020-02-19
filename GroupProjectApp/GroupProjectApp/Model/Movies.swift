@@ -26,7 +26,7 @@ struct AMovie: Codable, Equatable {
     var movieID: Int
     var overview: String
     var posterPath: String
-    var collection: Collection?
+    var collection: String?
     var voteAverage: Double
     var releaseDate: String
     var language: String
@@ -55,7 +55,7 @@ struct AMovie: Codable, Equatable {
             movieID = try values.decode(Int.self, forKey: CodingKeys.movieID)
             overview = try values.decode(String.self, forKey: CodingKeys.overview)
             posterPath = try values.decode(String.self, forKey: CodingKeys.posterPath)
-            collection = try? values.decode(Collection.self, forKey: CodingKeys.collection)
+            collection = try? values.decode(String.self, forKey: CodingKeys.collection)
             voteAverage = try values.decode(Double.self, forKey: CodingKeys.voteAverage)
             releaseDate = try values.decode(String.self, forKey: CodingKeys.releaseDate)
             language = try values.decode(String.self, forKey: CodingKeys.language)

@@ -22,7 +22,7 @@ class MovieDetailTableViewController: UITableViewController {
     
     
 //    MARK: Outlets and dependencies
-    var movieID: Int?
+    var movieID: Int32?
     var collection: Collection?
     var releaseDate: String?
     var overview: String?
@@ -69,6 +69,9 @@ class MovieDetailTableViewController: UITableViewController {
              switch response {
                  case .success(let castCharacterListItem):
                      self.castCharacterList = castCharacterListItem
+                     DispatchQueue.main.async {
+                        self.characterCollectionView.reloadData()
+                     }
                      MovieDetailTableViewController.relatedCharacters = castCharacterListItem
                  case .failure:
                     print("Could not find any information from: " + String(self.movieID!))
@@ -104,9 +107,16 @@ class MovieDetailTableViewController: UITableViewController {
  
     
     @IBAction func addToLibaryAction(_ sender: Any) {
+        guard let movieID = movieID else { return }
+        guard checkCoreDataForMovie(movieToCheckForID: movieID) == nil else {
+            //print("Found duplicate for: \(title), movieID: \(movieID)")
+            return
+        }
+        //print("Did not find duplicates for the movie: \(title), movieID: \(movieID)")
+        
         if let selectedRow = indexPathForMovie {
             let context = PersistenceService.context
-            _ = Movie.createMovieWithoutRelations(movieToCreate: movieInfoItems[selectedRow], with: context)
+            _ = Movie.createMovieWithoutRelations(movieToCreate: movieInfoItems[selectedRow], relatedCharacters: castCharacterList ?? [], with: context)
             PersistenceService.saveContext()
 
         }
@@ -118,7 +128,7 @@ class MovieDetailTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as? OCEDetailTableViewController
-        let id: Int? = movieID
+        let id: Int32? = movieID
         let collectionName = collection
         destination?.movieID = id
         destination?.collection = collectionName

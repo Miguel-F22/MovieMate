@@ -13,7 +13,7 @@ import Foundation
      
      
      
-     func getMovieInfoItem(movie_ID: Int, completion: @escaping (Result<AMovie, MovieInfoItemError>) -> Void) {
+     func getMovieInfoItem(movie_ID: Int, completion: @escaping (Result<Movie, MovieInfoItemError>) -> Void) {
          let baseURL = URL(string: "https://api.themoviedb.org/3/movie/\(movie_ID)")!
 
         let query: [String: String] = [
@@ -35,7 +35,7 @@ import Foundation
                  let decoder = JSONDecoder()
                  
                  do {
-                     let movieList = try decoder.decode(AMovie.self, from: data)
+                     let movieList = try decoder.decode(Movie.self, from: data)
                      completion(.success(movieList))
                  } catch {
                      print(error)

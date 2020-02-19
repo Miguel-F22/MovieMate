@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18G2022" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Character" representedClassName="Character" parentEntity="Movie" syncable="YES" codeGenerationType="class">
+    <entity name="Character" representedClassName="Character" parentEntity="Movie" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <relationship name="characterRelatedCharacters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="characterRelatedCharacters" inverseEntity="Character"/>
@@ -8,7 +8,7 @@
         <relationship name="characterRelatedObjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Object" inverseName="objectRelatedCharacters" inverseEntity="Object"/>
         <relationship name="origin" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="movieRelatedCharacters" inverseEntity="Movie"/>
     </entity>
-    <entity name="Event" representedClassName="Event" parentEntity="Movie" syncable="YES" codeGenerationType="class">
+    <entity name="Event" representedClassName="Event" parentEntity="Movie" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <relationship name="eventRelatedCharacters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="characterRelatedEvents" inverseEntity="Character"/>
@@ -16,9 +16,12 @@
         <relationship name="eventRelatedObjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Object" inverseName="objectRelatedEvents" inverseEntity="Object"/>
         <relationship name="origin" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="movieRelatedEvents" inverseEntity="Movie"/>
     </entity>
-    <entity name="Movie" representedClassName="Movie" syncable="YES" codeGenerationType="class">
+    <entity name="Movie" representedClassName="Movie" syncable="YES">
+        <attribute name="collection" optional="YES" attributeType="String"/>
+        <attribute name="language" optional="YES" attributeType="String"/>
         <attribute name="movieID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="popularity" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="posterPath" optional="YES" attributeType="String"/>
         <attribute name="releaseDate" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -27,7 +30,7 @@
         <relationship name="movieRelatedEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="origin" inverseEntity="Event"/>
         <relationship name="movieRelatedObjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Object" inverseName="origin" inverseEntity="Object"/>
     </entity>
-    <entity name="Object" representedClassName="Object" parentEntity="Movie" syncable="YES" codeGenerationType="class">
+    <entity name="Object" representedClassName="Object" parentEntity="Movie" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <relationship name="objectRelatedCharacters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="characterRelatedObjects" inverseEntity="Character"/>
@@ -38,7 +41,7 @@
     <elements>
         <element name="Character" positionX="-7.96484375" positionY="94.828125" width="128" height="133"/>
         <element name="Event" positionX="-201.73046875" positionY="-136.17578125" width="128" height="133"/>
-        <element name="Movie" positionX="39.35546875" positionY="-221.6171875" width="128" height="178"/>
+        <element name="Movie" positionX="39.35546875" positionY="-221.6171875" width="128" height="223"/>
         <element name="Object" positionX="225.64453125" positionY="-32.7734375" width="128" height="133"/>
     </elements>
 </model>
