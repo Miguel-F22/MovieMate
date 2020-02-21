@@ -29,8 +29,7 @@ extension Movie {
         return movie
     }
     
-    
-    
+
     
     static func createMovieRelations(movieToCreate: AMovie, notes: String, with context: NSManagedObjectContext) -> Movie? {
             let context = PersistenceService.context

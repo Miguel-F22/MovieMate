@@ -70,12 +70,14 @@ class MovieDetailTableViewController: UITableViewController {
                  case .success(let castCharacterListItem):
                      self.castCharacterList = castCharacterListItem
                      MovieDetailTableViewController.relatedCharacters = castCharacterListItem
+                     DispatchQueue.main.async {
+                     self.characterCollectionView.reloadData()
+                }
                  case .failure:
                     print("Could not find any information from: " + String(self.movieID!))
              }
              
         }
-        tableView.reloadData()
     }
     
 
@@ -87,7 +89,6 @@ class MovieDetailTableViewController: UITableViewController {
             }
         }
         updateView()
-        tableView.reloadData()
         
         super.viewDidLoad()
         

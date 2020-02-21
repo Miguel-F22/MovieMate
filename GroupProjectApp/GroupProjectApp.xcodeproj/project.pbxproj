@@ -18,6 +18,14 @@
 		0865963E23DB52A200B4C09A /* MovieDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865963A23DB52A100B4C09A /* MovieDetailTableViewController.swift */; };
 		0865963F23DB52A200B4C09A /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865963B23DB52A100B4C09A /* MovieTableViewCell.swift */; };
 		0865964023DB52A200B4C09A /* OCEDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865963C23DB52A200B4C09A /* OCEDetailTableViewController.swift */; };
+		086C30F2240034C100016AA6 /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C30EA240034C100016AA6 /* Event+CoreDataClass.swift */; };
+		086C30F3240034C100016AA6 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C30EB240034C100016AA6 /* Event+CoreDataProperties.swift */; };
+		086C30F4240034C100016AA6 /* Object+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C30EC240034C100016AA6 /* Object+CoreDataClass.swift */; };
+		086C30F5240034C100016AA6 /* Object+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C30ED240034C100016AA6 /* Object+CoreDataProperties.swift */; };
+		086C30F6240034C100016AA6 /* Movie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C30EE240034C100016AA6 /* Movie+CoreDataClass.swift */; };
+		086C30F7240034C100016AA6 /* Movie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C30EF240034C100016AA6 /* Movie+CoreDataProperties.swift */; };
+		086C30F8240034C100016AA6 /* Character+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C30F0240034C100016AA6 /* Character+CoreDataClass.swift */; };
+		086C30F9240034C100016AA6 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C30F1240034C100016AA6 /* Character+CoreDataProperties.swift */; };
 		0873599923F2FC0C00AB78F4 /* CastCharacterItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0873599823F2FC0C00AB78F4 /* CastCharacterItemController.swift */; };
 		0873599B23F2FC1400AB78F4 /* CastCharacterNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0873599A23F2FC1400AB78F4 /* CastCharacterNetworkController.swift */; };
 		08A165B123CE15C30056B4AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A165B023CE15C30056B4AC /* AppDelegate.swift */; };
@@ -56,6 +64,14 @@
 		0865963A23DB52A100B4C09A /* MovieDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailTableViewController.swift; sourceTree = "<group>"; };
 		0865963B23DB52A100B4C09A /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		0865963C23DB52A200B4C09A /* OCEDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCEDetailTableViewController.swift; sourceTree = "<group>"; };
+		086C30EA240034C100016AA6 /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
+		086C30EB240034C100016AA6 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		086C30EC240034C100016AA6 /* Object+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Object+CoreDataClass.swift"; sourceTree = "<group>"; };
+		086C30ED240034C100016AA6 /* Object+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Object+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		086C30EE240034C100016AA6 /* Movie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataClass.swift"; sourceTree = "<group>"; };
+		086C30EF240034C100016AA6 /* Movie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		086C30F0240034C100016AA6 /* Character+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataClass.swift"; sourceTree = "<group>"; };
+		086C30F1240034C100016AA6 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0873599823F2FC0C00AB78F4 /* CastCharacterItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CastCharacterItemController.swift; sourceTree = "<group>"; };
 		0873599A23F2FC1400AB78F4 /* CastCharacterNetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CastCharacterNetworkController.swift; sourceTree = "<group>"; };
 		08A165AD23CE15C30056B4AC /* GroupProjectApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupProjectApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +137,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		086C30FA240034CF00016AA6 /* suckyName */ = {
+			isa = PBXGroup;
+			children = (
+				086C30EA240034C100016AA6 /* Event+CoreDataClass.swift */,
+				086C30EB240034C100016AA6 /* Event+CoreDataProperties.swift */,
+				086C30EC240034C100016AA6 /* Object+CoreDataClass.swift */,
+				086C30ED240034C100016AA6 /* Object+CoreDataProperties.swift */,
+				086C30EE240034C100016AA6 /* Movie+CoreDataClass.swift */,
+				086C30EF240034C100016AA6 /* Movie+CoreDataProperties.swift */,
+				086C30F0240034C100016AA6 /* Character+CoreDataClass.swift */,
+				086C30F1240034C100016AA6 /* Character+CoreDataProperties.swift */,
+			);
+			path = suckyName;
+			sourceTree = "<group>";
+		};
 		08A165A423CE15C30056B4AC = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +192,7 @@
 		953E074223EB2F290069EC2E /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				086C30FA240034CF00016AA6 /* suckyName */,
 				953E074323EB2F4B0069EC2E /* MovieModel.xcdatamodeld */,
 				9526431523F5981D008789CA /* CoreDataFunctions.swift */,
 				082531D223F6EA9B008559B3 /* CoreDataStack.swift */,
@@ -264,6 +296,7 @@
 				0822BE9023EB1A19004ED1D2 /* MovieListImageNetworkController.swift in Sources */,
 				08A165B523CE15C30056B4AC /* ViewController.swift in Sources */,
 				08EDF68623E1DF8F009D150D /* CollectionViewCell.swift in Sources */,
+				086C30F9240034C100016AA6 /* Character+CoreDataProperties.swift in Sources */,
 				0865962923D75F6000B4C09A /* Object.swift in Sources */,
 				08A165B123CE15C30056B4AC /* AppDelegate.swift in Sources */,
 				9526431623F5981D008789CA /* CoreDataFunctions.swift in Sources */,
@@ -272,16 +305,23 @@
 				9556447223D2671C008450B2 /* MovieListNetworkController.swift in Sources */,
 				953E074123EB222D0069EC2E /* RelationViewTableViewController.swift in Sources */,
 				9556447823D26D14008450B2 /* URL+Helper.swift in Sources */,
+				086C30F6240034C100016AA6 /* Movie+CoreDataClass.swift in Sources */,
+				086C30F8240034C100016AA6 /* Character+CoreDataClass.swift in Sources */,
 				08525CC323D2197000817A7C /* Movies.swift in Sources */,
 				0873599B23F2FC1400AB78F4 /* CastCharacterNetworkController.swift in Sources */,
 				9527B72A23DF3FF900977E5D /* MovieInfoItemController.swift in Sources */,
 				08A165B323CE15C30056B4AC /* SceneDelegate.swift in Sources */,
+				086C30F4240034C100016AA6 /* Object+CoreDataClass.swift in Sources */,
 				0865964023DB52A200B4C09A /* OCEDetailTableViewController.swift in Sources */,
 				08BA6E0123E1F85900B64C95 /* CharacterCollectionViewController.swift in Sources */,
 				0865962B23D7602000B4C09A /* Event.swift in Sources */,
 				953E074523EB2F4B0069EC2E /* MovieModel.xcdatamodeld in Sources */,
 				08BA6DFF23E1F84D00B64C95 /* ObjectCollectionViewController.swift in Sources */,
 				0865963E23DB52A200B4C09A /* MovieDetailTableViewController.swift in Sources */,
+				086C30F5240034C100016AA6 /* Object+CoreDataProperties.swift in Sources */,
+				086C30F2240034C100016AA6 /* Event+CoreDataClass.swift in Sources */,
+				086C30F7240034C100016AA6 /* Movie+CoreDataProperties.swift in Sources */,
+				086C30F3240034C100016AA6 /* Event+CoreDataProperties.swift in Sources */,
 				9527B72823DF3FD300977E5D /* MovieInfoNetworkController.swift in Sources */,
 				0873599923F2FC0C00AB78F4 /* CastCharacterItemController.swift in Sources */,
 				08BA6DFD23E1F53700B64C95 /* EventsCollectionViewController.swift in Sources */,
