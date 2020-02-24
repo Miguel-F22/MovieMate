@@ -114,7 +114,6 @@ class MovieDetailTableViewController: UITableViewController {
             let context = PersistenceService.context
             _ = Movie.createMovieWithoutRelations(movieToCreate: movieInfoItems[selectedRow], with: context)
             PersistenceService.saveContext()
-
         }
     }
     

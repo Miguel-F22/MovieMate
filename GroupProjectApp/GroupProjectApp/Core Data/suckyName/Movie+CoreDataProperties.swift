@@ -2,7 +2,7 @@
 //  Movie+CoreDataProperties.swift
 //  GroupProjectApp
 //
-//  Created by Miguel Figueroa on 2/21/20.
+//  Created by Josh GImenes on 2/24/20.
 //  Copyright © 2020 Miguel Figueroa. All rights reserved.
 //
 //
