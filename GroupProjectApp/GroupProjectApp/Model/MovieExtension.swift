@@ -22,9 +22,9 @@ extension Movie {
         movie.releaseDate = movieToCreate.releaseDate
         movie.title = movieToCreate.title
         movie.voteAverage = movieToCreate.voteAverage
-        movie.movieRelatedCharacters = []
+        movie.movieRelatedCharacters = Movie(amovie: movieToCreate).movieRelatedCharacters ?? []
 //        movie.movieRelatedObjects = []
-        movie.movieRelatedEvents = []
+//        movie.movieRelatedEvents = []
         print("🧷")
         return movie
     }

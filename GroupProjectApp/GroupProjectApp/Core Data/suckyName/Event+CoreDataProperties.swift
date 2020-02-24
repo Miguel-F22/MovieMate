@@ -22,7 +22,6 @@ extension Event {
     @NSManaged public var eventRelatedCharacters: NSSet?
     @NSManaged public var eventRelatedEvents: NSSet?
     @NSManaged public var eventRelatedObjects: NSSet?
-    @NSManaged public var origin: NSSet?
 
 }
 

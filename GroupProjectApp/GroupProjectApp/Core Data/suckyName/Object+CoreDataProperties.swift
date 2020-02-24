@@ -22,7 +22,6 @@ extension Object {
     @NSManaged public var objectRelatedCharacters: NSSet?
     @NSManaged public var objectRelatedEvents: NSSet?
     @NSManaged public var objectRelatedObjects: NSSet?
-    @NSManaged public var origin: NSSet?
 
 }
 
