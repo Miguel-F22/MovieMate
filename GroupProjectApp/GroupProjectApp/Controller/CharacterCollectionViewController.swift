@@ -69,6 +69,12 @@ class CharacterCollectionViewController: UICollectionViewController {
         
         return cell
     }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        OCEDetailTableViewController.character = MovieDetailTableViewController.relatedCharacters![indexPath.item]
+//        currentEvent = events[
+//        performSegue(withIdentifier: "toOCEDetail", sender: nil)
+    }
+    
 
     // MARK: UICollectionViewDelegate
 

@@ -11,16 +11,20 @@ import UIKit
 class OCEDetailTableViewController: UITableViewController {
     
 //    MARK: Outlets and Dependencies
+    //var character: MovieCharacter?
     var movieID: Int?
     var collection: Collection?
-    @IBOutlet weak var originText: UITextView!
     @IBOutlet weak var notesText: UITextView!
     var relatedEvents: [Event]?
     var relatedCharacters: [Character]?
     var relatedObjects: [Object]?
+    @IBOutlet weak var characterNameTextView: UITextView!
     
+    static var character: MovieCharacter?
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        characterNameTextView.text = OCEDetailTableViewController.character?.name ?? ""
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +40,12 @@ class OCEDetailTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
     /*
