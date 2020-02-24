@@ -14,7 +14,6 @@ struct Cast: Codable {
 
 struct MovieCharacter: Codable {
     var name: String
-    var origin: AMovie?
     var notes: String?
     var relatedObjects: [MovieObject]?
     var relatedCharacters: [MovieCharacter]?

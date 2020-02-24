@@ -202,6 +202,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
             destination.overview = overview
             destination.imagePath = imagePath
             destination.rating = rating
+            
         }
         
     }

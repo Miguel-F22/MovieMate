@@ -22,7 +22,6 @@ extension Character {
     @NSManaged public var characterRelatedCharacters: NSSet?
     @NSManaged public var characterRelatedEvents: NSSet?
     @NSManaged public var characterRelatedObjects: NSSet?
-    @NSManaged public var origin: NSSet?
 
 }
 

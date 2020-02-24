@@ -105,6 +105,9 @@ class MovieDetailTableViewController: UITableViewController {
  
     
     @IBAction func addToLibaryAction(_ sender: Any) {
+        if let indexPath1 = indexPathForMovie {
+        var movieToSave: AMovie? = movieInfoItems[indexPath1]
+        }
         if let selectedRow = indexPathForMovie {
             let context = PersistenceService.context
             _ = Movie.createMovieWithoutRelations(movieToCreate: movieInfoItems[selectedRow], with: context)
