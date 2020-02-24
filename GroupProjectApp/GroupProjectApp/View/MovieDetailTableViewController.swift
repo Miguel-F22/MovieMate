@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+//var characterList:[MovieCharacter] = []
+
 
 class MovieDetailTableViewController: UITableViewController {
     
@@ -37,7 +39,7 @@ class MovieDetailTableViewController: UITableViewController {
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
     
-
+    static var indexPathSelected: Int?
     static var relatedCharacters: [MovieCharacter]?
     static var relatedObjects: [MovieObject]?
     static var relatedEvents: [MovieEvent]? = [
@@ -65,7 +67,7 @@ class MovieDetailTableViewController: UITableViewController {
         characterCollectionView.delegate = characterController
         eventCollectionView.delegate = eventController
         
-        castCharacterNetworkController.getCastCharacterItem(movieID: String(movieID!)) { response in
+        castCharacterNetworkController.getCastCharacterItem(movieID: movieID!.description) { response in
              switch response {
                  case .success(let castCharacterListItem):
                      self.castCharacterList = castCharacterListItem
@@ -119,6 +121,7 @@ class MovieDetailTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as? OCEDetailTableViewController
+        //let destination = segue.destination as? OCEDetailTableViewController
         let id: Int? = movieID
         let collectionName = collection
         destination?.movieID = id
