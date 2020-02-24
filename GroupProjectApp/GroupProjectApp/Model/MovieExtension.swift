@@ -22,7 +22,7 @@ extension Movie {
         movie.releaseDate = movieToCreate.releaseDate
         movie.title = movieToCreate.title
         movie.voteAverage = movieToCreate.voteAverage
-        movie.movieRelatedCharacters = Movie(amovie: movieToCreate).movieRelatedCharacters ?? []
+        //movie.movieRelatedCharacters = Movie(amovie: movieToCreate).movieRelatedCharacters ?? []
 //        movie.movieRelatedObjects = []
 //        movie.movieRelatedEvents = []
         print("🧷")
@@ -51,4 +51,18 @@ extension Movie {
             return movie
         }
     
+    
+    
+    
+//    convenience init(movieCharacter: MovieCharacter, context: NSManagedObjectContext = PersistenceService.context) {
+//        self.init(context: context)
+//
+//        name = movieCharacter.name
+//        notes = movieCharacter.notes
+//        self.characterRelatedCharacters = NSSet(array: movieCharacter.relatedCharacters ?? [] )
+//        self.characterRelatedEvents = NSSet(array: movieCharacter.relateEvents ?? [] )
+//        self.characterRelatedObjects = NSSet(array: movieCharacter.relatedObjects ?? [] )
+//
+//
+//    }
 }
