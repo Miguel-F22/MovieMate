@@ -47,7 +47,7 @@ class MovieDetailTableViewController: UITableViewController {
     static var relatedEvents: [MovieEvent]? = [
         MovieEvent(name: "Death of a patriot", notes: "It was an epic plot twist"),
         MovieEvent(name: "Something big", notes: "Cray cray"),
-        MovieEvent(name: "Hand Chopped off", notes: "clean cut", relatedEvents: [MovieEvent(name: "Death of a patriot", notes: "It was an epic plot twist")]),
+        MovieEvent(name: "Hand Chopped off", notes: "clean cut"),
         MovieEvent(name: "Something big", notes: "Cray cray")
     ]
     

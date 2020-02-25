@@ -20,7 +20,7 @@ struct MovieData: Codable {
 struct AMovie: Codable, Equatable {
     static func == (lhs: AMovie, rhs: AMovie) -> Bool {
         return lhs.movieID == rhs.movieID
-            }
+    }
 
     var title: String
     var movieID: Int

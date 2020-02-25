@@ -23,9 +23,9 @@
         <attribute name="releaseDate" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="voteAverage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="movieRelatedCharacters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="parentMovie" inverseEntity="Character"/>
-        <relationship name="movieRelatedEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="parentMovie" inverseEntity="Event"/>
-        <relationship name="movieRelatedObjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Object" inverseName="parentMovie" inverseEntity="Object"/>
+        <relationship name="movieRelatedCharacters" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Character" inverseName="parentMovie" inverseEntity="Character"/>
+        <relationship name="movieRelatedEvents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="parentMovie" inverseEntity="Event"/>
+        <relationship name="movieRelatedObjects" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Object" inverseName="parentMovie" inverseEntity="Object"/>
     </entity>
     <entity name="Object" representedClassName="Object" parentEntity="Movie" syncable="YES">
         <attribute name="characters" optional="YES" attributeType="String"/>

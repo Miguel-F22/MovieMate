@@ -54,6 +54,27 @@ func createCoreDataWithRelations() {
     
 }
 
+func checkForCharacterInMovie(movieToCheckFor: AMovie, characterName: String) -> [NSSet.Element]? {
+    let context = PersistenceService.context
+    let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
+    do {
+        let movies = try context.fetch(fetchRequest)
+        print(movies)
+        let commitPredicate = NSPredicate(format: "name == %@", characterName)
+        let index = movies.firstIndex(where: { (item) -> Bool in
+            item.movieID == movieToCheckFor.movieID
+        })
+        guard let index2 = index else { return nil }
+        let result = movies[index2].movieRelatedCharacters?.filter { commitPredicate.evaluate(with: $0) }
+        print(result)
+        return result
+        
+    } catch {
+        print(error)
+    }
+    return nil
+}
+
 
 // Finds movie by the id in core data. If it does not exist it returns nil. If it does, returns the core data Movie object.
 func checkCoreDataForMovie(movieToCheckForID: Int) -> Movie? {

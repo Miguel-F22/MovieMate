@@ -12,12 +12,15 @@ struct Cast: Codable {
     var cast: Array<MovieCharacter>
 }
 
-struct MovieCharacter: Codable {
+struct MovieCharacter: Codable, Equatable {
+    static func == (lhs: MovieCharacter, rhs: MovieCharacter) -> Bool {
+        return lhs.name == rhs.name
+    }
     var name: String
     var notes: String?
-    var relatedObjects: [MovieObject]?
-    var relatedCharacters: [MovieCharacter]?
-    var relateEvents: [MovieEvent]?
+    var relatedObjects: String?
+    var relatedCharacters: String?
+    var relateEvents: String?
     
     enum CodingKeys: String, CodingKey {
         case name = "character"
