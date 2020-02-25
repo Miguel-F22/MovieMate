@@ -22,7 +22,9 @@ extension Movie {
         movie.releaseDate = movieToCreate.releaseDate
         movie.title = movieToCreate.title
         movie.voteAverage = movieToCreate.voteAverage
-        //movie.movieRelatedCharacters = Movie(amovie: movieToCreate).movieRelatedCharacters ?? []
+        movie.movieRelatedCharacters = NSSet(array: movieToCreate.relatedCharacters?.map { Character(movieCharacter: $0, context: context) } ?? [] )
+
+//        movie.movieRelatedCharacters = Movie(amovie: movieToCreate).movieRelatedCharacters ?? []
 //        movie.movieRelatedObjects = []
 //        movie.movieRelatedEvents = []
         print("🧷")

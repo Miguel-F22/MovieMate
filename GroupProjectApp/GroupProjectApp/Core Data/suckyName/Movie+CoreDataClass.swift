@@ -20,12 +20,12 @@ public class Movie: NSManagedObject {
             self.title = amovie.title
             self.overview = amovie.overview
             self.posterPath = amovie.posterPath
-            //        self.collection = amovie.collection
             self.voteAverage = amovie.voteAverage
             self.releaseDate = amovie.releaseDate
             //        self.language = amovie.language
             //        self.popularity = amovie.popularity
-            //self.movieRelatedCharacters = NSSet(array: amovie.relatedCharacters?.map { Character(movieCharacter: $0, context: context) } ?? [] )
+            self.movieRelatedCharacters = NSSet(array: amovie.relatedCharacters?.map { Character(movieCharacter: $0, context: context) } ?? [] )
+        print("hi")
     //        self.movieRelatedEvents = NSSet(array: amovie.relatedEvents?.map { Event(movieEvent: $0, context: context) } ?? [] )
     //        self.movieRelatedObjects = NSSet(array: amovie.relatedObjects?.map { Object(movieObject: $0, context: context) } ?? [] )
             

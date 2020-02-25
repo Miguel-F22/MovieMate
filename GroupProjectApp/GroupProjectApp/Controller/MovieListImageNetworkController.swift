@@ -38,7 +38,3 @@ class MovieListImageNetworkController {
         imageTask.resume()
     }
 }
-
-
-
-

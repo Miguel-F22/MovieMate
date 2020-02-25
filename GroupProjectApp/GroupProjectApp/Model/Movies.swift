@@ -21,7 +21,7 @@ struct AMovie: Codable, Equatable {
     static func == (lhs: AMovie, rhs: AMovie) -> Bool {
         return lhs.movieID == rhs.movieID
             }
-    
+
     var title: String
     var movieID: Int
     var overview: String
@@ -31,11 +31,11 @@ struct AMovie: Codable, Equatable {
     var releaseDate: String
     var language: String
     var popularity: Double
-    
+
     var relatedCharacters: [MovieCharacter]?
     var relatedObjects: [MovieObject]?
     var relatedEvents: [MovieEvent]?
-    
+
     enum CodingKeys: String, CodingKey {
         case title = "original_title"
         case movieID = "id"
