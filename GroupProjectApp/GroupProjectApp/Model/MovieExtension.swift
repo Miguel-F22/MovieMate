@@ -12,7 +12,7 @@ import SwiftUI
 
 extension Movie {
     
-    static func createMovieWithoutRelations(movieToCreate: AMovie, with context: NSManagedObjectContext) -> Movie? {
+    static func createMovieInCoreData(movieToCreate: AMovie, with context: NSManagedObjectContext) -> Movie? {
         let context = PersistenceService.context
 
         guard let movie = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: context) as? Movie else { fatalError("Movie entity should exist!")}
@@ -30,28 +30,7 @@ extension Movie {
         print("🧷")
         return movie
     }
-    
 
-    
-    static func createMovieRelations(movieToCreate: AMovie, notes: String, with context: NSManagedObjectContext) -> Movie? {
-            let context = PersistenceService.context
-            guard let movie = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: context) as? Movie else { fatalError("Movie entity should exist!")}
-            
-            
-            
-            
-            if let movieRelatedChars = movieToCreate.relatedCharacters {
-                for i in movieRelatedChars {
-                    let character = Character()
-                    character.name = i.name
-                    movie.addToMovieRelatedCharacters(character)
-    
-    
-    
-                }
-            }
-            return movie
-        }
     
     
     

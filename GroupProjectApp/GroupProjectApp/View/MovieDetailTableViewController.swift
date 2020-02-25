@@ -126,7 +126,7 @@ class MovieDetailTableViewController: UITableViewController {
             } else {
                 
                 let context = PersistenceService.context
-                _ = Movie.createMovieWithoutRelations(movieToCreate: movieInfoItems[selectedRow], with: context)
+                _ = Movie.createMovieInCoreData(movieToCreate: movieInfoItems[selectedRow], with: context)
                 PersistenceService.saveContext()
                 existsInCoreData = true
                 addToLibraryButton.setTitle("Delete From My Library", for: .normal)

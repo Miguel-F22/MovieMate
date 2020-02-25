@@ -10,19 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-func fetchCoreData() {
-    let context = PersistenceService.context
-    
-    let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
-    do {
-        let movies = try context.fetch(fetchRequest)
-        if movies.count > 0 {
-            // Do something with movies
-        }
-    } catch {
-        print(error)
-    }
-}
+
 
 func deleteCoreData(movieToDelete: AMovie) {
     let context = PersistenceService.context
@@ -43,24 +31,15 @@ func deleteCoreData(movieToDelete: AMovie) {
     }
 }
 
-func createCoreDataWithoutRelations(movieToCreate: AMovie) {
-    let context = PersistenceService.context
-    _ = Movie.createMovieWithoutRelations(movieToCreate: movieToCreate, with: context)
-    PersistenceService.saveContext()
-    
-}
 
-func createCoreDataWithRelations() {
-    
-}
 
-func checkForCharacterInMovie(movieToCheckFor: AMovie, characterName: String) -> [NSSet.Element]? {
+func checkForOCEInMovie(movieToCheckFor: AMovie, oceName: String) -> [NSSet.Element]? {
     let context = PersistenceService.context
     let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
     do {
         let movies = try context.fetch(fetchRequest)
         print(movies)
-        let commitPredicate = NSPredicate(format: "name == %@", characterName)
+        let commitPredicate = NSPredicate(format: "name == %@", oceName)
         let index = movies.firstIndex(where: { (item) -> Bool in
             item.movieID == movieToCheckFor.movieID
         })
