@@ -30,8 +30,10 @@ class MovieDetailTableViewController: UITableViewController {
     var overview: String?
     var imagePath: String?
     var rating: Double?
+    var existsInCoreData: Bool = false
     
     
+    @IBOutlet weak var addToLibraryButton: UIButton!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var summary: UITextView!
     @IBOutlet weak var eventCollectionView: UICollectionView!
@@ -91,13 +93,21 @@ class MovieDetailTableViewController: UITableViewController {
             }
         }
         updateView()
-        
+        if let movieID = movieID {
+            if checkCoreDataForMovie(movieToCheckForID: movieID) == nil {
+                existsInCoreData = false
+                addToLibraryButton.setTitle("Add to My Library", for: .normal)
+            } else {
+                existsInCoreData = true
+                addToLibraryButton.setTitle("Delete From My Library", for: .normal)
+            }
+        }
         super.viewDidLoad()
         
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -107,13 +117,21 @@ class MovieDetailTableViewController: UITableViewController {
  
     
     @IBAction func addToLibaryAction(_ sender: Any) {
-        if let indexPath1 = indexPathForMovie {
-        var movieToSave: AMovie? = movieInfoItems[indexPath1]
-        }
         if let selectedRow = indexPathForMovie {
-            let context = PersistenceService.context
-            _ = Movie.createMovieWithoutRelations(movieToCreate: movieInfoItems[selectedRow], with: context)
-            PersistenceService.saveContext()
+            if existsInCoreData {
+                deleteCoreData(movieToDelete: movieInfoItems[selectedRow])
+                existsInCoreData = false
+                addToLibraryButton.setTitle("Add to My Library", for: .normal)
+                
+            } else {
+                
+                let context = PersistenceService.context
+                _ = Movie.createMovieWithoutRelations(movieToCreate: movieInfoItems[selectedRow], with: context)
+                PersistenceService.saveContext()
+                existsInCoreData = true
+                addToLibraryButton.setTitle("Delete From My Library", for: .normal)
+                
+            }
         }
     }
     

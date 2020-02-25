@@ -295,6 +295,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="addToLibraryButton" destination="rHT-vA-zx0" id="wjY-gZ-DQE"/>
                         <outlet property="characterCollectionView" destination="evK-Za-ZuX" id="fEv-Fb-59m"/>
                         <outlet property="eventCollectionView" destination="EcF-Fl-E7l" id="fBv-45-mae"/>
                         <outlet property="movieImage" destination="pgq-2G-UKO" id="ipt-S8-YvY"/>

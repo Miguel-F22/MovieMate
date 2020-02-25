@@ -24,17 +24,20 @@ func fetchCoreData() {
     }
 }
 
-func deleteCoreData() {
+func deleteCoreData(movieToDelete: AMovie) {
     let context = PersistenceService.context
     let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
     do {
         let movies = try context.fetch(fetchRequest)
-        for movie in movies {
-            context.delete(movies[movies.firstIndex(of: movie)!])
-        }
+        print(movies)
+        let index = movies.firstIndex(where: { (item) -> Bool in
+            item.movieID == movieToDelete.movieID
+        })
+        guard let index2 = index else { return }
+        context.delete(movies[index2])
+        print("Should have deleted from library?")
         PersistenceService.saveContext()
         
-        print(movies.count)
     } catch {
         print(error)
     }
