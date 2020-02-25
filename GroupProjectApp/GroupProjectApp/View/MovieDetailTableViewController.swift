@@ -141,7 +141,6 @@ class MovieDetailTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as? OCEDetailTableViewController
-        //let destination = segue.destination as? OCEDetailTableViewController
         let id: Int? = movieID
         let collectionName = collection
         destination?.movieID = id
