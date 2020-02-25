@@ -22,7 +22,7 @@ extension Movie {
         movie.releaseDate = movieToCreate.releaseDate
         movie.title = movieToCreate.title
         movie.voteAverage = movieToCreate.voteAverage
-        movie.movieRelatedCharacters = NSSet(array: movieToCreate.relatedCharacters?.map { Character(movieCharacter: $0, context: context) } ?? [] )
+        movie.movieRelatedCharacters = NSSet(array: MovieDetailTableViewController.relatedCharacters?.map { Character(movieCharacter: $0, context: context) } ?? [] )
 
 //        movie.movieRelatedCharacters = Movie(amovie: movieToCreate).movieRelatedCharacters ?? []
 //        movie.movieRelatedObjects = []
