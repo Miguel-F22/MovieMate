@@ -11,29 +11,46 @@ import UIKit
 class OCEDetailTableViewController: UITableViewController {
     
 //    MARK: Outlets and Dependencies
-    //var character: MovieCharacter?
+    static var newCharacter: Bool?
     var movieID: Int?
     var collection: Collection?
-    @IBOutlet weak var notesText: UITextView!
-    var relatedEvents: [Event]?
-    var relatedCharacters: [Character]?
-    var relatedObjects: [Object]?
     @IBOutlet weak var characterNameTextView: UITextView!
+    @IBOutlet weak var navTitle: UINavigationItem!
+    @IBOutlet weak var notesText: UITextView!
+    @IBOutlet weak var relatedCharacterNotesTextView: UITextView!
+    @IBOutlet weak var relatedObjectsNotesTextView: UITextView!
+    @IBOutlet weak var relatedEventsNotesTextView: UITextView!
     
     static var character: MovieCharacter?
     
     override func viewWillAppear(_ animated: Bool) {
-        characterNameTextView.text = OCEDetailTableViewController.character?.name ?? ""
+//        characterNameTextView.text = OCEDetailTableViewController.character?.name ?? ""
     }
 
+    @IBAction func saveButtonTapped(_ sender: Any) {
+    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateView()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func updateView() {
+        guard let newCharacter = OCEDetailTableViewController.newCharacter else { return }
+        if newCharacter {
+            navTitle.title = "Add a character"
+            characterNameTextView.text = "Add Character's name"
+        } else {
+            characterNameTextView.text = OCEDetailTableViewController.character?.name ?? ""
+        }
+        
     }
 
     // MARK: - Table view data source

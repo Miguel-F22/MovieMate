@@ -50,27 +50,38 @@ class CharacterCollectionViewController: UICollectionViewController {
             print("no related events")
             return 0
         }
-        return characters.count
+        return characters.count + 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        guard indexPath.item != 0 else {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "plusButton", for: indexPath)
+        }
     
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! CharactersCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        
+            
         guard let characters = MovieDetailTableViewController.relatedCharacters else {
             print("no related events")
             return cell
         }
-        cell.nameLabel.text = characters[indexPath.item].name
+        cell.nameLabel.text = characters[indexPath.item - 1].name
         cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
         
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        OCEDetailTableViewController.character = MovieDetailTableViewController.relatedCharacters![indexPath.item]
+        guard indexPath.item != 0 else {
+//            add button stuff
+            OCEDetailTableViewController.newCharacter = true
+            return
+        }
+        OCEDetailTableViewController.newCharacter = false
+        OCEDetailTableViewController.character = MovieDetailTableViewController.relatedCharacters![indexPath.item - 1]
 //        currentEvent = events[
 //        performSegue(withIdentifier: "toOCEDetail", sender: nil)
     }

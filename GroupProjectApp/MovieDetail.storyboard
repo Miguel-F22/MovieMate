@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EtL-Lq-DKh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EtL-Lq-DKh">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -145,14 +145,37 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chracterCell" id="Y5j-Vx-kpZ" customClass="CharactersCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="plusButton" id="Y5j-Vx-kpZ" customClass="CharactersCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="3.5" width="125" height="130"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qj3-sf-MCa">
                                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="130"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GsY-CD-0wx">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GCv-ab-uGy">
+                                                                        <rect key="frame" x="20" y="22" width="85" height="86"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="GCv-ab-uGy" secondAttribute="trailing" constant="20" symbolic="YES" id="Cfc-BF-UxQ"/>
+                                                                    <constraint firstItem="GCv-ab-uGy" firstAttribute="leading" secondItem="qj3-sf-MCa" secondAttribute="leading" constant="20" symbolic="YES" id="Pd2-zK-5GF"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="GCv-ab-uGy" secondAttribute="bottom" constant="20" symbolic="YES" id="b73-uy-Y5d"/>
+                                                                    <constraint firstItem="GCv-ab-uGy" firstAttribute="top" secondItem="qj3-sf-MCa" secondAttribute="top" constant="20" symbolic="YES" id="inc-cG-3fB"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <size key="customSize" width="125" height="130"/>
+                                                            <connections>
+                                                                <segue destination="QC8-WP-lxl" kind="show" identifier="toOCEDetail" id="NOC-PV-pV5"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chracterCell" id="34O-nn-Dc9" customClass="CharactersCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
+                                                            <rect key="frame" x="135" y="3.5" width="125" height="130"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="cJS-uw-pZV">
+                                                                <rect key="frame" x="0.0" y="0.0" width="125" height="130"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCv-Mf-S3B">
                                                                         <rect key="frame" x="41.5" y="54.5" width="42" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
@@ -160,14 +183,14 @@
                                                                     </label>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="GsY-CD-0wx" firstAttribute="centerY" secondItem="qj3-sf-MCa" secondAttribute="centerY" id="6gy-cw-sQH"/>
-                                                                    <constraint firstItem="GsY-CD-0wx" firstAttribute="centerX" secondItem="qj3-sf-MCa" secondAttribute="centerX" id="y8T-Hw-0tg"/>
+                                                                    <constraint firstItem="xCv-Mf-S3B" firstAttribute="centerY" secondItem="cJS-uw-pZV" secondAttribute="centerY" id="3Dj-C3-v90"/>
+                                                                    <constraint firstItem="xCv-Mf-S3B" firstAttribute="centerX" secondItem="cJS-uw-pZV" secondAttribute="centerX" id="ibY-vV-FEC"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="125" height="130"/>
                                                             <connections>
-                                                                <outlet property="nameLabel" destination="GsY-CD-0wx" id="Hgy-cJ-zO5"/>
-                                                                <segue destination="QC8-WP-lxl" kind="show" identifier="toOCEDetail" id="NOC-PV-pV5"/>
+                                                                <outlet property="nameLabel" destination="xCv-Mf-S3B" id="ubq-bz-c0A"/>
+                                                                <segue destination="I6D-jE-NSv" kind="show" id="kc8-8L-N6r"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -318,5 +341,18 @@
             </objects>
             <point key="canvasLocation" x="2632" y="177"/>
         </scene>
+        <!--OCEDetail-->
+        <scene sceneID="2rd-ks-nqs">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OCEDetail" id="I6D-jE-NSv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="shs-Pe-UNJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w1Q-qK-qwj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2666" y="285"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="64" height="56"/>
+    </resources>
 </document>
