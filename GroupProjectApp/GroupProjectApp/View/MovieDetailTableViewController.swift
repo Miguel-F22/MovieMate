@@ -146,6 +146,12 @@ class MovieDetailTableViewController: UITableViewController {
         destination?.movieID = id
         destination?.collection = collectionName
         
+        if segue.identifier == "addNewOCE" {
+            destination?.newOCE = true
+        } else if segue.identifier == "updateExistingOCE" {
+            destination?.newOCE = false
+        }
+        
         
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.

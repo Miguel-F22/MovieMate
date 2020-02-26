@@ -14,6 +14,7 @@ class OCEDetailTableViewController: UITableViewController {
     static var newCharacter: Bool?
     var movieID: Int?
     var collection: Collection?
+    var newOCE: Bool = true
     @IBOutlet weak var characterNameTextView: UITextView!
     @IBOutlet weak var navTitle: UINavigationItem!
     @IBOutlet weak var notesText: UITextView!
@@ -28,7 +29,11 @@ class OCEDetailTableViewController: UITableViewController {
     }
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-    
+        if newOCE == true {
+            print("Adding new")
+        } else {
+            print("updating")
+        }
     }
     
     override func viewDidLoad() {

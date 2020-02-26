@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EtL-Lq-DKh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EtL-Lq-DKh">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -165,7 +165,7 @@
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="125" height="130"/>
                                                             <connections>
-                                                                <segue destination="QC8-WP-lxl" kind="show" identifier="toOCEDetail" id="NOC-PV-pV5"/>
+                                                                <segue destination="QC8-WP-lxl" kind="show" identifier="addNewOCE" id="NOC-PV-pV5"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chracterCell" id="34O-nn-Dc9" customClass="CharactersCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
@@ -190,7 +190,7 @@
                                                             <size key="customSize" width="125" height="130"/>
                                                             <connections>
                                                                 <outlet property="nameLabel" destination="xCv-Mf-S3B" id="ubq-bz-c0A"/>
-                                                                <segue destination="I6D-jE-NSv" kind="show" id="kc8-8L-N6r"/>
+                                                                <segue destination="I6D-jE-NSv" kind="show" identifier="updateExistingOCE" id="kc8-8L-N6r"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>

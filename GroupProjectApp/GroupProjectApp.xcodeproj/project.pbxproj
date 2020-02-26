@@ -205,12 +205,12 @@
 			children = (
 				9556447123D2671C008450B2 /* MovieListNetworkController.swift */,
 				9556447523D26798008450B2 /* MovieListItemController.swift */,
-				9556447723D26D14008450B2 /* URL+Helper.swift */,
 				9527B72723DF3FD300977E5D /* MovieInfoNetworkController.swift */,
 				9527B72923DF3FF900977E5D /* MovieInfoItemController.swift */,
 				0822BE8F23EB1A19004ED1D2 /* MovieListImageNetworkController.swift */,
 				08BA6DFC23E1F53700B64C95 /* EventsCollectionViewController.swift */,
 				08BA6DFE23E1F84D00B64C95 /* ObjectCollectionViewController.swift */,
+				9556447723D26D14008450B2 /* URL+Helper.swift */,
 				08BA6E0023E1F85800B64C95 /* CharacterCollectionViewController.swift */,
 				0873599823F2FC0C00AB78F4 /* CastCharacterItemController.swift */,
 				0873599A23F2FC1400AB78F4 /* CastCharacterNetworkController.swift */,
