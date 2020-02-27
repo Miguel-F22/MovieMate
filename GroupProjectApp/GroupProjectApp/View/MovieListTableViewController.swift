@@ -8,28 +8,29 @@
 
 import UIKit
 
+//  MARK: GLOBAL VARIABLES
+
 var indexPathForMovie: Int? = nil
 var movieInfoItems: [Movie] = []
 
 class MovieListTableViewController: UITableViewController, UISearchResultsUpdating {
+    
+//    MARK: DEPENDENCIES
     
     static var shared = MovieListTableViewController()
     var movieID: Int?
     var collection: Collection?
     var lastSearchText: String = ""
 //    var path: IndexPath?
-
     let movieListController: MovieListItemController = MovieListNetworkController()
     var movieListItem: Movies?
-    
     let movieListImageController = MovieListImageNetworkController()
-    
     let movieInfoController: MovieInfoItemController = MovieInfoNetworkController()
-
+    
+//  MARK: SEARCHBAR STUFF
     
     var searchController: UISearchController?
     
-    //        adds searchbar item to Navigation bar
     func setupNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
             
@@ -97,12 +98,13 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         }
     }
     
+//    MARK: VIEW DID LOAD
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         
         self.tableView.dataSource = self
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
         
     }
     
@@ -145,41 +147,6 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
     
     // MARK: - Navigation
     
@@ -202,6 +169,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
             destination.overview = overview
             destination.imagePath = imagePath
             destination.rating = rating
+            
         }
         
     }

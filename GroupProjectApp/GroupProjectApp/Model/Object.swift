@@ -10,9 +10,8 @@ import Foundation
 
 struct MovieObject: Codable {
     var name: String
-    var origin: AMovie?
     var notes: String?
-    var relatedObjects: [MovieObject]?
-    var relatedCharacters: [MovieCharacter]?
-    var relatedEvent: [MovieEvent]?
+    var relatedObjects: String?
+    var relatedCharacters: String?
+    var relateEvents: String?
 }
