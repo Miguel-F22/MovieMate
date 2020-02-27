@@ -12,8 +12,6 @@ import UIKit
 class EventsCollectionViewController: UICollectionViewController {
     
     static var shared = EventsCollectionViewController()
-//    let movieDetailTableController = MovieDetailTableViewController.shared
-    var currentEvent: Event?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +47,16 @@ class EventsCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let events = MovieDetailTableViewController.relatedEvents else {
             print("no related events")
-            return 0
+            return 1
         }
-        return events.count
+        return events.count + 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard indexPath.item != 0 else {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "plusButton", for: indexPath)
+        }
         
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! EventsCollectionViewCell
@@ -64,48 +66,20 @@ class EventsCollectionViewController: UICollectionViewController {
             print("no related events")
             return cell
         }
-        cell.nameLabel.text = events[indexPath.item].name
+        cell.nameLabel.text = events[indexPath.item - 1].name
         cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // handle tap events
-        print("You selected cell #\(indexPath.item)!")
-//        currentEvent = events[
-//        performSegue(withIdentifier: "toOCEDetail", sender: nil)
-    }
-    
-    // MARK: UICollectionViewDelegate
-    
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
+         guard indexPath.item != 0 else {
+        //            add button stuff
+                    OCEDetailTableViewController.newEvent = true
+                    return
+                }
+                OCEDetailTableViewController.newEvent = false
+                OCEDetailTableViewController.event = MovieDetailTableViewController.relatedEvents![indexPath.item - 1]
+            }
     
 }

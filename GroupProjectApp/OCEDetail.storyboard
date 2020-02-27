@@ -128,6 +128,40 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="120" id="DAm-uh-t97">
+                                        <rect key="frame" x="0.0" y="812" width="414" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DAm-uh-t97" id="alz-es-inF">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nP5-be-csb">
+                                                    <rect key="frame" x="169.5" y="11" width="75" height="98"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXD-0p-fhM">
+                                                            <rect key="frame" x="0.0" y="-1" width="75" height="78"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="75" id="19m-AO-9UC"/>
+                                                            </constraints>
+                                                            <state key="normal" backgroundImage="trash" catalog="system"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OG7-vf-bl5">
+                                                            <rect key="frame" x="13" y="77.5" width="49.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nP5-be-csb" firstAttribute="centerY" secondItem="alz-es-inF" secondAttribute="centerY" id="5OM-Di-CYw"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nP5-be-csb" secondAttribute="bottom" id="G3a-nw-CTx"/>
+                                                <constraint firstItem="nP5-be-csb" firstAttribute="top" secondItem="alz-es-inF" secondAttribute="topMargin" id="avY-qV-pFt"/>
+                                                <constraint firstItem="nP5-be-csb" firstAttribute="centerX" secondItem="alz-es-inF" secondAttribute="centerX" id="urN-u0-wLc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -138,6 +172,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add/Edit" largeTitleDisplayMode="always" id="Ufw-Ku-ri6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="x5e-0z-gls">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="L0E-E8-oGp" id="k8O-PX-DoV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="dNw-ma-if2">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="L0E-E8-oGp" id="dqL-XJ-vIL"/>
@@ -177,4 +216,7 @@
             <point key="canvasLocation" x="4473.913043478261" y="507.58928571428567"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="trash" catalog="system" width="60" height="64"/>
+    </resources>
 </document>

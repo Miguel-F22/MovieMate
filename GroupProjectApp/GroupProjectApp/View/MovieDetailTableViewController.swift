@@ -17,6 +17,7 @@ class MovieDetailTableViewController: UITableViewController {
     let movieInfoNetworkController: MovieInfoNetworkController = MovieInfoNetworkController()
     let eventController = EventsCollectionViewController.shared
     let characterController = CharacterCollectionViewController.shared
+    let objectController = ObjectCollectionViewController.shared
 
     let movieListImageController: MovieListImageNetworkController = MovieListImageNetworkController()
     let castCharacterNetworkController: CastCharacterNetworkController = CastCharacterNetworkController()
@@ -38,6 +39,7 @@ class MovieDetailTableViewController: UITableViewController {
     @IBOutlet weak var summary: UITextView!
     @IBOutlet weak var eventCollectionView: UICollectionView!
     @IBOutlet weak var characterCollectionView: UICollectionView!
+    @IBOutlet weak var objectCollectionView: UICollectionView!
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
     
@@ -68,6 +70,8 @@ class MovieDetailTableViewController: UITableViewController {
         characterCollectionView.dataSource = characterController
         characterCollectionView.delegate = characterController
         eventCollectionView.delegate = eventController
+        objectCollectionView.delegate = objectController
+        objectCollectionView.dataSource = objectController
         
         castCharacterNetworkController.getCastCharacterItem(movieID: movieID!.description) { response in
              switch response {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EtL-Lq-DKh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EtL-Lq-DKh">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -165,7 +165,7 @@
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="125" height="130"/>
                                                             <connections>
-                                                                <segue destination="QC8-WP-lxl" kind="show" identifier="addNewOCE" id="NOC-PV-pV5"/>
+                                                                <segue destination="QC8-WP-lxl" kind="modal" identifier="addNewOCE" id="NOC-PV-pV5"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chracterCell" id="34O-nn-Dc9" customClass="CharactersCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
@@ -190,7 +190,7 @@
                                                             <size key="customSize" width="125" height="130"/>
                                                             <connections>
                                                                 <outlet property="nameLabel" destination="xCv-Mf-S3B" id="ubq-bz-c0A"/>
-                                                                <segue destination="I6D-jE-NSv" kind="show" identifier="updateExistingOCE" id="kc8-8L-N6r"/>
+                                                                <segue destination="I6D-jE-NSv" kind="showDetail" identifier="updateExistingOCE" id="kc8-8L-N6r"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -225,8 +225,31 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="objectCell" id="lf7-NE-ATB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="139" height="139"/>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="plusButton" id="ifJ-qb-Z5y" customClass="CharactersCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="4.5" width="125" height="130"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0LJ-r6-FpK">
+                                                                <rect key="frame" x="0.0" y="0.0" width="125" height="130"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gG8-FC-eYw">
+                                                                        <rect key="frame" x="20" y="22" width="85" height="86"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="gG8-FC-eYw" firstAttribute="leading" secondItem="0LJ-r6-FpK" secondAttribute="leading" constant="20" symbolic="YES" id="DK4-Xb-6sw"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="gG8-FC-eYw" secondAttribute="trailing" constant="20" symbolic="YES" id="SGW-se-DCs"/>
+                                                                    <constraint firstItem="gG8-FC-eYw" firstAttribute="top" secondItem="0LJ-r6-FpK" secondAttribute="top" constant="20" symbolic="YES" id="UTh-sP-ndj"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="gG8-FC-eYw" secondAttribute="bottom" constant="20" symbolic="YES" id="h64-8S-nAW"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <size key="customSize" width="125" height="130"/>
+                                                            <connections>
+                                                                <segue destination="QC8-WP-lxl" kind="presentation" identifier="addNewOCE" id="e5S-9z-Op8"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="objectCell" id="lf7-NE-ATB" customClass="ObjectsCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
+                                                            <rect key="frame" x="135" y="0.0" width="139" height="139"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NEL-yh-M57">
                                                                 <rect key="frame" x="0.0" y="0.0" width="139" height="139"/>
@@ -245,6 +268,10 @@
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="139" height="139"/>
+                                                            <connections>
+                                                                <outlet property="nameLabel" destination="RBb-oJ-Ceb" id="5tP-Oi-Lut"/>
+                                                                <segue destination="I6D-jE-NSv" kind="show" identifier="updateExistingOCE" id="hSN-Y9-fxh"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -280,8 +307,31 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="plusButton" id="tJ5-og-LQ3" customClass="CharactersCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="5" width="125" height="130"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Bsk-lZ-EEi">
+                                                                <rect key="frame" x="0.0" y="0.0" width="125" height="130"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qZM-xN-WJ9">
+                                                                        <rect key="frame" x="20" y="22" width="85" height="86"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="qZM-xN-WJ9" firstAttribute="top" secondItem="Bsk-lZ-EEi" secondAttribute="top" constant="20" symbolic="YES" id="96w-hV-7Zt"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="qZM-xN-WJ9" secondAttribute="trailing" constant="20" symbolic="YES" id="9O9-Ed-h39"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="qZM-xN-WJ9" secondAttribute="bottom" constant="20" symbolic="YES" id="hTZ-2z-y32"/>
+                                                                    <constraint firstItem="qZM-xN-WJ9" firstAttribute="leading" secondItem="Bsk-lZ-EEi" secondAttribute="leading" constant="20" symbolic="YES" id="oE9-PT-4AL"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <size key="customSize" width="125" height="130"/>
+                                                            <connections>
+                                                                <segue destination="QC8-WP-lxl" kind="presentation" identifier="addNewOCE" id="DKQ-nm-Vpo"/>
+                                                            </connections>
+                                                        </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="eventCell" id="YMy-SM-lwC" customClass="EventsCollectionViewCell" customModule="GroupProjectApp" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="135" height="140"/>
+                                                            <rect key="frame" x="128" y="0.0" width="135" height="140"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DQR-vS-JKw">
                                                                 <rect key="frame" x="0.0" y="0.0" width="135" height="140"/>
@@ -299,6 +349,7 @@
                                                             <size key="customSize" width="135" height="140"/>
                                                             <connections>
                                                                 <outlet property="nameLabel" destination="boh-Mq-YVM" id="gKe-tQ-YTH"/>
+                                                                <segue destination="I6D-jE-NSv" kind="show" identifier="updateExistingOCE" id="6FY-yw-59S"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -322,6 +373,7 @@
                         <outlet property="characterCollectionView" destination="evK-Za-ZuX" id="fEv-Fb-59m"/>
                         <outlet property="eventCollectionView" destination="EcF-Fl-E7l" id="fBv-45-mae"/>
                         <outlet property="movieImage" destination="pgq-2G-UKO" id="ipt-S8-YvY"/>
+                        <outlet property="objectCollectionView" destination="u0s-kD-iiA" id="1EW-96-ttv"/>
                         <outlet property="ratingLabel" destination="tik-1P-Tn8" id="fOd-13-p0r"/>
                         <outlet property="releaseDateLabel" destination="Fcl-D0-mRZ" id="hP9-N3-zbU"/>
                         <outlet property="summary" destination="WHA-Y2-Gf3" id="CcI-MD-5gb"/>
@@ -355,4 +407,8 @@
     <resources>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="6FY-yw-59S"/>
+        <segue reference="DKQ-nm-Vpo"/>
+    </inferredMetricsTieBreakers>
 </document>
