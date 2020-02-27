@@ -30,4 +30,15 @@ public class Movie: NSManagedObject {
     //        self.movieRelatedObjects = NSSet(array: amovie.relatedObjects?.map { Object(movieObject: $0, context: context) } ?? [] )
             
         }
+    
+//    for testing
+    convenience init(movieID: Int32, title: String, overview: String, posterPath: String, voteAverage: Double, releaseDate: String) {
+        self.init()
+        self.movieID = movieID
+        self.title = title
+        self.overview = overview
+        self.posterPath = posterPath
+        self.voteAverage = voteAverage
+        self.releaseDate = releaseDate
+    }
 }

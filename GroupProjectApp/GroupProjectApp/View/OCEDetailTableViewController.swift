@@ -11,7 +11,9 @@ import UIKit
 class OCEDetailTableViewController: UITableViewController {
     
 //    MARK: Outlets and Dependencies
-    static var newCharacter: Bool?
+    static var newCharacter: Bool? = false
+    static var newEvent: Bool? = false
+    static var newObject: Bool? = false
     var movieID: Int?
     var collection: Collection?
     static var newOCE: Bool?
@@ -23,11 +25,20 @@ class OCEDetailTableViewController: UITableViewController {
     @IBOutlet weak var relatedEventsNotesTextView: UITextView!
     
     static var character: MovieCharacter?
+    static var event: MovieEvent?
+    static var object: MovieObject?
     
-    override func viewWillAppear(_ animated: Bool) {
-//        characterNameTextView.text = OCEDetailTableViewController.character?.name ?? ""
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        OCEDetailTableViewController.newCharacter = false
+        OCEDetailTableViewController.newEvent = false
+        OCEDetailTableViewController.newObject = false
+        
     }
+    
 
+//    MARK: Save Button
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         if let moviePath = indexPathForMovie {
             if OCEDetailTableViewController.newOCE == true {
@@ -38,95 +49,51 @@ class OCEDetailTableViewController: UITableViewController {
                 updateOCEInMovie(movieIDToAddInto: movieInfoItems[moviePath].movieID , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (MovieDetailTableViewController.relatedCharacters?[CharacterCollectionViewController.indexOfChar - 1].name)!)
             }
         }
+        dismiss(animated: true, completion: nil)
     }
+    
+    
+//    MARK: VIEW DID LOAD
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    func updateView() {
-        guard let newCharacter = OCEDetailTableViewController.newCharacter else { return }
-        if newCharacter {
-            navTitle.title = "Add a character"
-            characterNameTextView.text = "Add Character's name"
-        } else {
-            characterNameTextView.text = OCEDetailTableViewController.character?.name ?? ""
-        }
         
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 4
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        OCEDetailTableViewController.newCharacter = false
+        OCEDetailTableViewController.newEvent = false
+        OCEDetailTableViewController.newObject = false
+        OCEDetailTableViewController.character = nil
+        OCEDetailTableViewController.event = nil
+        OCEDetailTableViewController.object = nil
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+    
+    
+//    MARK: UPDATE VIEW
+    
+    func updateView() {
+        
+        guard let newCharacter = OCEDetailTableViewController.newCharacter, let newEvent = OCEDetailTableViewController.newEvent, let newObject = OCEDetailTableViewController.newObject else { return }
+        
+        
+        if !newCharacter && !newObject && !newEvent {
+            characterNameTextView.text = OCEDetailTableViewController.character?.name ?? OCEDetailTableViewController.event?.name ?? OCEDetailTableViewController.object?.name ?? ""
+            navTitle.title = "Edit existing"
+        } else if newCharacter {
+            navTitle.title = "Add a character"
+            characterNameTextView.text = "Add Character's name"
+        } else if newEvent {
+            navTitle.title = "Add a new Event"
+            characterNameTextView.text = "Add a name for the event"
+        } else if newObject {
+            navTitle.title = "Add a new Object"
+            characterNameTextView.text = "Add a name for your object"
+        }
+        
+        
+        
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

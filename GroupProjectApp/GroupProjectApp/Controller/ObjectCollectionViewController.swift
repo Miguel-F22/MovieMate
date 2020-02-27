@@ -11,6 +11,7 @@ import UIKit
 private let reuseIdentifier = "objectCell"
 
 class ObjectCollectionViewController: UICollectionViewController {
+    static var shared = ObjectCollectionViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,22 +40,50 @@ class ObjectCollectionViewController: UICollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         
-        return MovieDetailTableViewController.relatedObjects!.count
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        guard let objects = MovieDetailTableViewController.relatedObjects else {
+            print("no related objects")
+            return 1
+        }
+        return objects.count + 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        
+        guard indexPath.item != 0 else {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "plusButton", for: indexPath)
+        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! ObjectsCollectionViewCell
     
         // Configure the cell
+        
+        guard let objects = MovieDetailTableViewController.relatedObjects else {
+            print("no related Objects")
+            return cell
+        }
+        
+        cell.nameLabel.text = objects[indexPath.item - 1 ].name
     
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+         guard indexPath.item != 0 else {
+        //            add button stuff
+                    OCEDetailTableViewController.newObject = true
+                    return
+                }
+                OCEDetailTableViewController.newObject = false
+                OCEDetailTableViewController.object = MovieDetailTableViewController.relatedObjects![indexPath.item - 1]
+            }
+        
+        
+    
 
     // MARK: UICollectionViewDelegate
 
