@@ -14,6 +14,7 @@ class OCEDetailTableViewController: UITableViewController {
     static var newCharacter: Bool?
     var movieID: Int?
     var collection: Collection?
+    static var newOCE: Bool?
     @IBOutlet weak var characterNameTextView: UITextView!
     @IBOutlet weak var navTitle: UINavigationItem!
     @IBOutlet weak var notesText: UITextView!
@@ -28,7 +29,15 @@ class OCEDetailTableViewController: UITableViewController {
     }
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-    
+        if let moviePath = indexPathForMovie {
+            if OCEDetailTableViewController.newOCE == true {
+                print("Adding new")
+                addNewOCEInMovie(movieIDToAddInto: movieInfoItems[moviePath].movieID , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text))
+            } else {
+                print("updating")
+                updateOCEInMovie(movieIDToAddInto: movieInfoItems[moviePath].movieID , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (MovieDetailTableViewController.relatedCharacters?[CharacterCollectionViewController.indexOfChar - 1].name)!)
+            }
+        }
     }
     
     override func viewDidLoad() {

@@ -12,6 +12,7 @@ private let reuseIdentifier = "chracterCell"
 
 class CharacterCollectionViewController: UICollectionViewController {
     static var shared = CharacterCollectionViewController()
+    static var indexOfChar = -1
 
 
     override func viewDidLoad() {
@@ -77,9 +78,11 @@ class CharacterCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.item != 0 else {
 //            add button stuff
+            
             OCEDetailTableViewController.newCharacter = true
             return
         }
+        CharacterCollectionViewController.indexOfChar = indexPath.row
         OCEDetailTableViewController.newCharacter = false
         OCEDetailTableViewController.character = MovieDetailTableViewController.relatedCharacters![indexPath.item - 1]
 //        currentEvent = events[

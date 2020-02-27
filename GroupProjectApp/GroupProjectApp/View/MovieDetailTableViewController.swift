@@ -126,7 +126,7 @@ class MovieDetailTableViewController: UITableViewController {
             } else {
                 
                 let context = PersistenceService.context
-                _ = Movie.createMovieWithoutRelations(movieToCreate: movieInfoItems[selectedRow], with: context)
+                _ = Movie.createMovieInCoreData(movieToCreate: movieInfoItems[selectedRow], with: context)
                 PersistenceService.saveContext()
                 existsInCoreData = true
                 addToLibraryButton.setTitle("Delete From My Library", for: .normal)
@@ -140,11 +140,23 @@ class MovieDetailTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as? OCEDetailTableViewController
-        let id: Int? = movieID
-        let collectionName = collection
-        destination?.movieID = id
-        destination?.collection = collectionName
+        if let destination = segue.destination as? OCEDetailTableViewController {
+            //This code does nothing because the line above always fails. The destination segue is a navigation controller.
+//            let id: Int? = movieID
+//            let collectionName = collection
+//            destination.movieID = id
+//            destination.collection = collectionName
+            
+            
+        } else {
+            if segue.identifier == "addNewOCE" {
+                OCEDetailTableViewController.newOCE = true
+            } else if segue.identifier == "updateExistingOCE" {
+                OCEDetailTableViewController.newOCE = false
+            }
+            return
+        }
+        
         
         
         // Get the new view controller using segue.destination.
