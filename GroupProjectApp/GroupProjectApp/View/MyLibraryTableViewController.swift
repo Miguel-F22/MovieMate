@@ -60,7 +60,13 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
         let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
         do {
             let movies = try context.fetch(fetchRequest)
-            return movies
+            var realMovies: [Movie] = []
+            for i in movies {
+                if i.title != nil {
+                    realMovies.append(i)
+                }
+            }
+            return realMovies
            
         } catch {
             print(error)
