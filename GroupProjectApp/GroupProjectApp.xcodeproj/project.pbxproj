@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08108A5623D76D9100F7FF8A /* MovieDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08108A5523D76D9100F7FF8A /* MovieDetail.storyboard */; };
-		081EB3C1240815C000550459 /* MyLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 081EB3C0240815C000550459 /* MyLibrary.storyboard */; };
+		081EB09324082FAC00F6AA7A /* MyLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 081EB09124082FAC00F6AA7A /* MyLibrary.storyboard */; };
 		081EB3C324081A0800550459 /* MyLibraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081EB3C224081A0800550459 /* MyLibraryTableViewController.swift */; };
 		0822BE9023EB1A19004ED1D2 /* MovieListImageNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0822BE8F23EB1A19004ED1D2 /* MovieListImageNetworkController.swift */; };
 		082531D323F6EA9B008559B3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082531D223F6EA9B008559B3 /* CoreDataStack.swift */; };
@@ -57,7 +57,7 @@
 
 /* Begin PBXFileReference section */
 		08108A5523D76D9100F7FF8A /* MovieDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MovieDetail.storyboard; sourceTree = "<group>"; };
-		081EB3C0240815C000550459 /* MyLibrary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyLibrary.storyboard; sourceTree = "<group>"; };
+		081EB09224082FAC00F6AA7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = GroupProjectApp/Base.lproj/MyLibrary.storyboard; sourceTree = "<group>"; };
 		081EB3C224081A0800550459 /* MyLibraryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryTableViewController.swift; sourceTree = "<group>"; };
 		0822BE8F23EB1A19004ED1D2 /* MovieListImageNetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieListImageNetworkController.swift; sourceTree = "<group>"; };
 		082531D223F6EA9B008559B3 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -163,6 +163,8 @@
 		08A165A423CE15C30056B4AC = {
 			isa = PBXGroup;
 			children = (
+				08A165B623CE15C30056B4AC /* Main.storyboard */,
+				081EB09124082FAC00F6AA7A /* MyLibrary.storyboard */,
 				08108A5523D76D9100F7FF8A /* MovieDetail.storyboard */,
 				9573C97623EDB54200E5FEE7 /* OCEDetail.storyboard */,
 				953E073E23EB21740069EC2E /* AddRelationView.storyboard */,
@@ -189,8 +191,6 @@
 				08A165B023CE15C30056B4AC /* AppDelegate.swift */,
 				08A165B223CE15C30056B4AC /* SceneDelegate.swift */,
 				08A165B423CE15C30056B4AC /* ViewController.swift */,
-				08A165B623CE15C30056B4AC /* Main.storyboard */,
-				081EB3C0240815C000550459 /* MyLibrary.storyboard */,
 				08A165B923CE15C60056B4AC /* Assets.xcassets */,
 				08A165BB23CE15C60056B4AC /* LaunchScreen.storyboard */,
 				08A165BE23CE15C60056B4AC /* Info.plist */,
@@ -286,7 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08108A5623D76D9100F7FF8A /* MovieDetail.storyboard in Resources */,
-				081EB3C1240815C000550459 /* MyLibrary.storyboard in Resources */,
+				081EB09324082FAC00F6AA7A /* MyLibrary.storyboard in Resources */,
 				08A165BD23CE15C60056B4AC /* LaunchScreen.storyboard in Resources */,
 				08A165BA23CE15C60056B4AC /* Assets.xcassets in Resources */,
 				9573C97723EDB54200E5FEE7 /* OCEDetail.storyboard in Resources */,
@@ -347,6 +347,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		081EB09124082FAC00F6AA7A /* MyLibrary.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				081EB09224082FAC00F6AA7A /* Base */,
+			);
+			name = MyLibrary.storyboard;
+			sourceTree = "<group>";
+		};
 		08A165B623CE15C30056B4AC /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
