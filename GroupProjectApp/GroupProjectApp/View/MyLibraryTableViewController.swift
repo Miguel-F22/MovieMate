@@ -108,9 +108,42 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
         return cell
 }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 192.0;//Choose
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //        path = indexPath
+        
+        performSegue(withIdentifier: "toMovieDetail", sender: nil)
+        
+    }
+    
 //    MARK: NAVIGATION
 
-
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    guard let coreData = coreData else { return }
+        if let selectedRow = tableView.indexPathForSelectedRow?.row, let destination = segue.destination as? MovieDetailTableViewController {
+            indexPathForMovie = selectedRow
+            let id = Int(coreData[selectedRow].movieID)
+            let movieTitle = coreData[selectedRow].title
+            let releaseDate = coreData[selectedRow].releaseDate
+            let overview = coreData[selectedRow].overview
+            let imagePath = coreData[selectedRow].posterPath
+            let rating = coreData[selectedRow].voteAverage
+            destination.movieID = id
+            destination.title = movieTitle
+            destination.releaseDate = releaseDate
+            destination.overview = overview
+            destination.imagePath = imagePath
+            destination.rating = rating
+            
+            MovieDetailTableViewController.hideOCEviews = false
+            
+        }
+        
+    }
 
     
 }

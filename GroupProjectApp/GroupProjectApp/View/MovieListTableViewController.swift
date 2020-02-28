@@ -179,6 +179,8 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
             destination.imagePath = imagePath
             destination.rating = rating
             
+            MovieDetailTableViewController.hideOCEviews = true
+            
         }
         
     }
