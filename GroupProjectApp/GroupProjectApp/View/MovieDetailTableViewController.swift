@@ -21,7 +21,6 @@ class MovieDetailTableViewController: UITableViewController {
 
     let movieListImageController: MovieListImageNetworkController = MovieListImageNetworkController()
     let castCharacterNetworkController: CastCharacterNetworkController = CastCharacterNetworkController()
-    var castCharacterList: [MovieCharacter]? = nil
     
     
 //    MARK: Outlets and dependencies
@@ -32,6 +31,9 @@ class MovieDetailTableViewController: UITableViewController {
     var imagePath: String?
     var rating: Double?
     var existsInCoreData: Bool = false
+    var castCharacterList: [MovieCharacter]? = nil
+    static var hideOCEviews: Bool?
+
     
     
     @IBOutlet weak var addToLibraryButton: UIButton!
@@ -46,32 +48,38 @@ class MovieDetailTableViewController: UITableViewController {
     static var indexPathSelected: Int?
     static var relatedCharacters: [MovieCharacter]?
     static var relatedObjects: [MovieObject]?
-    static var relatedEvents: [MovieEvent]? = [
-        MovieEvent(name: "Death of a patriot", notes: "It was an epic plot twist"),
-        MovieEvent(name: "Something big", notes: "Cray cray"),
-        MovieEvent(name: "Hand Chopped off", notes: "clean cut"),
-        MovieEvent(name: "Something big", notes: "Cray cray")
-    ]
+    static var relatedEvents: [MovieEvent]?
+//        = [
+//        MovieEvent(name: "Death of a patriot", notes: "It was an epic plot twist"),
+//        MovieEvent(name: "Something big", notes: "Cray cray"),
+//        MovieEvent(name: "Hand Chopped off", notes: "clean cut"),
+//        MovieEvent(name: "Something big", notes: "Cray cray")
+//    ]
+//    MARK: FUNCTIONS
+    
+    func hideORshowOCE() {
+        guard let hideOCEViews = MovieDetailTableViewController.hideOCEviews else { return }
+        if hideOCEViews {
+            eventCollectionView.isHidden = true
+            characterCollectionView.isHidden = true
+            objectCollectionView.isHidden = true
+            
+//            self.tableView(tableView: , numberOfRowsInSection: <#T##Int#>)
+        } else {
+            print("✊🏿")
+        }
+    }
     
     func updateView() {
         releaseDateLabel.text = releaseDate
         summary.text = overview
         ratingLabel.text = String(rating!)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         //super.viewWillAppear(true)
         
-        
-        
-        
-        eventCollectionView.dataSource = eventController
-        characterCollectionView.dataSource = characterController
-        characterCollectionView.delegate = characterController
-        eventCollectionView.delegate = eventController
-        objectCollectionView.delegate = objectController
-        objectCollectionView.dataSource = objectController
+        hideORshowOCE()
         
         castCharacterNetworkController.getCastCharacterItem(movieID: movieID!.description) { response in
              switch response {
@@ -84,12 +92,21 @@ class MovieDetailTableViewController: UITableViewController {
                  case .failure:
                     print("Could not find any information from: " + String(self.movieID!))
              }
-             
         }
     }
-    
+
+//     MARK: VIEW DID LOAD
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        eventCollectionView.dataSource = eventController
+        characterCollectionView.dataSource = characterController
+        characterCollectionView.delegate = characterController
+        eventCollectionView.delegate = eventController
+        objectCollectionView.delegate = objectController
+        objectCollectionView.dataSource = objectController
+        
         guard let imagePath = imagePath else { return }
         movieListImageController.fetchImage(path: imagePath) { image in
             DispatchQueue.main.async {
@@ -106,23 +123,16 @@ class MovieDetailTableViewController: UITableViewController {
                 addToLibraryButton.setTitle("Delete From My Library", for: .normal)
             }
         }
-        super.viewDidLoad()
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
 //   MARK: Collection stuff
     
- 
-    
     @IBAction func addToLibaryAction(_ sender: Any) {
         if let selectedRow = indexPathForMovie {
             if existsInCoreData {
+                self.dismiss(animated: true, completion: nil)
                 deleteCoreData(movieToDelete: movieInfoItems[selectedRow])
                 existsInCoreData = false
                 addToLibraryButton.setTitle("Add to My Library", for: .normal)
@@ -160,12 +170,5 @@ class MovieDetailTableViewController: UITableViewController {
             }
             return
         }
-        
-        
-        
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    
-
 }

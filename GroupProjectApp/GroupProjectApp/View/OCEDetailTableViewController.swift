@@ -28,7 +28,6 @@ class OCEDetailTableViewController: UITableViewController {
     static var character: MovieCharacter?
     static var event: MovieEvent?
     static var object: MovieObject?
-    static var hideOCEviews: Bool?
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
