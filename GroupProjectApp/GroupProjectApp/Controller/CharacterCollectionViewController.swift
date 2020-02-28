@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 private let reuseIdentifier = "chracterCell"
 
 class CharacterCollectionViewController: UICollectionViewController {
     static var shared = CharacterCollectionViewController()
     static var indexOfChar = -1
-
+    static var collectionCharacters: [Character]?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +49,23 @@ class CharacterCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        guard let characters = MovieDetailTableViewController.relatedCharacters else {
-            print("no related characters")
-            return 1
+        let context = PersistenceService.context
+        do {
+            
+            
+            let fetchRequest2 = NSFetchRequest<Character>(entityName: "Character")
+            
+            let results = try context.fetch(fetchRequest2)
+            if results.count > 0 {
+                CharacterCollectionViewController.collectionCharacters = results
+                //print(results)
+                return results.count + 1
+            }
+            
+        } catch {
+             print("")
         }
-        return characters.count + 1
+        return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -64,8 +78,7 @@ class CharacterCollectionViewController: UICollectionViewController {
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         
-            
-        guard let characters = MovieDetailTableViewController.relatedCharacters else {
+        guard let characters = CharacterCollectionViewController.collectionCharacters else {
             print("no related characters")
             return cell
         }
