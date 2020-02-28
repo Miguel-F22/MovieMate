@@ -9,9 +9,18 @@
 import UIKit
 import CoreData
 //var characterList:[MovieCharacter] = []
+var globalMovieID: Int?
 
 
-class MovieDetailTableViewController: UITableViewController {
+protocol MovieDetailProtocol {
+    func saved()
+}
+
+class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol {
+    func saved() {
+        tableView.reloadData()
+        characterCollectionView.reloadData()
+    }
     
     static var shared = MovieDetailTableViewController()
     let movieInfoNetworkController: MovieInfoNetworkController = MovieInfoNetworkController()
@@ -78,7 +87,8 @@ class MovieDetailTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         //super.viewWillAppear(true)
-        
+        globalMovieID = movieID
+        tableView.reloadData()
         hideORshowOCE()
         
         castCharacterNetworkController.getCastCharacterItem(movieID: movieID!.description) { response in
@@ -100,6 +110,7 @@ class MovieDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        OCEDetailTableViewController.delegate = self
         overrideUserInterfaceStyle = .dark  
         eventCollectionView.dataSource = eventController
         characterCollectionView.dataSource = characterController

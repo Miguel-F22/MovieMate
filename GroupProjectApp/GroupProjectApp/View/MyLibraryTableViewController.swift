@@ -49,7 +49,7 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .dark  
+        overrideUserInterfaceStyle = .dark
         self.navigationItem.title = "My Library"
         setupNavBar()
         
@@ -117,8 +117,6 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        path = indexPath
-        
-//        performSegue(withIdentifier: "toMovieDetail", sender: nil)
         
     }
     
