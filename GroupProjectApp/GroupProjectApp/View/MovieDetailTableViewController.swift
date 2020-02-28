@@ -126,28 +126,51 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
             }
         }
         updateView()
-        if let movieID = movieID {
-            if checkCoreDataForMovie(movieToCheckForID: movieID) == nil {
-                existsInCoreData = false
-                addToLibraryButton.setTitle("Add to My Library", for: .normal)
-            } else {
-                existsInCoreData = true
-                addToLibraryButton.setTitle("Delete From My Library", for: .normal)
-            }
-        }
+        updateButton()
+       
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
 //   MARK: Collection stuff
     
+    func updateButton() {
+        guard let cameFromHome = MovieDetailTableViewController.hideOCEviews else { return }
+        if let movieID = movieID {
+                   if checkCoreDataForMovie(movieToCheckForID: movieID) == nil && cameFromHome {
+                       existsInCoreData = false
+                       addToLibraryButton.setTitle("Add to My Library", for: .normal)
+                   } else if cameFromHome {
+                       existsInCoreData = true
+                       addToLibraryButton.setTitle("Already in Library", for: .normal)
+                       addToLibraryButton.isEnabled = false
+                   } else if !cameFromHome {
+                    existsInCoreData = true
+                    addToLibraryButton.setTitle("Delete From Library", for: .normal)
+                    addToLibraryButton.isEnabled = true
+            }
+               }
+    }
+    
+    
     @IBAction func addToLibaryAction(_ sender: Any) {
+        guard  let cameFromHome = MovieDetailTableViewController.hideOCEviews, let coreData = MyLibraryTableViewController.coreDataGlobalReference else { return }
         if let selectedRow = indexPathForMovie {
-            if existsInCoreData {
-                self.dismiss(animated: true, completion: nil)
-                deleteCoreData(movieToDelete: movieInfoItems[selectedRow])
+            if !cameFromHome {
+                //                self.dismiss(animated: true, completion: nil)
+                deleteCoreData(movieToDelete: coreData[selectedRow])
                 existsInCoreData = false
-                addToLibraryButton.setTitle("Add to My Library", for: .normal)
+                addToLibraryButton.setTitle("Delete Succesful", for: .normal)
+                addToLibraryButton.isEnabled = false
+                navigationController?.popViewController(animated: true)
+                
+                
+//        if let selectedRow = indexPathForMovie {
+//            if existsInCoreData {
+//                self.dismiss(animated: true, completion: nil)
+//                deleteCoreData(movieToDelete: movieInfoItems[selectedRow])
+//                existsInCoreData = false
+//                addToLibraryButton.setTitle("Add to My Library", for: .normal)
                 
             } else {
                 
@@ -155,7 +178,9 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
                 _ = Movie.createMovieInCoreData(movieToCreate: movieInfoItems[selectedRow], with: context)
                 PersistenceService.saveContext()
                 existsInCoreData = true
-                addToLibraryButton.setTitle("Delete From My Library", for: .normal)
+//                add success notification?
+                addToLibraryButton.setTitle("Added to library", for: .normal)
+                addToLibraryButton.isEnabled = false
                 
             }
         }

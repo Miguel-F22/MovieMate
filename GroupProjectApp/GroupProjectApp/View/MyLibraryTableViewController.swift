@@ -14,6 +14,7 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
     var movieListImageController: MovieListImageNetworkController = MovieListImageNetworkController()
     @IBOutlet weak var navTitle: UINavigationItem!
     var coreData: [Movie]? = []
+    static var coreDataGlobalReference: [Movie]? = []
     
     
     
@@ -41,6 +42,8 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
     
     override func viewWillAppear(_ animated: Bool) {
         coreData = fetchMovies()
+        MyLibraryTableViewController.coreDataGlobalReference = coreData
+        
         tableView.reloadData()
     }
     
@@ -114,7 +117,6 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        path = indexPath
-        
         
     }
     

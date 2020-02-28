@@ -12,7 +12,7 @@ import UIKit
 
 
 
-func deleteCoreData(movieToDelete: AMovie) {
+func deleteCoreData(movieToDelete: Movie) {
     let context = PersistenceService.context
     let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
     do {
