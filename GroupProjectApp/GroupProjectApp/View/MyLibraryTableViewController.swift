@@ -46,6 +46,7 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .dark  
         self.navigationItem.title = "My Library"
         setupNavBar()
         

@@ -98,8 +98,9 @@ class MovieDetailTableViewController: UITableViewController {
 //     MARK: VIEW DID LOAD
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        
+        overrideUserInterfaceStyle = .dark  
         eventCollectionView.dataSource = eventController
         characterCollectionView.dataSource = characterController
         characterCollectionView.delegate = characterController

@@ -43,26 +43,20 @@ func addNewOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any) {
         guard let index2 = index else { return }
         
         if let character = oceToInsert as? MovieCharacter {
-            let charArray = [character]
-            var theChar = Character(movieCharacter: character, context: context)
+            let theChar = Character(movieCharacter: character, context: context)
             theChar.parentMovie = movies[index2]
-//            var newSet = NSMutableSet(object: movies[index2].movieRelatedCharacters)
-//            newSet.add(theChar)
-//
-//
-//            movies[index2].movieRelatedCharacters = newSet
-//            MovieDetailTableViewController.relatedCharacters?.append(character)
-//            //movies[index2].movieRelatedCharacters?.addingObjects(from: charArray)
             movies[index2].movieRelatedCharacters?.adding(theChar)
-            //movies[index2].movieRelatedCharacters = NSSet(array: charArray.map { Character(movieCharacter: $0, context: context) } )
 
         } else if let object = oceToInsert as? MovieObject {
-            print("Obj")
+            let theObj = Object(movieObject: object, context: context)
+            theObj.parentMovie = movies[index2]
+            movies[index2].movieRelatedObjects?.adding(theObj)
         } else if let event = oceToInsert as? MovieEvent {
-            print("Event")
+            let theEvent = Event(movieEvent: event, context: context)
+            theEvent.parentMovie = movies[index2]
+            movies[index2].movieRelatedEvents?.adding(theEvent)
         }
         PersistenceService.saveContext()
-        print(movies[index2].movieRelatedCharacters)
     } catch {
         print(error)
     }
@@ -71,24 +65,13 @@ func addNewOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any) {
 
 func updateOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oldOCEName: String) {
     let context = PersistenceService.context
-    let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
     do {
-        let movies = try context.fetch(fetchRequest)
-        print(movies)
-        let index = movies.firstIndex(where: { (item) -> Bool in
-            item.movieID == movieIDToAddInto
-        })
-        
-        guard let index2 = index else { return }
-        let movie = movies[index2]
-        
         if let character = oceToInsert as? MovieCharacter {
             
             let commitPredicate = NSPredicate(format: "name == %@", oldOCEName)
             let fetchRequest2 = NSFetchRequest<Character>(entityName: "Character")
-
             fetchRequest2.predicate = commitPredicate
-            //let result = movies[index2].movieRelatedCharacters?.filter { commitPredicate.evaluate(with: $0) }
+            
             let results = try context.fetch(fetchRequest2)
             if results.count > 0 {
                 results[0].name = character.name
@@ -97,15 +80,32 @@ func updateOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oldOCEName: Strin
                 results[0].events = character.relateEvents
                 results[0].objects = character.relatedObjects
             }
-            
-            
-            
-            
-            
         } else if let object = oceToInsert as? MovieObject {
-            print("Obj")
+            let commitPredicate = NSPredicate(format: "name == %@", oldOCEName)
+            let fetchRequest2 = NSFetchRequest<Object>(entityName: "Object")
+            fetchRequest2.predicate = commitPredicate
+            
+            let results = try context.fetch(fetchRequest2)
+            if results.count > 0 {
+                results[0].name = object.name
+                results[0].notes = object.notes
+                results[0].characters = object.relatedCharacters
+                results[0].events = object.relateEvents
+                results[0].objects = object.relatedObjects
+            }
         } else if let event = oceToInsert as? MovieEvent {
-            print("Event")
+            let commitPredicate = NSPredicate(format: "name == %@", oldOCEName)
+            let fetchRequest2 = NSFetchRequest<Event>(entityName: "Event")
+            fetchRequest2.predicate = commitPredicate
+            
+            let results = try context.fetch(fetchRequest2)
+            if results.count > 0 {
+                results[0].name = event.name
+                results[0].notes = event.notes
+                results[0].characters = event.relatedCharacters
+                results[0].events = event.relateEvents
+                results[0].objects = event.relatedObjects
+            }
         }
         PersistenceService.saveContext()
         
