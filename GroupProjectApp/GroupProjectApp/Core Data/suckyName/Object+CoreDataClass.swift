@@ -18,8 +18,8 @@ public class Object: Movie {
         
         self.name = movieObject.name
         self.notes = movieObject.notes
-//        self.objectRelatedCharacters = NSSet(array: movieObject.relatedCharacters ?? [] )
-//        self.objectRelatedEvents = NSSet(array: movieObject.relatedEvents ?? [] )
-//        self.objectRelatedObjects = NSSet(array: movieObject.relatedObjects ?? [] )
+        characters = movieObject.relatedCharacters
+        objects = movieObject.relatedObjects
+        events = movieObject.relateEvents
     }
 }

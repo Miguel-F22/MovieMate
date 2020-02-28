@@ -17,8 +17,8 @@ public class Event: Movie {
         
         self.name = movieEvent.name
         self.notes = movieEvent.notes
-//        self.eventRelatedCharacters = NSSet(array: movieEvent.relatedCharacters ?? [] )
-//        self.eventRelatedEvents = NSSet(array: movieEvent.relatedEvents ?? [] )
-//        self.eventRelatedObjects = NSSet(array: movieEvent.relatedObjects ?? [] )
+        characters = movieEvent.relatedCharacters
+        objects = movieEvent.relatedObjects
+        events = movieEvent.relateEvents
     }
 }

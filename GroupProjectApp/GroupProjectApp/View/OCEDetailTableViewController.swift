@@ -59,6 +59,7 @@ class OCEDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .dark  
         updateView()
         
     }

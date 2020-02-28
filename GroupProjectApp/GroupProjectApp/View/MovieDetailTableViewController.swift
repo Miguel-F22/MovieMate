@@ -90,6 +90,7 @@ class MovieDetailTableViewController: UITableViewController {
     
 
     override func viewDidLoad() {
+        overrideUserInterfaceStyle = .dark  
         guard let imagePath = imagePath else { return }
         movieListImageController.fetchImage(path: imagePath) { image in
             DispatchQueue.main.async {
