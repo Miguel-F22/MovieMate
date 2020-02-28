@@ -24,6 +24,7 @@ class OCEDetailTableViewController: UITableViewController {
     @IBOutlet weak var relatedObjectsNotesTextView: UITextView!
     @IBOutlet weak var relatedEventsNotesTextView: UITextView!
     
+    
     static var character: MovieCharacter?
     static var event: MovieEvent?
     static var object: MovieObject?
