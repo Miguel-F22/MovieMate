@@ -11,6 +11,7 @@ import CoreData
 
 class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdating {
     
+    var movieListImageController: MovieListImageNetworkController = MovieListImageNetworkController()
     @IBOutlet weak var navTitle: UINavigationItem!
     var coreData: [Movie]? = []
     
@@ -40,10 +41,12 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
     
     override func viewWillAppear(_ animated: Bool) {
         coreData = fetchMovies()
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "My Library"
         setupNavBar()
         
 
@@ -95,12 +98,12 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
         cell.movieTitle.text = coreData[indexPath.row].title
         cell.movieDate.text = coreData[indexPath.row].releaseDate
         cell.movieRating.text = String(coreData[indexPath.row].voteAverage)
-//        movieListImageController.fetchImage(path: CoreData[indexPath.row].posterPath) { image in
-//            DispatchQueue.main.async {
-//                cell.movieImage.image = image
-//
-//            }
-        
+        movieListImageController.fetchImage(path: coreData[indexPath.row].posterPath!) { image in
+            DispatchQueue.main.async {
+                cell.movieImage.image = image
+
+            }
+        }
         return cell
 }
     
@@ -108,4 +111,5 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
 
 
 
+    
 }
