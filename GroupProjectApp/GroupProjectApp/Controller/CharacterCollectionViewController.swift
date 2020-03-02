@@ -49,18 +49,32 @@ class CharacterCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
+        guard MovieDetailTableViewController.hideOCEviews == false else { return 1 }
         let context = PersistenceService.context
         do {
+            let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
             
-            
-            let fetchRequest2 = NSFetchRequest<Character>(entityName: "Character")
-            
-            let results = try context.fetch(fetchRequest2)
-            if results.count > 0 {
-                CharacterCollectionViewController.collectionCharacters = results
-                //print(results)
-                return results.count + 1
+            let movies = try context.fetch(fetchRequest)
+            let index = movies.firstIndex(where: { (item) -> Bool in
+                item.movieID == MyLibraryTableViewController.coreDataGlobalReference?[MyLibraryTableViewController.indexPathOfMovie!].movieID
+            })
+            guard let index2 = index else { return 1 }
+            if let characterCount = movies[index2].movieRelatedCharacters?.count {
+                let characterArray = Array((movies[index2].movieRelatedCharacters?.allObjects as? [Character])!)
+//                var sortedArray = characterArray.sorted(by: {$0.name < $1.name})
+                let sortedMovies = characterArray.sorted(by: { $0.name! < $1.name! })
+                CharacterCollectionViewController.collectionCharacters = sortedMovies
+                return characterCount + 1
             }
+            
+//            let fetchRequest2 = NSFetchRequest<Character>(entityName: "Character")
+//
+//            let results = try context.fetch(fetchRequest2)
+//            if results.count > 0 {
+//                CharacterCollectionViewController.collectionCharacters = results
+//                //print(results)
+//                return results.count + 1
+//            }
             
         } catch {
              print("")
@@ -96,7 +110,8 @@ class CharacterCollectionViewController: UICollectionViewController {
         }
         CharacterCollectionViewController.indexOfChar = indexPath.row
         OCEDetailTableViewController.newCharacter = false
-        OCEDetailTableViewController.character = MovieDetailTableViewController.relatedCharacters![indexPath.item - 1]
+        OCEDetailTableViewController.character = CharacterCollectionViewController.collectionCharacters![indexPath.item - 1]
+        CharacterCollectionViewController.indexOfChar = indexPath.row - 1
     }
     
 }

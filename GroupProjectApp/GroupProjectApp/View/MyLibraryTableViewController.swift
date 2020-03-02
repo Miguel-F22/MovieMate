@@ -15,6 +15,7 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
     @IBOutlet weak var navTitle: UINavigationItem!
     var coreData: [Movie]? = []
     static var coreDataGlobalReference: [Movie]? = []
+    static var indexPathOfMovie: Int?
     
     
     
@@ -126,6 +127,7 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
         
     guard let coreData = coreData else { return }
         if let selectedRow = tableView.indexPathForSelectedRow?.row, let destination = segue.destination as? MovieDetailTableViewController {
+            MyLibraryTableViewController.indexPathOfMovie = selectedRow
             indexPathForMovie = selectedRow
             let id = Int(coreData[selectedRow].movieID)
             let movieTitle = coreData[selectedRow].title
