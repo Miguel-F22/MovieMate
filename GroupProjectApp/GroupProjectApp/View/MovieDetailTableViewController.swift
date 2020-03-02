@@ -53,6 +53,7 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
     @IBOutlet weak var objectCollectionView: UICollectionView!
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var characterCell: UITableViewCell!
     
     static var indexPathSelected: Int?
     static var relatedCharacters: [MovieCharacter]?
@@ -72,8 +73,7 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
             eventCollectionView.isHidden = true
             characterCollectionView.isHidden = true
             objectCollectionView.isHidden = true
-            
-//            self.tableView(tableView: , numberOfRowsInSection: <#T##Int#>)
+            characterCell.isHidden = true
         } else {
             print("✊🏿")
         }
@@ -185,6 +185,20 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
             }
         }
     }
+    
+    
+//    MARK: DATASOURCE
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        guard let hideOCEViews = MovieDetailTableViewController.hideOCEviews else { return 0 }
+
+        if hideOCEViews {
+            return 2
+        } else {
+            return 5
+        }
+    }
+    
     
     
     // MARK: - Navigation
