@@ -68,9 +68,26 @@ class OCEDetailTableViewController: UITableViewController {
             
             
         } else {
+            if OCEDetailTableViewController.retCharacter == true {
+                whatAmI = "char"
+                updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!, oceType: whatAmI ?? "")
+                OCEDetailTableViewController.retCharacter = false
+
+
+            } else if OCEDetailTableViewController.retObject == true {
+                whatAmI = "obj"
+                updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieObject(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (ObjectCollectionViewController.collectionObj?[ObjectCollectionViewController.indexOfObj].name)!, oceType: whatAmI ?? "")
+                OCEDetailTableViewController.retObject = false
+
+
+            } else if OCEDetailTableViewController.retEvent == true {
+                whatAmI = "event"
+                updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieEvent(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (EventsCollectionViewController.collectionEvents?[EventsCollectionViewController.indexOfEvent].name)!, oceType: whatAmI ?? "")
+                OCEDetailTableViewController.retEvent = false
+
+            }
             print("updating")
-            updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!, oceType: "")
-        }
+                    }
 //        MovieDetailTableViewController.shared.tableView.reloadData()
         OCEDetailTableViewController.delegate?.saved()
         dismiss(animated: true, completion: nil)

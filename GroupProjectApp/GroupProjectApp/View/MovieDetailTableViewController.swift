@@ -20,6 +20,8 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
     func saved() {
         tableView.reloadData()
         characterCollectionView.reloadData()
+        eventCollectionView.reloadData()
+        objectCollectionView.reloadData()
     }
     
     static var shared = MovieDetailTableViewController()
