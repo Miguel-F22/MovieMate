@@ -113,9 +113,9 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
         OCEDetailTableViewController.delegate = self
         overrideUserInterfaceStyle = .dark  
         eventCollectionView.dataSource = eventController
+        eventCollectionView.delegate = eventController
         characterCollectionView.dataSource = characterController
         characterCollectionView.delegate = characterController
-        eventCollectionView.delegate = eventController
         objectCollectionView.delegate = objectController
         objectCollectionView.dataSource = objectController
         

@@ -66,15 +66,7 @@ class CharacterCollectionViewController: UICollectionViewController {
                 CharacterCollectionViewController.collectionCharacters = sortedMovies
                 return characterCount + 1
             }
-            
-//            let fetchRequest2 = NSFetchRequest<Character>(entityName: "Character")
-//
-//            let results = try context.fetch(fetchRequest2)
-//            if results.count > 0 {
-//                CharacterCollectionViewController.collectionCharacters = results
-//                //print(results)
-//                return results.count + 1
-//            }
+
             
         } catch {
              print("")
@@ -106,10 +98,13 @@ class CharacterCollectionViewController: UICollectionViewController {
 //            add button stuff
             
             OCEDetailTableViewController.newCharacter = true
+            OCEDetailTableViewController.retCharacter = false
+
             return
         }
         CharacterCollectionViewController.indexOfChar = indexPath.row
         OCEDetailTableViewController.newCharacter = false
+        OCEDetailTableViewController.retCharacter = true
         OCEDetailTableViewController.character = CharacterCollectionViewController.collectionCharacters![indexPath.item - 1]
         CharacterCollectionViewController.indexOfChar = indexPath.row - 1
     }

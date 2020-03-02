@@ -15,8 +15,8 @@ public class Event: Movie {
     convenience init(movieEvent: MovieEvent, context: NSManagedObjectContext = PersistenceService.context) {
         self.init(context: context)
         
-        self.name = movieEvent.name
-        self.notes = movieEvent.notes
+        name = movieEvent.name
+        notes = movieEvent.notes
         characters = movieEvent.relatedCharacters
         objects = movieEvent.relatedObjects
         events = movieEvent.relateEvents

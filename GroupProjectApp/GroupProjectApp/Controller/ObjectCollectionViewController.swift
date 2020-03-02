@@ -79,7 +79,7 @@ class ObjectCollectionViewController: UICollectionViewController {
                     return
                 }
                 OCEDetailTableViewController.newObject = false
-                OCEDetailTableViewController.object = MovieDetailTableViewController.relatedObjects![indexPath.item - 1]
+//                OCEDetailTableViewController.object = MovieDetailTableViewController.relatedObjects![indexPath.item - 1]
             }
         
         

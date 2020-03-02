@@ -14,6 +14,9 @@ class OCEDetailTableViewController: UITableViewController {
     static var newCharacter: Bool? = false
     static var newEvent: Bool? = false
     static var newObject: Bool? = false
+    static var retCharacter: Bool? = false
+    static var retEvent: Bool? = false
+    static var retObject: Bool? = false
     var movieID: Int?
     var collection: Collection?
     static var newOCE: Bool?
@@ -26,8 +29,8 @@ class OCEDetailTableViewController: UITableViewController {
     
     static var delegate: MovieDetailProtocol?
     static var character: Character?
-    static var event: MovieEvent?
-    static var object: MovieObject?
+    static var event: Event?
+    static var object: Object?
     
 //    MARK: Cancel Button
     
@@ -38,17 +41,35 @@ class OCEDetailTableViewController: UITableViewController {
         OCEDetailTableViewController.newObject = false
         
     }
+    var whatAmI: String?
     
 
 //    MARK: Save Button
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        
+        if OCEDetailTableViewController.newCharacter == true {
+            whatAmI = "char"
+        } else if OCEDetailTableViewController.newObject == true {
+            whatAmI = "obj"
+        } else if OCEDetailTableViewController.newEvent == true {
+            whatAmI = "event"
+        }
+        
         if OCEDetailTableViewController.newOCE == true {
             print("Adding new")
-            addNewOCEInMovie(movieIDToAddInto: globalMovieID!, oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text))
+            if whatAmI == "char" {
+                addNewOCEInMovie(movieIDToAddInto: globalMovieID!, oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI ?? "")
+            } else if whatAmI == "event" {
+                addNewOCEInMovie(movieIDToAddInto: globalMovieID!, oceToInsert: MovieEvent(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI ?? "")
+            } else if whatAmI == "obj" {
+                addNewOCEInMovie(movieIDToAddInto: globalMovieID!, oceToInsert: MovieObject(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI ?? "")
+            }
+            
+            
         } else {
             print("updating")
-            updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!)
+            updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!, oceType: "")
         }
 //        MovieDetailTableViewController.shared.tableView.reloadData()
         OCEDetailTableViewController.delegate?.saved()
