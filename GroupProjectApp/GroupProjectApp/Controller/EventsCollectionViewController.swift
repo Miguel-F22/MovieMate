@@ -103,11 +103,11 @@ class EventsCollectionViewController: UICollectionViewController {
             
             return
         }
-        CharacterCollectionViewController.indexOfChar = indexPath.row
+        EventsCollectionViewController.indexOfEvent = indexPath.row
         OCEDetailTableViewController.newEvent = false
         OCEDetailTableViewController.retEvent = true
         OCEDetailTableViewController.event = EventsCollectionViewController.collectionEvents![indexPath.item - 1]
-        CharacterCollectionViewController.indexOfChar = indexPath.row - 1
+        EventsCollectionViewController.indexOfEvent = indexPath.row - 1
     }
     
 }
