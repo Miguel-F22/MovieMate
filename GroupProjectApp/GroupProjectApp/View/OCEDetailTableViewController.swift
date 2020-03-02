@@ -25,7 +25,7 @@ class OCEDetailTableViewController: UITableViewController {
     @IBOutlet weak var relatedEventsNotesTextView: UITextView!
     
     static var delegate: MovieDetailProtocol?
-    static var character: MovieCharacter?
+    static var character: Character?
     static var event: MovieEvent?
     static var object: MovieObject?
     
@@ -48,7 +48,7 @@ class OCEDetailTableViewController: UITableViewController {
             addNewOCEInMovie(movieIDToAddInto: globalMovieID!, oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text))
         } else {
             print("updating")
-            updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (MovieDetailTableViewController.relatedCharacters?[CharacterCollectionViewController.indexOfChar - 1].name)!)
+            updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!)
         }
 //        MovieDetailTableViewController.shared.tableView.reloadData()
         OCEDetailTableViewController.delegate?.saved()
