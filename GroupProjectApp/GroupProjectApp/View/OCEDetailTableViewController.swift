@@ -29,10 +29,10 @@ class OCEDetailTableViewController: UITableViewController {
     static var event: MovieEvent?
     static var object: MovieObject?
     
+//    MARK: Cancel Button
+    
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        //MovieDetailTableViewController.shared.characterCollectionView.reloadData()
-//        characterCollectionView.reloadData()
         OCEDetailTableViewController.newCharacter = false
         OCEDetailTableViewController.newEvent = false
         OCEDetailTableViewController.newObject = false
@@ -54,6 +54,13 @@ class OCEDetailTableViewController: UITableViewController {
         OCEDetailTableViewController.delegate?.saved()
         dismiss(animated: true, completion: nil)
     }
+    
+//    MARK: Trash Button
+    
+    @IBAction func trashButtonTapped(_ sender: Any) {
+        
+    }
+    
     
     
 //    MARK: VIEW DID LOAD

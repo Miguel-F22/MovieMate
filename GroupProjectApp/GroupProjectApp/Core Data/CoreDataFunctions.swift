@@ -11,6 +11,7 @@ import CoreData
 import UIKit
 
 
+//  MARK: DELETE MOVIE
 
 func deleteCoreData(movieToDelete: Movie) {
     let context = PersistenceService.context
@@ -30,6 +31,8 @@ func deleteCoreData(movieToDelete: Movie) {
         print(error)
     }
 }
+
+//  MARK: ADD NEW OCE TO MOVIE
 
 func addNewOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any) {
     let context = PersistenceService.context
@@ -62,6 +65,8 @@ func addNewOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any) {
     }
     return
 }
+
+//  MARK: UPDATE EXISTING OCE
 
 func updateOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oldOCEName: String) {
     let context = PersistenceService.context
@@ -115,6 +120,45 @@ func updateOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oldOCEName: Strin
     return
 }
 
+//  MARK: DELETE OCE
+
+func deleteOCEFromMovie(movieToDeleteFrom: Int, oceToDelete: Any) {
+    let context = PersistenceService.context
+    
+    if let object = oceToDelete as? MovieObject {
+        
+    } else if let character = oceToDelete as? MovieCharacter {
+        
+    } else if let event = oceToDelete as? MovieEvent {
+        
+    }
+    PersistenceService.saveContext()
+}
+
+//  MARK: CHECK CORE DATA FOR MOVIE
+
+// Finds movie by the id in core data. If it does not exist it returns nil. If it does, returns the core data Movie object.
+
+func checkCoreDataForMovie(movieToCheckForID: Int) -> Movie? {
+    let context = PersistenceService.context
+    
+    let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
+    do {
+        let movies = try context.fetch(fetchRequest)
+        let index = movies.firstIndex(where: { (item) -> Bool in
+            item.movieID == movieToCheckForID
+        })
+        if let index = index {
+            return movies[index]
+        }
+        
+    } catch {
+        print(error)
+    }
+    return nil
+    
+}
+
 //func checkForOCEInMovie(movieToCheckFor: AMovie, oceName: String) -> [NSSet.Element]? {
 //    let context = PersistenceService.context
 //    let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
@@ -136,23 +180,3 @@ func updateOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oldOCEName: Strin
 //}
 
 
-// Finds movie by the id in core data. If it does not exist it returns nil. If it does, returns the core data Movie object.
-func checkCoreDataForMovie(movieToCheckForID: Int) -> Movie? {
-    let context = PersistenceService.context
-
-    let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
-    do {
-        let movies = try context.fetch(fetchRequest)
-        let index = movies.firstIndex(where: { (item) -> Bool in
-          item.movieID == movieToCheckForID
-        })
-        if let index = index {
-            return movies[index]
-        }
-        
-    } catch {
-        print(error)
-    }
-    return nil
-    
-}
