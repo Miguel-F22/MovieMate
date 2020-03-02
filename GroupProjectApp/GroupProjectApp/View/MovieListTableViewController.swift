@@ -37,8 +37,16 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
         searchController = UISearchController(searchResultsController: nil)
         searchController?.searchResultsUpdater = self
         searchController?.obscuresBackgroundDuringPresentation = false
-//        navigationItem.hidesSearchBarWhenScrolling = false
+        
         navigationItem.searchController = searchController
+        searchController?.searchBar.barStyle = .black
+        let searchBarTextField = searchController?.searchBar.value(forKey: "searchField") as! UITextField
+        searchBarTextField.textColor = UIColor.white
+        searchBarTextField.tintColor = UIColor.blue
+        searchBarTextField.backgroundColor = UIColor.black
+        searchController?.searchBar.backgroundColor = .black
+        searchController?.searchBar.barTintColor = .black
+        
     }
     var characterSet = CharacterSet.init(charactersIn: "qwertyiuioplkjhgfdsazxcvbnm1234567890&!@#$%^*()[].,;/:\'\"\\=-+_ ")
     func updateSearchResults(for searchController: UISearchController) {
@@ -102,6 +110,7 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .dark  
         setupNavBar()
         
         self.tableView.dataSource = self
@@ -169,6 +178,8 @@ class MovieListTableViewController: UITableViewController, UISearchResultsUpdati
             destination.overview = overview
             destination.imagePath = imagePath
             destination.rating = rating
+            
+            MovieDetailTableViewController.hideOCEviews = true
             
         }
         

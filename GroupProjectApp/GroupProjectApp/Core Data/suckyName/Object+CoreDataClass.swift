@@ -2,7 +2,7 @@
 //  Object+CoreDataClass.swift
 //  GroupProjectApp
 //
-//  Created by Josh GImenes on 2/24/20.
+//  Created by Josh GImenes on 3/2/20.
 //  Copyright © 2020 Miguel Figueroa. All rights reserved.
 //
 //
@@ -16,10 +16,10 @@ public class Object: Movie {
         
         self.init(context: context)
         
-        self.name = movieObject.name
-        self.notes = movieObject.notes
-//        self.objectRelatedCharacters = NSSet(array: movieObject.relatedCharacters ?? [] )
-//        self.objectRelatedEvents = NSSet(array: movieObject.relatedEvents ?? [] )
-//        self.objectRelatedObjects = NSSet(array: movieObject.relatedObjects ?? [] )
+        name = movieObject.name
+        notes = movieObject.notes
+        characters = movieObject.relatedCharacters
+        objects = movieObject.relatedObjects
+        events = movieObject.relateEvents
     }
 }

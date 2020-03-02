@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 private let reuseIdentifier = "chracterCell"
 
 class CharacterCollectionViewController: UICollectionViewController {
     static var shared = CharacterCollectionViewController()
     static var indexOfChar = -1
-
+    static var collectionCharacters: [Character]?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +49,29 @@ class CharacterCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        guard let characters = MovieDetailTableViewController.relatedCharacters else {
-            print("no related characters")
-            return 1
+        guard MovieDetailTableViewController.hideOCEviews == false else { return 1 }
+        let context = PersistenceService.context
+        do {
+            let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
+            
+            let movies = try context.fetch(fetchRequest)
+            let index = movies.firstIndex(where: { (item) -> Bool in
+                item.movieID == MyLibraryTableViewController.coreDataGlobalReference?[MyLibraryTableViewController.indexPathOfMovie!].movieID
+            })
+            guard let index2 = index else { return 1 }
+            if let characterCount = movies[index2].movieRelatedCharacters?.count {
+                let characterArray = Array((movies[index2].movieRelatedCharacters?.allObjects as? [Character])!)
+//                var sortedArray = characterArray.sorted(by: {$0.name < $1.name})
+                let sortedMovies = characterArray.sorted(by: { $0.name! < $1.name! })
+                CharacterCollectionViewController.collectionCharacters = sortedMovies
+                return characterCount + 1
+            }
+
+            
+        } catch {
+             print("")
         }
-        return characters.count + 1
+        return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -64,8 +84,7 @@ class CharacterCollectionViewController: UICollectionViewController {
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         
-            
-        guard let characters = MovieDetailTableViewController.relatedCharacters else {
+        guard let characters = CharacterCollectionViewController.collectionCharacters else {
             print("no related characters")
             return cell
         }
@@ -79,11 +98,15 @@ class CharacterCollectionViewController: UICollectionViewController {
 //            add button stuff
             
             OCEDetailTableViewController.newCharacter = true
+            OCEDetailTableViewController.retCharacter = false
+
             return
         }
         CharacterCollectionViewController.indexOfChar = indexPath.row
         OCEDetailTableViewController.newCharacter = false
-        OCEDetailTableViewController.character = MovieDetailTableViewController.relatedCharacters![indexPath.item - 1]
+        OCEDetailTableViewController.retCharacter = true
+        OCEDetailTableViewController.character = CharacterCollectionViewController.collectionCharacters![indexPath.item - 1]
+        CharacterCollectionViewController.indexOfChar = indexPath.row - 1
     }
     
 }

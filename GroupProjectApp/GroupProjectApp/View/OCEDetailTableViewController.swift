@@ -11,92 +11,153 @@ import UIKit
 class OCEDetailTableViewController: UITableViewController {
     
 //    MARK: Outlets and Dependencies
-    var movieID: Int32?
+    static var newCharacter: Bool? = false
+    static var newEvent: Bool? = false
+    static var newObject: Bool? = false
+    static var retCharacter: Bool? = false
+    static var retEvent: Bool? = false
+    static var retObject: Bool? = false
+    var movieID: Int?
     var collection: Collection?
-    @IBOutlet weak var originText: UITextView!
+    static var newOCE: Bool?
+    @IBOutlet weak var characterNameTextView: UITextView!
+    @IBOutlet weak var navTitle: UINavigationItem!
     @IBOutlet weak var notesText: UITextView!
-    var relatedEvents: [Event]?
-    var relatedCharacters: [Character]?
-    var relatedObjects: [Object]?
+    @IBOutlet weak var relatedCharacterNotesTextView: UITextView!
+    @IBOutlet weak var relatedObjectsNotesTextView: UITextView!
+    @IBOutlet weak var relatedEventsNotesTextView: UITextView!
     
+    static var delegate: MovieDetailProtocol?
+    static var character: Character?
+    static var event: Event?
+    static var object: Object?
     
+//    MARK: Cancel Button
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        OCEDetailTableViewController.newCharacter = false
+        OCEDetailTableViewController.newEvent = false
+        OCEDetailTableViewController.newObject = false
+        
+    }
+    var whatAmI: String?
     
 
+//    MARK: Save Button
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        
+        if OCEDetailTableViewController.newCharacter == true {
+            whatAmI = "char"
+        } else if OCEDetailTableViewController.newObject == true {
+            whatAmI = "obj"
+        } else if OCEDetailTableViewController.newEvent == true {
+            whatAmI = "event"
+        }
+        
+        if OCEDetailTableViewController.newOCE == true {
+            print("Adding new")
+            if whatAmI == "char" {
+                addNewOCEInMovie(movieIDToAddInto: globalMovieID!, oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI ?? "")
+            } else if whatAmI == "event" {
+                addNewOCEInMovie(movieIDToAddInto: globalMovieID!, oceToInsert: MovieEvent(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI ?? "")
+            } else if whatAmI == "obj" {
+                addNewOCEInMovie(movieIDToAddInto: globalMovieID!, oceToInsert: MovieObject(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI ?? "")
+            }
+            
+            
+        } else {
+            if OCEDetailTableViewController.retCharacter == true {
+                whatAmI = "char"
+                updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!, oceType: whatAmI ?? "")
+                OCEDetailTableViewController.retCharacter = false
+
+
+            } else if OCEDetailTableViewController.retObject == true {
+                whatAmI = "obj"
+                updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieObject(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (ObjectCollectionViewController.collectionObj?[ObjectCollectionViewController.indexOfObj].name)!, oceType: whatAmI ?? "")
+                OCEDetailTableViewController.retObject = false
+
+
+            } else if OCEDetailTableViewController.retEvent == true {
+                whatAmI = "event"
+                updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieEvent(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (EventsCollectionViewController.collectionEvents?[EventsCollectionViewController.indexOfEvent].name)!, oceType: whatAmI ?? "")
+                OCEDetailTableViewController.retEvent = false
+
+            }
+            print("updating")
+                    }
+//        MovieDetailTableViewController.shared.tableView.reloadData()
+        OCEDetailTableViewController.delegate?.saved()
+        dismiss(animated: true, completion: nil)
+    }
+    
+//    MARK: Trash Button
+    
+    @IBAction func trashButtonTapped(_ sender: Any) {
+        if OCEDetailTableViewController.retCharacter == true {
+            whatAmI = "char"
+            deleteOCEFromMovie(movieToDeleteFrom: globalMovieID!, oceToDelete: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI!, oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!)
+            OCEDetailTableViewController.delegate?.saved()
+        } else if OCEDetailTableViewController.retObject == true {
+            whatAmI = "obj"
+            deleteOCEFromMovie(movieToDeleteFrom: globalMovieID!, oceToDelete: MovieObject(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI!, oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!)
+            OCEDetailTableViewController.delegate?.saved()
+        } else if OCEDetailTableViewController.retEvent == true {
+            whatAmI = "event"
+            deleteOCEFromMovie(movieToDeleteFrom: globalMovieID!, oceToDelete: MovieEvent(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI!, oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!)
+            OCEDetailTableViewController.delegate?.saved()
+        }
+      
+        OCEDetailTableViewController.delegate?.saved()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+//    MARK: VIEW DID LOAD
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        overrideUserInterfaceStyle = .dark  
+        updateView()
+        
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        OCEDetailTableViewController.newCharacter = false
+        OCEDetailTableViewController.newEvent = false
+        OCEDetailTableViewController.newObject = false
+        OCEDetailTableViewController.character = nil
+        OCEDetailTableViewController.event = nil
+        OCEDetailTableViewController.object = nil
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    
+//    MARK: UPDATE VIEW
+    
+    func updateView() {
+        
+        guard let newCharacter = OCEDetailTableViewController.newCharacter, let newEvent = OCEDetailTableViewController.newEvent, let newObject = OCEDetailTableViewController.newObject else { return }
+        
+        
+        if !newCharacter && !newObject && !newEvent {
+            characterNameTextView.text = OCEDetailTableViewController.character?.name ?? OCEDetailTableViewController.event?.name ?? OCEDetailTableViewController.object?.name ?? ""
+            navTitle.title = "Edit existing"
+        } else if newCharacter {
+            navTitle.title = "Add a character"
+            characterNameTextView.text = "Add Character's name"
+        } else if newEvent {
+            navTitle.title = "Add a new Event"
+            characterNameTextView.text = "Add a name for the event"
+        } else if newObject {
+            navTitle.title = "Add a new Object"
+            characterNameTextView.text = "Add a name for your object"
+        }
+        
+        
+        
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
