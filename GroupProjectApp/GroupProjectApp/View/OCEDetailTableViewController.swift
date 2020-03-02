@@ -79,7 +79,22 @@ class OCEDetailTableViewController: UITableViewController {
 //    MARK: Trash Button
     
     @IBAction func trashButtonTapped(_ sender: Any) {
-        
+        if OCEDetailTableViewController.retCharacter == true {
+            whatAmI = "char"
+            deleteOCEFromMovie(movieToDeleteFrom: globalMovieID!, oceToDelete: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI!, oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!)
+            OCEDetailTableViewController.delegate?.saved()
+        } else if OCEDetailTableViewController.retObject == true {
+            whatAmI = "obj"
+            deleteOCEFromMovie(movieToDeleteFrom: globalMovieID!, oceToDelete: MovieObject(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI!, oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!)
+            OCEDetailTableViewController.delegate?.saved()
+        } else if OCEDetailTableViewController.retEvent == true {
+            whatAmI = "event"
+            deleteOCEFromMovie(movieToDeleteFrom: globalMovieID!, oceToDelete: MovieEvent(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI!, oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!)
+            OCEDetailTableViewController.delegate?.saved()
+        }
+      
+        OCEDetailTableViewController.delegate?.saved()
+        dismiss(animated: true, completion: nil)
     }
     
     

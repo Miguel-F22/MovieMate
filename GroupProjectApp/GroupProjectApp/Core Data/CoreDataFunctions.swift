@@ -132,17 +132,53 @@ func updateOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oldOCEName: Strin
 
 //  MARK: DELETE OCE
 
-func deleteOCEFromMovie(movieToDeleteFrom: Int, oceToDelete: Any) {
+func deleteOCEFromMovie(movieToDeleteFrom: Int, oceToDelete: Any, oceType: String, oldOCEName: String) {
     let context = PersistenceService.context
+    do {
+        if oceType == "char" {
+            if let character = oceToDelete as? MovieCharacter {
+                let commitPreicate = NSPredicate(format: "name == %@", oldOCEName)
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Character")
+                fetchRequest.predicate = commitPreicate
+                
+                let results = try context.fetch(fetchRequest)
+                if results.count > 0 {
+                    context.delete(results.first!)
+                }
+            }
+        }
     
-    if let object = oceToDelete as? MovieObject {
+        if oceType == "obj" {
+            if let object = oceToDelete as? MovieObject {
+                let commitPreicate = NSPredicate(format: "name == %@", oldOCEName)
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Character")
+                fetchRequest.predicate = commitPreicate
+                
+                let results = try context.fetch(fetchRequest)
+                if results.count > 0 {
+                    context.delete(results.first!)
+                }
+            }
+        }
         
-    } else if let character = oceToDelete as? MovieCharacter {
-        
-    } else if let event = oceToDelete as? MovieEvent {
-        
+        if oceType == "event" {
+                   if let object = oceToDelete as? Event {
+                       let commitPreicate = NSPredicate(format: "name == %@", oldOCEName)
+                       let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Character")
+                       fetchRequest.predicate = commitPreicate
+                       
+                       let results = try context.fetch(fetchRequest)
+                       if results.count > 0 {
+                           context.delete(results.first!)
+                       }
+                   }
+               }
+    
+
+        PersistenceService.saveContext()
+    } catch {
+        print(error)
     }
-    PersistenceService.saveContext()
 }
 
 //  MARK: CHECK CORE DATA FOR MOVIE
