@@ -8,12 +8,7 @@
 
 import Foundation
 
-//API KEY: d73981d448f96d767979d8c919ff9338
-
 class CastCharacterNetworkController: CastCharacterItemController {
-    
-    
-    
     
     func getCastCharacterItem(movieID: String, completion: @escaping (Result<[MovieCharacter], CastCharacterItemError>) -> Void) {
         let baseURL = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/credits")!
@@ -22,7 +17,6 @@ class CastCharacterNetworkController: CastCharacterItemController {
             "api_key": api_key
         ]
         guard let url = baseURL.withQueries(query) else {
-            //completion()
             print("Unable to build URL with supplied queries.")
             return
         }

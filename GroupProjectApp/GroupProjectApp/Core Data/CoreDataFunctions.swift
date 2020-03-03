@@ -18,7 +18,6 @@ func deleteCoreData(movieToDelete: Movie) {
     let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
     do {
         let movies = try context.fetch(fetchRequest)
-        print(movies)
         let index = movies.firstIndex(where: { (item) -> Bool in
             item.movieID == movieToDelete.movieID
         })
@@ -39,7 +38,6 @@ func addNewOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oceType: String) 
     let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
     do {
         let movies = try context.fetch(fetchRequest)
-        print(movies)
         let index = movies.firstIndex(where: { (item) -> Bool in
             item.movieID == movieIDToAddInto
         })
@@ -56,7 +54,7 @@ func addNewOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oceType: String) 
                 theObj.parentMovie = movies[index2]
                 movies[index2].movieRelatedObjects?.adding(theObj)
             }
-         } else if oceType == "event" {
+        } else if oceType == "event" {
             if let event = oceToInsert as? MovieEvent {
                 let theEvent = Event(movieEvent: event, context: context)
                 theEvent.parentMovie = movies[index2]
@@ -107,7 +105,7 @@ func updateOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oldOCEName: Strin
                 }
             }
         } else if oceType == "event" {
-             if let event = oceToInsert as? MovieEvent {
+            if let event = oceToInsert as? MovieEvent {
                 let commitPredicate = NSPredicate(format: "name == %@", oldOCEName)
                 let fetchRequest2 = NSFetchRequest<Event>(entityName: "Event")
                 fetchRequest2.predicate = commitPredicate
@@ -147,11 +145,11 @@ func deleteOCEFromMovie(movieToDeleteFrom: Int, oceToDelete: Any, oceType: Strin
                 }
             }
         }
-    
+        
         if oceType == "obj" {
             if let object = oceToDelete as? MovieObject {
                 let commitPreicate = NSPredicate(format: "name == %@", oldOCEName)
-                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Object")
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MoObject")
                 fetchRequest.predicate = commitPreicate
                 
                 let results = try context.fetch(fetchRequest)
@@ -162,19 +160,18 @@ func deleteOCEFromMovie(movieToDeleteFrom: Int, oceToDelete: Any, oceType: Strin
         }
         
         if oceType == "event" {
-                   if let object = oceToDelete as? MovieEvent {
-                       let commitPreicate = NSPredicate(format: "name == %@", oldOCEName)
-                       let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Event")
-                       fetchRequest.predicate = commitPreicate
-                       
-                       let results = try context.fetch(fetchRequest)
-                       if results.count > 0 {
-                           context.delete(results.first!)
-                       }
-                   }
-               }
-    
-
+            if let object = oceToDelete as? MovieEvent {
+                let commitPreicate = NSPredicate(format: "name == %@", oldOCEName)
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Event")
+                fetchRequest.predicate = commitPreicate
+                
+                let results = try context.fetch(fetchRequest)
+                if results.count > 0 {
+                    context.delete(results.first!)
+                }
+            }
+        }
+        
         PersistenceService.saveContext()
     } catch {
         print(error)
@@ -204,25 +201,5 @@ func checkCoreDataForMovie(movieToCheckForID: Int) -> Movie? {
     return nil
     
 }
-
-//func checkForOCEInMovie(movieToCheckFor: AMovie, oceName: String) -> [NSSet.Element]? {
-//    let context = PersistenceService.context
-//    let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
-//    do {
-//        let movies = try context.fetch(fetchRequest)
-//        print(movies)
-//        let commitPredicate = NSPredicate(format: "name == %@", oceName)
-//        let index = movies.firstIndex(where: { (item) -> Bool in
-//            item.movieID == movieToCheckFor.movieID
-//        })
-//        guard let index2 = index else { return nil }
-//        let result = movies[index2].movieRelatedCharacters?.filter { commitPredicate.evaluate(with: $0) }
-//        return result
-//
-//    } catch {
-//        print(error)
-//    }
-//    return nil
-//}
 
 

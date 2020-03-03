@@ -23,27 +23,6 @@ extension Movie {
         movie.title = movieToCreate.title
         movie.voteAverage = movieToCreate.voteAverage
         movie.movieRelatedCharacters = NSSet(array: MovieDetailTableViewController.relatedCharacters?.map { Character(movieCharacter: $0, context: context) } ?? [] )
-
-//        movie.movieRelatedCharacters = Movie(amovie: movieToCreate).movieRelatedCharacters ?? []
-//        movie.movieRelatedObjects = []
-//        movie.movieRelatedEvents = []
-        print("🧷")
         return movie
     }
-
-    
-    
-    
-    
-//    convenience init(movieCharacter: MovieCharacter, context: NSManagedObjectContext = PersistenceService.context) {
-//        self.init(context: context)
-//
-//        name = movieCharacter.name
-//        notes = movieCharacter.notes
-//        self.characterRelatedCharacters = NSSet(array: movieCharacter.relatedCharacters ?? [] )
-//        self.characterRelatedEvents = NSSet(array: movieCharacter.relateEvents ?? [] )
-//        self.characterRelatedObjects = NSSet(array: movieCharacter.relatedObjects ?? [] )
-//
-//
-//    }
 }

@@ -65,8 +65,6 @@ struct AMovie: Codable, Equatable {
         self.relatedObjects = relatedObjects
         self.relatedEvents = relatedEvents
     }
-    
-    
 }
 
 struct Collection: Codable {

@@ -10,9 +10,8 @@
 import Foundation
 import CoreData
 
-
 extension MoObject {
-
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<MoObject> {
         return NSFetchRequest<MoObject>(entityName: "MoObject")
     }
