@@ -151,7 +151,7 @@ func deleteOCEFromMovie(movieToDeleteFrom: Int, oceToDelete: Any, oceType: Strin
         if oceType == "obj" {
             if let object = oceToDelete as? MovieObject {
                 let commitPreicate = NSPredicate(format: "name == %@", oldOCEName)
-                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Character")
+                let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Object")
                 fetchRequest.predicate = commitPreicate
                 
                 let results = try context.fetch(fetchRequest)
@@ -162,9 +162,9 @@ func deleteOCEFromMovie(movieToDeleteFrom: Int, oceToDelete: Any, oceType: Strin
         }
         
         if oceType == "event" {
-                   if let object = oceToDelete as? Event {
+                   if let object = oceToDelete as? MovieEvent {
                        let commitPreicate = NSPredicate(format: "name == %@", oldOCEName)
-                       let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Character")
+                       let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Event")
                        fetchRequest.predicate = commitPreicate
                        
                        let results = try context.fetch(fetchRequest)

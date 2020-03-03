@@ -36,18 +36,47 @@ class OCEDetailTableViewController: UITableViewController, UITextViewDelegate {
     
 //  MARK: FAKE PLACEHOLDER STUFF
     
-    func updateTextViews() {
-        characterNameTextView.textColor = UIColor.lightGray
-        notesText.textColor = UIColor.lightGray
-        relatedEventsNotesTextView.textColor = UIColor.lightGray
-        relatedCharacterNotesTextView.textColor = UIColor.lightGray
-        relatedObjectsNotesTextView.textColor = UIColor.lightGray
+    
+    func updateTextViews(_ textView: UITextView) {
+        guard let newCharacter = OCEDetailTableViewController.newCharacter, let newEvent = OCEDetailTableViewController.newEvent, let newObject = OCEDetailTableViewController.newObject else { return }
+        
+        if newCharacter || newObject || newEvent {
+            notesText.text = "Add your general notes here"
+            relatedCharacterNotesTextView.text = "Add notes about related charachters"
+            relatedObjectsNotesTextView.text = "Add notes about related objects/things"
+            relatedEventsNotesTextView.text = "Add notes about related events"
+        }
+        if textView.text == "Add Character's name" || textView.text == "Add a name for the event" || textView.text == "Add a name for your object" {
+            textView.textColor = UIColor.lightGray
+            
+        }
+        if textView.text == "Add your general notes here" {
+            notesText.textColor = UIColor.lightGray
+        }
+        if textView.text == "Add notes about related charachters" {
+            relatedCharacterNotesTextView.textColor = UIColor.lightGray
+        }
+        if textView.text == "Add notes about related events" {
+            relatedEventsNotesTextView.textColor = UIColor.lightGray
+        }
+        if textView.text == "Add notes about related objects/things" {
+            relatedObjectsNotesTextView.textColor = UIColor.lightGray
+        }
+        
+        
+    }
+    
+    func UpdateCharacterTextViews(_ textView: UITextView) {
+        if textView.text == "" {
+            textView.text = "Add your character notes here"
+            textView.textColor = UIColor.lightGray
+        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.white
         }
     }
 
@@ -146,9 +175,15 @@ class OCEDetailTableViewController: UITableViewController, UITextViewDelegate {
         relatedCharacterNotesTextView.delegate = self
         relatedObjectsNotesTextView.delegate = self
         relatedEventsNotesTextView.delegate = self
-//        updateTextViews()
-        
-        
+        updateTextViews(notesText)
+        updateTextViews(relatedCharacterNotesTextView)
+        updateTextViews(relatedObjectsNotesTextView)
+        updateTextViews(relatedEventsNotesTextView)
+        updateTextViews(characterNameTextView)
+        UpdateCharacterTextViews(notesText)
+        UpdateCharacterTextViews(relatedCharacterNotesTextView)
+        UpdateCharacterTextViews(relatedObjectsNotesTextView)
+        UpdateCharacterTextViews(relatedEventsNotesTextView)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
@@ -186,6 +221,8 @@ class OCEDetailTableViewController: UITableViewController, UITextViewDelegate {
             relatedCharacterNotesTextView.text = OCEDetailTableViewController.character?.characters ??  OCEDetailTableViewController.event?.characters ?? OCEDetailTableViewController.object?.characters ?? ""
             
             relatedEventsNotesTextView.text = OCEDetailTableViewController.character?.events ?? OCEDetailTableViewController.event?.events ?? OCEDetailTableViewController.object?.events ?? ""
+            
+            relatedObjectsNotesTextView.text = OCEDetailTableViewController.character?.objects ?? OCEDetailTableViewController.event?.objects ?? OCEDetailTableViewController.object?.objects ?? ""
             
             
             navTitle.title = "Edit existing"
