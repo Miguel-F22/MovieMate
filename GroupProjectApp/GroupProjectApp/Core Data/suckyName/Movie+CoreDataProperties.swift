@@ -67,10 +67,10 @@ extension Movie {
 extension Movie {
 
     @objc(addMovieRelatedObjectsObject:)
-    @NSManaged public func addToMovieRelatedObjects(_ value: Object)
+    @NSManaged public func addToMovieRelatedObjects(_ value: MoObject)
 
     @objc(removeMovieRelatedObjectsObject:)
-    @NSManaged public func removeFromMovieRelatedObjects(_ value: Object)
+    @NSManaged public func removeFromMovieRelatedObjects(_ value: MoObject)
 
     @objc(addMovieRelatedObjects:)
     @NSManaged public func addToMovieRelatedObjects(_ values: NSSet)

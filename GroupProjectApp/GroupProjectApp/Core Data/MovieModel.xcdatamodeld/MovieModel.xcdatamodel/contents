@@ -16,6 +16,14 @@
         <attribute name="objects" optional="YES" attributeType="String"/>
         <relationship name="parentMovie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="movieRelatedEvents" inverseEntity="Movie"/>
     </entity>
+    <entity name="MoObject" representedClassName="MoObject" parentEntity="Movie" syncable="YES">
+        <attribute name="characters" optional="YES" attributeType="String"/>
+        <attribute name="events" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="objects" optional="YES" attributeType="String"/>
+        <relationship name="parentMovie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="movieRelatedObjects" inverseEntity="Movie"/>
+    </entity>
     <entity name="Movie" representedClassName="Movie" syncable="YES">
         <attribute name="movieID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="overview" optional="YES" attributeType="String"/>
@@ -25,20 +33,12 @@
         <attribute name="voteAverage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="movieRelatedCharacters" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Character" inverseName="parentMovie" inverseEntity="Character"/>
         <relationship name="movieRelatedEvents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="parentMovie" inverseEntity="Event"/>
-        <relationship name="movieRelatedObjects" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Object" inverseName="parentMovie" inverseEntity="Object"/>
-    </entity>
-    <entity name="Object" representedClassName="Object" parentEntity="Movie" syncable="YES">
-        <attribute name="characters" optional="YES" attributeType="String"/>
-        <attribute name="events" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="notes" optional="YES" attributeType="String"/>
-        <attribute name="objects" optional="YES" attributeType="String"/>
-        <relationship name="parentMovie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="movieRelatedObjects" inverseEntity="Movie"/>
+        <relationship name="movieRelatedObjects" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MoObject" inverseName="parentMovie" inverseEntity="MoObject"/>
     </entity>
     <elements>
-        <element name="Character" positionX="-7.96484375" positionY="94.828125" width="128" height="133"/>
-        <element name="Event" positionX="-201.73046875" positionY="-136.17578125" width="128" height="133"/>
-        <element name="Movie" positionX="39.35546875" positionY="-221.6171875" width="128" height="178"/>
-        <element name="Object" positionX="225.64453125" positionY="-32.7734375" width="128" height="133"/>
+        <element name="Character" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Event" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Movie" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MoObject" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

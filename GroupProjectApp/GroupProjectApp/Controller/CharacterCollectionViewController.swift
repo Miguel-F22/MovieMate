@@ -61,12 +61,12 @@ class CharacterCollectionViewController: UICollectionViewController {
             guard let index2 = index else { return 1 }
             if let characterCount = movies[index2].movieRelatedCharacters?.count {
                 let characterArray = Array((movies[index2].movieRelatedCharacters?.allObjects as? [Character])!)
-//                var sortedArray = characterArray.sorted(by: {$0.name < $1.name})
+                //                var sortedArray = characterArray.sorted(by: {$0.name < $1.name})
                 let sortedMovies = characterArray.sorted(by: { $0.name! < $1.name! })
                 CharacterCollectionViewController.collectionCharacters = sortedMovies
                 return characterCount + 1
             }
-
+            
             
         } catch {
              print("")

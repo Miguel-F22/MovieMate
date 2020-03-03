@@ -112,6 +112,7 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        summary.isEditable = false
         OCEDetailTableViewController.delegate = self
         overrideUserInterfaceStyle = .dark  
         eventCollectionView.dataSource = eventController

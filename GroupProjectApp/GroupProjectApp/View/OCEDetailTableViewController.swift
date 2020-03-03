@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OCEDetailTableViewController: UITableViewController {
+class OCEDetailTableViewController: UITableViewController, UITextViewDelegate {
     
 //    MARK: Outlets and Dependencies
     static var newCharacter: Bool? = false
@@ -30,7 +30,27 @@ class OCEDetailTableViewController: UITableViewController {
     static var delegate: MovieDetailProtocol?
     static var character: Character?
     static var event: Event?
-    static var object: Object?
+    static var object: MoObject?
+    var whatAmI: String?
+    
+    
+//  MARK: FAKE PLACEHOLDER STUFF
+    
+    func updateTextViews() {
+        characterNameTextView.textColor = UIColor.lightGray
+        notesText.textColor = UIColor.lightGray
+        relatedEventsNotesTextView.textColor = UIColor.lightGray
+        relatedCharacterNotesTextView.textColor = UIColor.lightGray
+        relatedObjectsNotesTextView.textColor = UIColor.lightGray
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.white
+        }
+    }
+
     
 //    MARK: Cancel Button
     
@@ -39,9 +59,11 @@ class OCEDetailTableViewController: UITableViewController {
         OCEDetailTableViewController.newCharacter = false
         OCEDetailTableViewController.newEvent = false
         OCEDetailTableViewController.newObject = false
+        OCEDetailTableViewController.retCharacter = false
+        OCEDetailTableViewController.retEvent = false
+        OCEDetailTableViewController.retObject = false
         
     }
-    var whatAmI: String?
     
 
 //    MARK: Save Button
@@ -71,19 +93,16 @@ class OCEDetailTableViewController: UITableViewController {
             if OCEDetailTableViewController.retCharacter == true {
                 whatAmI = "char"
                 updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieCharacter(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!, oceType: whatAmI ?? "")
-                OCEDetailTableViewController.retCharacter = false
 
 
             } else if OCEDetailTableViewController.retObject == true {
                 whatAmI = "obj"
                 updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieObject(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (ObjectCollectionViewController.collectionObj?[ObjectCollectionViewController.indexOfObj].name)!, oceType: whatAmI ?? "")
-                OCEDetailTableViewController.retObject = false
 
 
             } else if OCEDetailTableViewController.retEvent == true {
                 whatAmI = "event"
                 updateOCEInMovie(movieIDToAddInto: globalMovieID! , oceToInsert: MovieEvent(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oldOCEName: (EventsCollectionViewController.collectionEvents?[EventsCollectionViewController.indexOfEvent].name)!, oceType: whatAmI ?? "")
-                OCEDetailTableViewController.retEvent = false
 
             }
             print("updating")
@@ -102,11 +121,11 @@ class OCEDetailTableViewController: UITableViewController {
             OCEDetailTableViewController.delegate?.saved()
         } else if OCEDetailTableViewController.retObject == true {
             whatAmI = "obj"
-            deleteOCEFromMovie(movieToDeleteFrom: globalMovieID!, oceToDelete: MovieObject(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI!, oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!)
+            deleteOCEFromMovie(movieToDeleteFrom: globalMovieID!, oceToDelete: MovieObject(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI!, oldOCEName: (ObjectCollectionViewController.collectionObj?[ObjectCollectionViewController.indexOfObj].name)!)
             OCEDetailTableViewController.delegate?.saved()
         } else if OCEDetailTableViewController.retEvent == true {
             whatAmI = "event"
-            deleteOCEFromMovie(movieToDeleteFrom: globalMovieID!, oceToDelete: MovieEvent(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI!, oldOCEName: (CharacterCollectionViewController.collectionCharacters?[CharacterCollectionViewController.indexOfChar].name)!)
+            deleteOCEFromMovie(movieToDeleteFrom: globalMovieID!, oceToDelete: MovieEvent(name: characterNameTextView.text, notes: notesText.text, relatedObjects: relatedObjectsNotesTextView.text, relatedCharacters: relatedCharacterNotesTextView.text, relateEvents: relatedEventsNotesTextView.text), oceType: whatAmI!, oldOCEName: (EventsCollectionViewController.collectionEvents?[EventsCollectionViewController.indexOfEvent].name)!)
             OCEDetailTableViewController.delegate?.saved()
         }
       
@@ -122,7 +141,20 @@ class OCEDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .dark  
         updateView()
+        notesText.delegate = self
+        characterNameTextView.delegate = self
+        relatedCharacterNotesTextView.delegate = self
+        relatedObjectsNotesTextView.delegate = self
+        relatedEventsNotesTextView.delegate = self
+//        updateTextViews()
         
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -132,6 +164,10 @@ class OCEDetailTableViewController: UITableViewController {
         OCEDetailTableViewController.character = nil
         OCEDetailTableViewController.event = nil
         OCEDetailTableViewController.object = nil
+        
+        OCEDetailTableViewController.retCharacter = false
+        OCEDetailTableViewController.retEvent = false
+        OCEDetailTableViewController.retObject = false
     }
     
     
@@ -144,6 +180,14 @@ class OCEDetailTableViewController: UITableViewController {
         
         if !newCharacter && !newObject && !newEvent {
             characterNameTextView.text = OCEDetailTableViewController.character?.name ?? OCEDetailTableViewController.event?.name ?? OCEDetailTableViewController.object?.name ?? ""
+            
+            notesText.text = OCEDetailTableViewController.character?.notes ?? OCEDetailTableViewController.object?.notes ?? OCEDetailTableViewController.event?.notes ?? ""
+            
+            relatedCharacterNotesTextView.text = OCEDetailTableViewController.character?.characters ??  OCEDetailTableViewController.event?.characters ?? OCEDetailTableViewController.object?.characters ?? ""
+            
+            relatedEventsNotesTextView.text = OCEDetailTableViewController.character?.events ?? OCEDetailTableViewController.event?.events ?? OCEDetailTableViewController.object?.events ?? ""
+            
+            
             navTitle.title = "Edit existing"
         } else if newCharacter {
             navTitle.title = "Add a character"
@@ -156,8 +200,8 @@ class OCEDetailTableViewController: UITableViewController {
             characterNameTextView.text = "Add a name for your object"
         }
         
-        
-        
     }
 
+    
+    
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SQ5-ds-3Ih">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SQ5-ds-3Ih">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -130,11 +130,11 @@
             </objects>
             <point key="canvasLocation" x="2977" y="607"/>
         </scene>
-        <!--Item-->
+        <!--My Library-->
         <scene sceneID="eij-sZ-QvG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SQ5-ds-3Ih" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="zgg-3c-WJn"/>
+                    <tabBarItem key="tabBarItem" title="My Library" image="book" catalog="system" selectedImage="book.fill" id="zgg-3c-WJn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TIr-yi-3mw">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -150,4 +150,8 @@
             <point key="canvasLocation" x="932" y="601"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="book" catalog="system" width="64" height="50"/>
+        <image name="book.fill" catalog="system" width="64" height="50"/>
+    </resources>
 </document>
