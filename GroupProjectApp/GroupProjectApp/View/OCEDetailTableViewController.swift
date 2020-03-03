@@ -146,7 +146,7 @@ class OCEDetailTableViewController: UITableViewController, UITextViewDelegate {
         relatedCharacterNotesTextView.delegate = self
         relatedObjectsNotesTextView.delegate = self
         relatedEventsNotesTextView.delegate = self
-        updateTextViews()
+//        updateTextViews()
         
         
     }
