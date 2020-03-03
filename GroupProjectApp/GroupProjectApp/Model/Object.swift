@@ -9,6 +9,7 @@
 import Foundation
 
 struct MovieObject: Codable {
+    
     var name: String
     var notes: String?
     var relatedObjects: String?

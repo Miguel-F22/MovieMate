@@ -16,6 +16,7 @@ struct MovieCharacter: Codable, Equatable {
     static func == (lhs: MovieCharacter, rhs: MovieCharacter) -> Bool {
         return lhs.name == rhs.name
     }
+    
     var name: String
     var notes: String?
     var relatedObjects: String?

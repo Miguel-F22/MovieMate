@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var movieListImageController: MovieListImageNetworkController = MovieListImageNetworkController()
@@ -18,27 +19,25 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
     static var indexPathOfMovie: Int?
     
     
-    
 //    MARK: SEARCH BAR STUFF
     
     var searchController: UISearchController?
-    
     func updateSearchResults(for searchController: UISearchController) {
         
     }
     
      func setupNavBar() {
-                navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.prefersLargeTitles = true
         
             searchController = UISearchController(searchResultsController: nil)
             searchController?.searchResultsUpdater = self
             searchController?.obscuresBackgroundDuringPresentation = false
-    //        navigationItem.hidesSearchBarWhenScrolling = false
-            navigationItem.searchController = searchController
         
-        navTitle.title = "My Library"
+            navigationItem.searchController = searchController
+            navTitle.title = "My Library"
         }
 
+    
 //    MARK: VIEW DID LOAD
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,13 +52,6 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
         overrideUserInterfaceStyle = .dark
         self.navigationItem.title = "My Library"
         setupNavBar()
-        
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func fetchMovies() -> [Movie]? {
@@ -82,15 +74,14 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
         return nil
     }
 
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return coreData?.count ?? 0
     }
     
@@ -110,16 +101,16 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
             }
         }
         return cell
-}
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 192.0;//Choose
+        return 192.0;
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        path = indexPath
-        
+
     }
+    
     
 //    MARK: NAVIGATION
 
@@ -129,6 +120,7 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
         if let selectedRow = tableView.indexPathForSelectedRow?.row, let destination = segue.destination as? MovieDetailTableViewController {
             MyLibraryTableViewController.indexPathOfMovie = selectedRow
             indexPathForMovie = selectedRow
+            
             let id = Int(coreData[selectedRow].movieID)
             let movieTitle = coreData[selectedRow].title
             let releaseDate = coreData[selectedRow].releaseDate
@@ -143,10 +135,6 @@ class MyLibraryTableViewController: UITableViewController, UISearchResultsUpdati
             destination.rating = rating
             
             MovieDetailTableViewController.hideOCEviews = false
-            
         }
-        
     }
-
-    
 }

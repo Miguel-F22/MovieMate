@@ -20,7 +20,5 @@ public class Character: Movie {
         characters = movieCharacter.relatedCharacters
         objects = movieCharacter.relatedObjects
         events = movieCharacter.relateEvents
-        
-        
     }
 }

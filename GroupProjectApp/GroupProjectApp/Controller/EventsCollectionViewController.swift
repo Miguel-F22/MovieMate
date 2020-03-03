@@ -21,34 +21,14 @@ class EventsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
-    }
-
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as? OCEDetailTableViewController
-//        let id: Int? = movieDetailTableController.movieID
-//        let collectionName = movieDetailTableController.collection
-//        destination?.movieID = id
-//        destination?.collection = collectionName
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
     }
      
     
     // MARK: UICollectionViewDataSource
     
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         guard MovieDetailTableViewController.hideOCEviews == false else { return 1 }
                 let context = PersistenceService.context
                 do {
@@ -61,15 +41,13 @@ class EventsCollectionViewController: UICollectionViewController {
                     guard let index2 = index else { return 1 }
                     if let eventCount = movies[index2].movieRelatedEvents?.count {
                         let eventArray = Array((movies[index2].movieRelatedEvents?.allObjects as? [Event])!)
-        //                var sortedArray = characterArray.sorted(by: {$0.name < $1.name})
-                        let sortedMovies = eventArray.sorted(by: { $0.name! < $1.name! })
-                        EventsCollectionViewController.collectionEvents = sortedMovies
+                        let sortedEventArray = eventArray.sorted(by: { $0.name! < $1.name! })
+                        EventsCollectionViewController.collectionEvents = sortedEventArray
                         return eventCount + 1
                     }
-
                     
                 } catch {
-                     print("")
+                    
                 }
                 return 1
     }
@@ -80,27 +58,21 @@ class EventsCollectionViewController: UICollectionViewController {
             return collectionView.dequeueReusableCell(withReuseIdentifier: "plusButton", for: indexPath)
         }
         
-        // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! EventsCollectionViewCell
-        
-        // Use the outlet in our custom class to get a reference to the UILabel in the cell
         guard let events = EventsCollectionViewController.collectionEvents else {
-            print("no related events")
             return cell
         }
         cell.nameLabel.text = events[indexPath.item - 1].name
-        cell.backgroundColor = UIColor(red:0.25, green:0.35, blue:0.25, alpha:1.0) // make cell more visible in our example project
+        cell.backgroundColor = UIColor(red:0.25, green:0.35, blue:0.25, alpha:1.0)
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.item != 0 else {
-            //            add button stuff
             
             OCEDetailTableViewController.newEvent = true
             OCEDetailTableViewController.retEvent = false
-            
             return
         }
         EventsCollectionViewController.indexOfEvent = indexPath.row
@@ -109,5 +81,4 @@ class EventsCollectionViewController: UICollectionViewController {
         OCEDetailTableViewController.event = EventsCollectionViewController.collectionEvents![indexPath.item - 1]
         EventsCollectionViewController.indexOfEvent = indexPath.row - 1
     }
-    
 }

@@ -13,7 +13,6 @@ import CoreData
 @objc(MoObject)
 public class MoObject: Movie {
     convenience init(movieObject: MovieObject, context: NSManagedObjectContext = PersistenceService.context) {
-        
         self.init(context: context)
         
         name = movieObject.name

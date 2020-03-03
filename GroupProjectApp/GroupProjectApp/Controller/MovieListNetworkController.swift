@@ -9,12 +9,12 @@
 //API KEY: d73981d448f96d767979d8c919ff9338
 
 import Foundation
+
 let api_key = "d73981d448f96d767979d8c919ff9338"
+
 class MovieListNetworkController: MovieListItemController {
     let baseURL = URL(string: "https://api.themoviedb.org/3/search/movie")!
     let session =  URLSession.shared
-    
-    
     
     func getMovieListItem(name: String, completion: @escaping (Result<Movies, MovieListItemError>) -> Void) {
         let query: [String: String] = [

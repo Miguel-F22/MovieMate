@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension Character {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Character> {
@@ -23,5 +22,4 @@ extension Character {
     @NSManaged public var objects: String?
     @NSManaged public var events: String?
     @NSManaged public var parentMovie: Movie?
-
 }
