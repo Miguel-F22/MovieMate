@@ -14,6 +14,8 @@ class ObjectCollectionViewController: UICollectionViewController {
     static var shared = ObjectCollectionViewController()
     static var indexOfObj = -1
     static var collectionObj: [Object]?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,25 +50,25 @@ class ObjectCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         guard MovieDetailTableViewController.hideOCEviews == false else { return 1 }
-                let context = PersistenceService.context
-                do {
-                    let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
-                    
-                    let movies = try context.fetch(fetchRequest)
-                    let index = movies.firstIndex(where: { (item) -> Bool in
-                        item.movieID == MyLibraryTableViewController.coreDataGlobalReference?[MyLibraryTableViewController.indexPathOfMovie!].movieID
-                    })
-                    guard let index2 = index else { return 1 }
-                    if let objectCount = movies[index2].movieRelatedObjects?.count {
-                        let objectArray = Array((movies[index2].movieRelatedObjects?.allObjects as? [Object])!)
-        //                var sortedArray = characterArray.sorted(by: {$0.name < $1.name})
-                        let sortedMovies = objectArray.sorted(by: { $0.name! < $1.name! })
-                        ObjectCollectionViewController.collectionObj = sortedMovies
-                        return objectCount + 1
-                    }
-
-                    
-                } catch {
+        let context = PersistenceService.context
+        do {
+            let fetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
+            
+            let movies = try context.fetch(fetchRequest)
+            let index = movies.firstIndex(where: { (item) -> Bool in
+                item.movieID == MyLibraryTableViewController.coreDataGlobalReference?[MyLibraryTableViewController.indexPathOfMovie!].movieID
+            })
+            guard let index2 = index else { return 1 }
+            if let objectCount = movies[index2].movieRelatedObjects?.count {
+                let objectArray = Array((movies[index2].movieRelatedObjects?.allObjects as? [Object])!)
+                //                var sortedArray = characterArray.sorted(by: {$0.name < $1.name})
+                let sortedMovies = objectArray.sorted(by: { $0.name! < $1.name! })
+                ObjectCollectionViewController.collectionObj = sortedMovies
+                return objectCount + 1
+            }
+            
+            
+        } catch {
                      print("")
                 }
                 return 1
