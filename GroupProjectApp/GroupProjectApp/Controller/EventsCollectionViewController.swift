@@ -89,7 +89,7 @@ class EventsCollectionViewController: UICollectionViewController {
             return cell
         }
         cell.nameLabel.text = events[indexPath.item - 1].name
-        cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
+        cell.backgroundColor = UIColor(red:0.25, green:0.35, blue:0.25, alpha:1.0) // make cell more visible in our example project
         
         return cell
     }

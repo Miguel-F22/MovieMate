@@ -89,7 +89,7 @@ class CharacterCollectionViewController: UICollectionViewController {
             return cell
         }
         cell.nameLabel.text = characters[indexPath.item - 1].name
-        cell.backgroundColor = UIColor.cyan // make cell more visible in our example project
+        cell.backgroundColor = UIColor(red:0.05, green:0.13, blue:0.29, alpha:1.0) // make cell more visible in our example project
         
         return cell
     }
