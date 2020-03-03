@@ -134,14 +134,23 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
     func updateButton() {
         guard let cameFromHome = MovieDetailTableViewController.hideOCEviews else { return }
         if let movieID = movieID {
-            if checkCoreDataForMovie(movieToCheckForID: movieID) == nil && cameFromHome {
-                existsInCoreData = false
-                addToLibraryButton.setTitle("Add to My Library", for: .normal)
-            } else if cameFromHome {
-                existsInCoreData = true
-                addToLibraryButton.setTitle("Already in Library", for: .normal)
-                addToLibraryButton.isEnabled = false
-            } else if !cameFromHome {
+           if checkCoreDataForMovie(movieToCheckForID: movieID) == nil && cameFromHome {
+               existsInCoreData = false
+               addToLibraryButton.setTitle("Add to My Library", for: .normal)
+           } else if cameFromHome {
+               existsInCoreData = true
+               addToLibraryButton.setTitle("Already in Library", for: .normal)
+               addToLibraryButton.isEnabled = false
+            let alert = UIAlertController(title: "Sucess!", message: "This title is already in your library, head to the My Library tab to keep tracking it.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+             
+           } else if !cameFromHome {
                 existsInCoreData = true
                 addToLibraryButton.setTitle("Delete From Library", for: .normal)
                 addToLibraryButton.isEnabled = true
@@ -166,6 +175,14 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
                 existsInCoreData = true
                 addToLibraryButton.setTitle("Added to library", for: .normal)
                 addToLibraryButton.isEnabled = false
+                let alert = UIAlertController(title: "Sucess!", message: "Title added to My Library tab", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }

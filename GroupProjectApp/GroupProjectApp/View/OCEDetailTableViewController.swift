@@ -67,7 +67,7 @@ class OCEDetailTableViewController: UITableViewController, UITextViewDelegate {
     }
     
     func UpdateCharacterTextViews(_ textView: UITextView) {
-        if textView.text == "" {
+        if textView.text == "" || textView.text == "Add your character notes here" {
             textView.text = "Add your character notes here"
             textView.textColor = UIColor.lightGray
         }

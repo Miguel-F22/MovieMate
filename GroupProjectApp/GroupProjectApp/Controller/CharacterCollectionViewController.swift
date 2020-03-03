@@ -66,7 +66,7 @@ class CharacterCollectionViewController: UICollectionViewController {
             return cell
         }
         cell.nameLabel.text = characters[indexPath.item - 1].name
-        cell.backgroundColor = UIColor.orange
+        cell.backgroundColor = UIColor(red:0.05, green:0.13, blue:0.29, alpha:1.0)
         
         return cell
     }

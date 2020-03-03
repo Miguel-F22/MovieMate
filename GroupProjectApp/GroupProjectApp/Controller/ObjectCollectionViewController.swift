@@ -66,7 +66,7 @@ class ObjectCollectionViewController: UICollectionViewController {
                 return cell
             }
             cell.nameLabel.text = objects[indexPath.item - 1].name
-            cell.backgroundColor = UIColor.blue
+            cell.backgroundColor = UIColor(red:0.82, green:0.32, blue:0.19, alpha:1.0)
             
             return cell
     }
