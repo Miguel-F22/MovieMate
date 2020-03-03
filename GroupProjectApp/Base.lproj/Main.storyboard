@@ -141,7 +141,7 @@
         <scene sceneID="DGs-gM-His">
             <objects>
                 <navigationController id="g4s-ho-1f2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" selectedImage="house" catalog="system" id="3kF-Ke-FVf"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house.fill" id="3kF-Ke-FVf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="LHa-ZA-4ws">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -296,7 +296,7 @@
         <scene sceneID="jmf-d1-kqp">
             <objects>
                 <viewControllerPlaceholder storyboardName="MyLibrary" id="dSv-Nt-daw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="xPX-qs-kes"/>
+                    <tabBarItem key="tabBarItem" title="My Library" selectedImage="book" catalog="system" id="xPX-qs-kes"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxA-OC-rvv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -304,6 +304,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="book" catalog="system" width="64" height="50"/>
         <image name="house" catalog="system" width="64" height="54"/>
+        <image name="house.fill" catalog="system" width="64" height="52"/>
     </resources>
 </document>

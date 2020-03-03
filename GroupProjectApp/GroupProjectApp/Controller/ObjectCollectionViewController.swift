@@ -13,7 +13,7 @@ private let reuseIdentifier = "objectCell"
 class ObjectCollectionViewController: UICollectionViewController {
     static var shared = ObjectCollectionViewController()
     static var indexOfObj = -1
-    static var collectionObj: [Object]?
+    static var collectionObj: [MoObject]?
     
     
     override func viewDidLoad() {
@@ -60,7 +60,7 @@ class ObjectCollectionViewController: UICollectionViewController {
             })
             guard let index2 = index else { return 1 }
             if let objectCount = movies[index2].movieRelatedObjects?.count {
-                let objectArray = Array((movies[index2].movieRelatedObjects?.allObjects as? [Object])!)
+                let objectArray = Array((movies[index2].movieRelatedObjects?.allObjects as? [MoObject])!)
                 //                var sortedArray = characterArray.sorted(by: {$0.name < $1.name})
                 let sortedMovies = objectArray.sorted(by: { $0.name! < $1.name! })
                 ObjectCollectionViewController.collectionObj = sortedMovies

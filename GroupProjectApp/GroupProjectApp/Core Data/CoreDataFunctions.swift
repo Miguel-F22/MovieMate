@@ -52,7 +52,7 @@ func addNewOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oceType: String) 
             }
         } else if oceType == "obj" {
             if let object = oceToInsert as? MovieObject {
-                let theObj = Object(movieObject: object, context: context)
+                let theObj = MoObject(movieObject: object, context: context)
                 theObj.parentMovie = movies[index2]
                 movies[index2].movieRelatedObjects?.adding(theObj)
             }
@@ -94,7 +94,7 @@ func updateOCEInMovie(movieIDToAddInto: Int, oceToInsert: Any, oldOCEName: Strin
         } else if oceType == "obj" {
             if let object = oceToInsert as? MovieObject {
                 let commitPredicate = NSPredicate(format: "name == %@", oldOCEName)
-                let fetchRequest2 = NSFetchRequest<Object>(entityName: "Object")
+                let fetchRequest2 = NSFetchRequest<MoObject>(entityName: "MoObject")
                 fetchRequest2.predicate = commitPredicate
                 
                 let results = try context.fetch(fetchRequest2)

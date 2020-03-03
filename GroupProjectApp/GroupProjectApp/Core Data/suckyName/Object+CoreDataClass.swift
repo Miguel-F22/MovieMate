@@ -1,5 +1,5 @@
 //
-//  Object+CoreDataClass.swift
+//  MoObject+CoreDataClass.swift
 //  GroupProjectApp
 //
 //  Created by Josh GImenes on 3/2/20.
@@ -10,8 +10,8 @@
 import Foundation
 import CoreData
 
-@objc(Object)
-public class Object: Movie {
+@objc(MoObject)
+public class MoObject: Movie {
     convenience init(movieObject: MovieObject, context: NSManagedObjectContext = PersistenceService.context) {
         
         self.init(context: context)

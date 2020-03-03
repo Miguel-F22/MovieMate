@@ -23,7 +23,7 @@ public class Movie: NSManagedObject {
             self.releaseDate = amovie.releaseDate
             self.movieRelatedCharacters = NSSet(array: amovie.relatedCharacters?.map { Character(movieCharacter: $0, context: context) } ?? [] )
             self.movieRelatedEvents = NSSet(array: amovie.relatedEvents?.map { Event(movieEvent: $0, context: context) } ?? [] )
-            self.movieRelatedObjects = NSSet(array: amovie.relatedObjects?.map { Object(movieObject: $0, context: context) } ?? [] )
+            self.movieRelatedObjects = NSSet(array: amovie.relatedObjects?.map { MoObject(movieObject: $0, context: context) } ?? [] )
             
         }
     

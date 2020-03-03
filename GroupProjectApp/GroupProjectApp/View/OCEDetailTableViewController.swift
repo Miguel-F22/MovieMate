@@ -30,7 +30,7 @@ class OCEDetailTableViewController: UITableViewController, UITextViewDelegate {
     static var delegate: MovieDetailProtocol?
     static var character: Character?
     static var event: Event?
-    static var object: Object?
+    static var object: MoObject?
     var whatAmI: String?
     
     
@@ -47,7 +47,7 @@ class OCEDetailTableViewController: UITableViewController, UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.white
         }
     }
 

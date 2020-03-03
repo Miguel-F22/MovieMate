@@ -1,5 +1,5 @@
 //
-//  Object+CoreDataProperties.swift
+//  MoObject+CoreDataProperties.swift
 //  GroupProjectApp
 //
 //  Created by Josh GImenes on 3/2/20.
@@ -11,10 +11,10 @@ import Foundation
 import CoreData
 
 
-extension Object {
+extension MoObject {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Object> {
-        return NSFetchRequest<Object>(entityName: "Object")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<MoObject> {
+        return NSFetchRequest<MoObject>(entityName: "MoObject")
     }
 
     @NSManaged public var characters: String?

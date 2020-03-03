@@ -11,7 +11,7 @@ import UIKit
 class RelationViewTableViewController: UITableViewController {
 
     var eventsRelationsList: [Event] = []
-    var objectsRelationsList: [Object] = []
+    var objectsRelationsList: [MoObject] = []
     var charactersRelationsList: [Character] = []
     override func viewDidLoad() {
         super.viewDidLoad()
