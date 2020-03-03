@@ -19,13 +19,10 @@ class MovieListImageNetworkController {
         
         let imageTask = URLSession.shared.dataTask(with: url) { (data,
             response, error) in
-            //let decoder = JSONDecoder()
             if let data = data,
                 let image = UIImage(data: data) {
                 
                 completion(image)
-                
-                
             } else {
                 print("Either no data was returned, or data was not serialized.")
                 
@@ -33,8 +30,6 @@ class MovieListImageNetworkController {
                 return
             }
         }
-        
-        
         imageTask.resume()
     }
 }

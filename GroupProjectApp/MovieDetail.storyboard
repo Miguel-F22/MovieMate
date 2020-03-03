@@ -63,15 +63,8 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="gf9-En-KlW">
                                                                     <rect key="frame" x="20" y="126.5" width="243.5" height="37.5"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCw-g2-7m9">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="55" height="37.5"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="55" id="z0F-Fm-JLj"/>
-                                                                            </constraints>
-                                                                            <state key="normal" title="Similar"/>
-                                                                        </button>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tik-1P-Tn8">
-                                                                            <rect key="frame" x="166" y="0.0" width="77.5" height="37.5"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tik-1P-Tn8">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="243.5" height="37.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>

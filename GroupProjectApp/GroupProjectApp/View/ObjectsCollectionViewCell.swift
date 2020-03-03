@@ -9,6 +9,5 @@
 import UIKit
 
 class ObjectsCollectionViewCell: UICollectionViewCell {
-    
     @IBOutlet weak var nameLabel: UILabel!
 }

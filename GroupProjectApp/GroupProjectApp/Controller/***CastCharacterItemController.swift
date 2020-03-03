@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum CastCharacterItemError: Error {
     case failed
 }

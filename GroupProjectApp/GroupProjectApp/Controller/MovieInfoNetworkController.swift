@@ -9,9 +9,8 @@
 import Foundation
 
  class MovieInfoNetworkController: MovieInfoItemController {
+    
      let session =  URLSession.shared
-     
-     
      
      func getMovieInfoItem(movie_ID: Int, completion: @escaping (Result<AMovie, MovieInfoItemError>) -> Void) {
          let baseURL = URL(string: "https://api.themoviedb.org/3/movie/\(movie_ID)")!
@@ -21,7 +20,6 @@ import Foundation
              "language": "en-US"
          ]
          guard let url = baseURL.withQueries(query) else {
-             //completion()
              print("Unable to build URL with supplied queries.")
              return
          }
