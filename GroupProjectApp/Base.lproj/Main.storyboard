@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ua4-O3-eNv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ua4-O3-eNv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Movie Tracker-->
+        <!--Movie Mate-->
         <scene sceneID="xXq-1U-xqu">
             <objects>
                 <tableViewController id="O7i-Mu-409" customClass="MovieListTableViewController" customModule="GroupProjectApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -110,7 +110,7 @@
                             <outlet property="delegate" destination="O7i-Mu-409" id="ZTH-tr-ByU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Movie Tracker" id="5cc-Oj-ruS"/>
+                    <navigationItem key="navigationItem" title="Movie Mate" id="5cc-Oj-ruS"/>
                     <connections>
                         <segue destination="fDP-HZ-XfO" kind="show" identifier="toMovieDetail" id="nOY-9k-rzH"/>
                     </connections>
@@ -146,10 +146,10 @@
             </objects>
             <point key="canvasLocation" x="932" y="-148"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--My Tab Bar Controller-->
         <scene sceneID="nwJ-UO-h5r">
             <objects>
-                <tabBarController id="Ua4-O3-eNv" sceneMemberID="viewController">
+                <tabBarController id="Ua4-O3-eNv" customClass="MyTabBarController" customModule="GroupProjectApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jUE-In-j1G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

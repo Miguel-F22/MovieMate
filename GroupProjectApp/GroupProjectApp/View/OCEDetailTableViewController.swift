@@ -185,6 +185,8 @@ class OCEDetailTableViewController: UITableViewController, UITextViewDelegate {
         UpdateCharacterTextViews(relatedEventsNotesTextView)
     }
     
+  
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
