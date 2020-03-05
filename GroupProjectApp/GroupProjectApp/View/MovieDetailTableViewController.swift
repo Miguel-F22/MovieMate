@@ -84,8 +84,8 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
     
     override func viewWillAppear(_ animated: Bool) {
         globalMovieID = movieID
-        tableView.reloadData()
         hideORshowOCE()
+        tableView.reloadData()
         
         castCharacterNetworkController.getCastCharacterItem(movieID: movieID!.description) { response in
             switch response {
@@ -128,6 +128,14 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
         updateButton()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+          super.viewDidDisappear(true)
+        guard  let cameFromHome = MovieDetailTableViewController.hideOCEviews, let coreData = MyLibraryTableViewController.coreDataGlobalReference else { return }
+//        if cameFromHome {
+//            navigationController?.popViewController(animated: false)
+//        }
+      }
+    
     
     //   MARK: Collection stuff
     
@@ -158,6 +166,7 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
         }
     }
     
+//    MARK: ADD TO LIBRARY BUTTON
     
     @IBAction func addToLibaryAction(_ sender: Any) {
         guard  let cameFromHome = MovieDetailTableViewController.hideOCEviews, let coreData = MyLibraryTableViewController.coreDataGlobalReference else { return }
@@ -198,6 +207,7 @@ class MovieDetailTableViewController: UITableViewController, MovieDetailProtocol
         } else {
             return 5
         }
+
     }
     
     

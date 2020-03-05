@@ -13,6 +13,23 @@ import UIKit
 var indexPathForMovie: Int? = nil
 var movieInfoItems: [AMovie] = []
 
+class MyTabBarController: UITabBarController, UITabBarControllerDelegate {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate = self
+    }
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        var selectedItem: UITabBarItem?
+        selectedItem = item
+        print("Selected \(item)")
+        if selectedItem?.title == "My Library" {
+            MovieDetailTableViewController.hideOCEviews = false
+        } else if selectedItem?.title == "Home" {
+            MovieDetailTableViewController.hideOCEviews = true
+        }
+    }
+}
+
 class MovieListTableViewController: UITableViewController, UISearchResultsUpdating {
     
     
